@@ -7,21 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09155EFA1D90E311007AC201 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09155EF91D90E311007AC201 /* Constant.swift */; };
+		09155EFC1D90E3B6007AC201 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09155EFB1D90E3B6007AC201 /* UserInfo.swift */; };
 		0941ADEF1D90DE4E001D9857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0941ADEE1D90DE4E001D9857 /* AppDelegate.swift */; };
 		0941ADF11D90DE4E001D9857 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0941ADF01D90DE4E001D9857 /* ViewController.swift */; };
 		0941ADF41D90DE4E001D9857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0941ADF21D90DE4E001D9857 /* Main.storyboard */; };
 		0941ADF61D90DE4E001D9857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0941ADF51D90DE4E001D9857 /* Assets.xcassets */; };
 		0941ADF91D90DE4E001D9857 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0941ADF71D90DE4E001D9857 /* LaunchScreen.storyboard */; };
+		170C9EABBB0E0E08D3D1E500 /* Pods_LittleMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD27D3D7024E0EB78190CBC /* Pods_LittleMarket.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09155EF91D90E311007AC201 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		09155EFB1D90E3B6007AC201 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		0941ADEB1D90DE4E001D9857 /* LittleMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0941ADEE1D90DE4E001D9857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0941ADF01D90DE4E001D9857 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0941ADF01D90DE4E001D9857 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../ViewController.swift; sourceTree = "<group>"; };
 		0941ADF31D90DE4E001D9857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0941ADF51D90DE4E001D9857 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0941ADF81D90DE4E001D9857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0941ADFA1D90DE4E001D9857 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BA9CFD39B01B5A62F9E8AFF /* Pods-LittleMarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleMarket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LittleMarket/Pods-LittleMarket.debug.xcconfig"; sourceTree = "<group>"; };
+		AB7FF1386812AD4B5837020F /* Pods-LittleMarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleMarket.release.xcconfig"; path = "Pods/Target Support Files/Pods-LittleMarket/Pods-LittleMarket.release.xcconfig"; sourceTree = "<group>"; };
+		FCD27D3D7024E0EB78190CBC /* Pods_LittleMarket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LittleMarket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,127 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				170C9EABBB0E0E08D3D1E500 /* Pods_LittleMarket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09155EF21D90E2C1007AC201 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				09155EF31D90E2C1007AC201 /* Common */,
+				09155EF41D90E2C1007AC201 /* Lib */,
+				09155EF51D90E2C1007AC201 /* Login */,
+				09155EF61D90E2C1007AC201 /* Main */,
+				09155EF71D90E2C1007AC201 /* Other */,
+				09155EF81D90E2C1007AC201 /* Tool */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		09155EF31D90E2C1007AC201 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				09155EFB1D90E3B6007AC201 /* UserInfo.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		09155EF41D90E2C1007AC201 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		09155EF51D90E2C1007AC201 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				09155F021D90E50D007AC201 /* Controller */,
+				09155F011D90E506007AC201 /* View */,
+				09155F001D90E4FE007AC201 /* Model */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		09155EF61D90E2C1007AC201 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				09155EFD1D90E4C6007AC201 /* Controller */,
+				09155EFE1D90E4D3007AC201 /* View */,
+				09155EFF1D90E4E5007AC201 /* Model */,
+				0941ADF21D90DE4E001D9857 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		09155EF71D90E2C1007AC201 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		09155EF81D90E2C1007AC201 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				09155EF91D90E311007AC201 /* Constant.swift */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		09155EFD1D90E4C6007AC201 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0941ADF01D90DE4E001D9857 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		09155EFE1D90E4D3007AC201 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		09155EFF1D90E4E5007AC201 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		09155F001D90E4FE007AC201 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		09155F011D90E506007AC201 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		09155F021D90E50D007AC201 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		0941ADE21D90DE4D001D9857 = {
 			isa = PBXGroup;
 			children = (
 				0941ADED1D90DE4E001D9857 /* LittleMarket */,
 				0941ADEC1D90DE4E001D9857 /* Products */,
+				632AF5276528051B5385BA50 /* Pods */,
+				A13035B9EDA7B9FA3AB52000 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +172,30 @@
 		0941ADED1D90DE4E001D9857 /* LittleMarket */ = {
 			isa = PBXGroup;
 			children = (
+				09155EF21D90E2C1007AC201 /* Class */,
 				0941ADEE1D90DE4E001D9857 /* AppDelegate.swift */,
-				0941ADF01D90DE4E001D9857 /* ViewController.swift */,
-				0941ADF21D90DE4E001D9857 /* Main.storyboard */,
 				0941ADF51D90DE4E001D9857 /* Assets.xcassets */,
 				0941ADF71D90DE4E001D9857 /* LaunchScreen.storyboard */,
 				0941ADFA1D90DE4E001D9857 /* Info.plist */,
 			);
 			path = LittleMarket;
+			sourceTree = "<group>";
+		};
+		632AF5276528051B5385BA50 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2BA9CFD39B01B5A62F9E8AFF /* Pods-LittleMarket.debug.xcconfig */,
+				AB7FF1386812AD4B5837020F /* Pods-LittleMarket.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A13035B9EDA7B9FA3AB52000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FCD27D3D7024E0EB78190CBC /* Pods_LittleMarket.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +205,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0941ADFD1D90DE4E001D9857 /* Build configuration list for PBXNativeTarget "LittleMarket" */;
 			buildPhases = (
+				FEF83BBE97D8AE86D5B82395 /* [CP] Check Pods Manifest.lock */,
 				0941ADE71D90DE4D001D9857 /* Sources */,
 				0941ADE81D90DE4D001D9857 /* Frameworks */,
 				0941ADE91D90DE4D001D9857 /* Resources */,
+				9FADF6B9A5F0093D818FEEFE /* [CP] Embed Pods Frameworks */,
+				AD38B239D190ACC07C7E85C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,13 +269,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9FADF6B9A5F0093D818FEEFE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LittleMarket/Pods-LittleMarket-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD38B239D190ACC07C7E85C6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LittleMarket/Pods-LittleMarket-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEF83BBE97D8AE86D5B82395 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0941ADE71D90DE4D001D9857 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09155EFC1D90E3B6007AC201 /* UserInfo.swift in Sources */,
 				0941ADF11D90DE4E001D9857 /* ViewController.swift in Sources */,
 				0941ADEF1D90DE4E001D9857 /* AppDelegate.swift in Sources */,
+				09155EFA1D90E311007AC201 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +338,7 @@
 				0941ADF31D90DE4E001D9857 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		0941ADF71D90DE4E001D9857 /* LaunchScreen.storyboard */ = {
@@ -257,6 +445,7 @@
 		};
 		0941ADFE1D90DE4E001D9857 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2BA9CFD39B01B5A62F9E8AFF /* Pods-LittleMarket.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 24WZVK9M5D;
@@ -265,11 +454,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.J.LittleMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}";
 			};
 			name = Debug;
 		};
 		0941ADFF1D90DE4E001D9857 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB7FF1386812AD4B5837020F /* Pods-LittleMarket.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 24WZVK9M5D;
@@ -278,6 +469,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.J.LittleMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}";
 			};
 			name = Release;
 		};
@@ -300,6 +492,7 @@
 				0941ADFF1D90DE4E001D9857 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

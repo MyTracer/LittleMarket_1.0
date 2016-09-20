@@ -1,0 +1,6 @@
+framework module Pods_LittleMarket {
+  umbrella header "Pods-LittleMarket-umbrella.h"
+
+  export *
+  module * { export * }
+}
