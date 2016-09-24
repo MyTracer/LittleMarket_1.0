@@ -16,10 +16,19 @@ class UserInfo: NSObject {
     let UserNameKey:String = "userName"
     
     // 变量
-    var user:String?
-    var pwd:String?
-    var loginStatus:Bool?
-    var usernName:String?
+    var user:String? // 登陆名
+    var pwd:String?  // 密码
+    var loginStatus:Bool?  // 状态
+    
+    var userId:String?
+    var userName:String?
+    var departName:String?
+    var dutyName:String?
+    var cellPhone:String?
+    var roleName:String?
+    var sanji:String?
+    
+    
     
     // 单例
     static let shareUserInfo = UserInfo()
