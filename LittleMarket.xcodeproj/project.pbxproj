@@ -27,6 +27,7 @@
 		0970DA811D92690300FA9B1F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0970DA801D92690300FA9B1F /* Login.storyboard */; };
 		0970DA831D926E7000FA9B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0970DA821D926E7000FA9B1F /* LoginViewController.swift */; };
 		09A4D12E1D93718C003CB8FF /* String-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4D12D1D93718C003CB8FF /* String-extension.swift */; };
+		09F0205D1D97DC0900E2CE9B /* GridDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F0205C1D97DC0900E2CE9B /* GridDetailViewController.swift */; };
 		09F622751D922D9A0040B277 /* PersonTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F622741D922D9A0040B277 /* PersonTableViewController.swift */; };
 		09F622771D922F4B0040B277 /* PersonInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F622761D922F4B0040B277 /* PersonInfoModel.swift */; };
 		170C9EABBB0E0E08D3D1E500 /* Pods_LittleMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCD27D3D7024E0EB78190CBC /* Pods_LittleMarket.framework */; };
@@ -56,6 +57,7 @@
 		0970DA821D926E7000FA9B1F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		09A4D12C1D937089003CB8FF /* MD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MD-Bridging-Header.h"; path = "LittleMarket/Class/Other/MD-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		09A4D12D1D93718C003CB8FF /* String-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-extension.swift"; sourceTree = "<group>"; };
+		09F0205C1D97DC0900E2CE9B /* GridDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridDetailViewController.swift; sourceTree = "<group>"; };
 		09F622741D922D9A0040B277 /* PersonTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTableViewController.swift; sourceTree = "<group>"; };
 		09F622761D922F4B0040B277 /* PersonInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonInfoModel.swift; sourceTree = "<group>"; };
 		2BA9CFD39B01B5A62F9E8AFF /* Pods-LittleMarket.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LittleMarket.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LittleMarket/Pods-LittleMarket.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				090BB2861D93B0BA0090FA8E /* MyGridTableViewController.swift */,
 				091E78CA1D94D04C003C49EF /* FindGridViewController.swift */,
 				091E78D81D950D22003C49EF /* OtherGridTableViewController.swift */,
+				09F0205C1D97DC0900E2CE9B /* GridDetailViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				090BB2871D93B0BA0090FA8E /* MyGridTableViewController.swift in Sources */,
 				090BB28F1D93D3E60090FA8E /* NSObject-extension.swift in Sources */,
 				09F622771D922F4B0040B277 /* PersonInfoModel.swift in Sources */,
+				09F0205D1D97DC0900E2CE9B /* GridDetailViewController.swift in Sources */,
 				09155EFA1D90E311007AC201 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

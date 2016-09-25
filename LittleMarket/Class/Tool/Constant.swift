@@ -23,10 +23,15 @@ struct ArticleCagetory {
 }
 
 struct CellReuseIdentifier {
-    static let New = "NewsCell"
     static let MyGrid = "MyGrid"
     static let FindGrid = "FindGrid"
     static let OtherGrid = "OtherGrid"
+    
+    static let UserInfo = "UserInfo"
+    static let UserMenu = "UserMenu"
+    static let UserProduct = "UserProduct"
+    static let UserDetail = "UserDetail"
+    
     
 }
 
