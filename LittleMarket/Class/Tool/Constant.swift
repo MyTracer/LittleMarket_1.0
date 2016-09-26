@@ -29,7 +29,7 @@ struct CellReuseIdentifier {
     
     static let UserInfo = "UserInfo"
     static let UserMenu = "UserMenu"
-    static let UserProduct = "UserProduct"
+    static let UserGrid = "UserGrid"
     static let UserDetail = "UserDetail"
     
     
