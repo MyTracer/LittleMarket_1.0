@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import AlamofireImage
 
-class GridDetailViewController: UIViewController {
+class GridDetailViewController: UIViewController ,UITableViewDelegate{
 //    MARK: - 变量
     @IBOutlet weak var avatarWidth: NSLayoutConstraint!
     @IBOutlet weak var avatarHeight: NSLayoutConstraint!
@@ -31,6 +31,12 @@ class GridDetailViewController: UIViewController {
     
     
 //     懒加载
+    lazy var userMenu: UserMenuTableViewCell = {
+        let userMenu = self.tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.UserMenu) as! UserMenuTableViewCell
+        userMenu.addMenuItemTarget()
+        userMenu.delegate = self
+        return userMenu
+    }()
     
     // tableview 头部
     lazy var tableHeader: UserDetailHeaderCell = {
@@ -43,6 +49,22 @@ class GridDetailViewController: UIViewController {
         dataSource.userGridList = self.userGrid
         return dataSource
     }()
+    lazy var userDetailDataSource: UserDetailDataSource = {
+        let dataSource = UserDetailDataSource()
+//        dataSource.userDetail = self.userDetail
+        return dataSource
+    }()
+    // 头像
+    lazy var avatarMaxRadius: CGFloat = {
+        return self.avatarHeight.constant
+    }()
+    
+    lazy var avatarMaxCornerRadius: CGFloat = {
+        return self.avaterImageView.cornerRadius
+    }()
+
+    
+    
 //    MARK: - 网络
     func getData()  {
         // 登陆网络请求
@@ -90,7 +112,7 @@ class GridDetailViewController: UIViewController {
         
         // 显示数据 ...  必填项
         
-        tableHeader.bindModel(username: userInfo.userName!, name: userInfo.user!, note: userInfo.roleName!)
+        tableHeader.bindModel(username: "UserName", name: "name", note: "note")
         // 加载头像
         Alamofire.request("https://httpbin.org/image/png").responseImage { response in
             debugPrint(response)
@@ -113,6 +135,14 @@ class GridDetailViewController: UIViewController {
     }
     
 //    MARK: - 系统
+    var selectedIndexPath: NSIndexPath?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPath = selectedIndexPath {
+            tableView.deselectRow(at: indexPath as IndexPath, animated: animated)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // 加载头部，设置头部信息（读取UserInfo）在加载完数据之后。防止两次刷新重叠
@@ -140,4 +170,60 @@ class GridDetailViewController: UIViewController {
     }
     */
 
+
+
+// MARK: - TableView Delegate
+
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return userMenu
+    }
+    
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    //头像随页面滑动改变大小
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let headerHeight = tableHeader.frame.height
+        guard offsetY < headerHeight else {
+            avatarHeight.constant = avatarMaxRadius/2
+            avatarWidth.constant = avatarMaxRadius/2
+            avaterImageView.cornerRadius = avatarMaxCornerRadius/2
+            return
+        }
+        
+        let multiplier = offsetY/headerHeight
+        //外接矩形最终长宽都减一半
+        avatarHeight.constant = avatarMaxRadius - avatarMaxRadius/2 * multiplier
+        avatarWidth.constant = avatarHeight.constant
+        layoutAvatarImmediately()
+        //圆角半径最终减一半
+        avaterImageView.cornerRadius = avatarMaxCornerRadius - avatarMaxCornerRadius/2 * multiplier
+    }
+    
+    func layoutAvatarImmediately() {
+        avatarHeight.isActive = true
+        avatarWidth.isActive = true
+    }
+}
+
+// MARK: - UserMenuDelegate
+extension GridDetailViewController: UserMenuDelegate {
+    func selectMenuItem(item: UserMenuItem) {
+        // guard userInfo != nil else { return }
+        //........................................................................................//
+        switch item {
+        case .Grids:
+            self.tableView.dataSource = userGridDataSource
+            self.tableView.separatorStyle = .none
+        case .User:
+            self.tableView.dataSource = userDetailDataSource
+            self.tableView.separatorStyle = .singleLine
+        }
+        self.tableView.rowHeight = CGFloat(item.rawValue)
+        self.tableView.reloadData()
+    }
 }

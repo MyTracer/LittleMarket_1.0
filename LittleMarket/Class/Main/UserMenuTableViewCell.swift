@@ -48,7 +48,8 @@ class UserMenuTableViewCell: UITableViewCell {
         lastSelectedItem = item
         
         //改变指示条的约束，使其水平中心点与选中 item 的水平中心点相同
-        let newCenterX = NSLayoutConstraint(item: lineX, attribute: .centerX, relatedBy: .equal, toItem: item, attribute: .centerX, multiplier: 1, constant: 0)
+        let newCenterX = NSLayoutConstraint(item: line, attribute: .centerX, relatedBy: .equal, toItem: item, attribute: .centerX, multiplier: 1, constant: 0)
+        
         lineX.isActive = false
         lineX = newCenterX
         lineX.isActive = true

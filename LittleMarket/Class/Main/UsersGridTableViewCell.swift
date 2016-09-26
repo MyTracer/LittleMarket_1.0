@@ -16,11 +16,13 @@ class UsersGridTableViewCell: UITableViewCell {
     @IBOutlet weak var imageGrid: UIImageView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbInfo: UILabel!
+    @IBOutlet weak var lbClass: UILabel!
     
     //    MARK: - 方法
     func bindModel(model:UsersGridModel){
-        lbName.text = model.temp_pname
+        lbName.text = "名称"
         lbInfo.text = model.infonote
+        lbClass.text = "分类"
         Alamofire.request("https://httpbin.org/image/png").responseImage { response in
             debugPrint(response)
             

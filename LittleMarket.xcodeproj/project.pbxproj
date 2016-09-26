@@ -28,6 +28,9 @@
 		095BA1F61D98B21B009B808D /* UsersGridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1F51D98B21B009B808D /* UsersGridModel.swift */; };
 		095BA1F81D98B3DF009B808D /* UsersGridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1F71D98B3DF009B808D /* UsersGridTableViewCell.swift */; };
 		095BA1FC1D98C6C0009B808D /* UserMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1FB1D98C6C0009B808D /* UserMenuTableViewCell.swift */; };
+		095BA1FE1D98DCB0009B808D /* UserDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1FD1D98DCB0009B808D /* UserDetailDataSource.swift */; };
+		095BA2001D98E204009B808D /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1FF1D98E204009B808D /* UserDetailModel.swift */; };
+		095BA2021D98E30A009B808D /* UserDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */; };
 		0970DA811D92690300FA9B1F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0970DA801D92690300FA9B1F /* Login.storyboard */; };
 		0970DA831D926E7000FA9B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0970DA821D926E7000FA9B1F /* LoginViewController.swift */; };
 		09A4D12E1D93718C003CB8FF /* String-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4D12D1D93718C003CB8FF /* String-extension.swift */; };
@@ -62,6 +65,9 @@
 		095BA1F51D98B21B009B808D /* UsersGridModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersGridModel.swift; sourceTree = "<group>"; };
 		095BA1F71D98B3DF009B808D /* UsersGridTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersGridTableViewCell.swift; sourceTree = "<group>"; };
 		095BA1FB1D98C6C0009B808D /* UserMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMenuTableViewCell.swift; sourceTree = "<group>"; };
+		095BA1FD1D98DCB0009B808D /* UserDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailDataSource.swift; sourceTree = "<group>"; };
+		095BA1FF1D98E204009B808D /* UserDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
+		095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewCell.swift; sourceTree = "<group>"; };
 		0970DA801D92690300FA9B1F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0970DA821D926E7000FA9B1F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		09A4D12C1D937089003CB8FF /* MD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MD-Bridging-Header.h"; path = "LittleMarket/Class/Other/MD-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -177,6 +183,7 @@
 				09F0205E1D97E64500E2CE9B /* UserDetailHeaderCell.swift */,
 				095BA1F71D98B3DF009B808D /* UsersGridTableViewCell.swift */,
 				095BA1FB1D98C6C0009B808D /* UserMenuTableViewCell.swift */,
+				095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -190,6 +197,8 @@
 				091E78DA1D950DB6003C49EF /* OtherGridModel.swift */,
 				095BA1F31D98B191009B808D /* UserGridDataSource.swift */,
 				095BA1F51D98B21B009B808D /* UsersGridModel.swift */,
+				095BA1FD1D98DCB0009B808D /* UserDetailDataSource.swift */,
+				095BA1FF1D98E204009B808D /* UserDetailModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -401,10 +410,13 @@
 				09F0205F1D97E64500E2CE9B /* UserDetailHeaderCell.swift in Sources */,
 				091E78DB1D950DB6003C49EF /* OtherGridModel.swift in Sources */,
 				091E78CB1D94D04C003C49EF /* FindGridViewController.swift in Sources */,
+				095BA2001D98E204009B808D /* UserDetailModel.swift in Sources */,
 				091E78D11D94FD75003C49EF /* FindGridModel.swift in Sources */,
 				09A4D12E1D93718C003CB8FF /* String-extension.swift in Sources */,
+				095BA1FE1D98DCB0009B808D /* UserDetailDataSource.swift in Sources */,
 				09155EFC1D90E3B6007AC201 /* UserInfo.swift in Sources */,
 				095BA1F41D98B191009B808D /* UserGridDataSource.swift in Sources */,
+				095BA2021D98E30A009B808D /* UserDetailTableViewCell.swift in Sources */,
 				0941ADEF1D90DE4E001D9857 /* AppDelegate.swift in Sources */,
 				090BB2871D93B0BA0090FA8E /* MyGridTableViewController.swift in Sources */,
 				090BB28F1D93D3E60090FA8E /* NSObject-extension.swift in Sources */,
