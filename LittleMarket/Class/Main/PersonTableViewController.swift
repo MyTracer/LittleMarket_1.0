@@ -21,11 +21,27 @@ class PersonTableViewController: UITableViewController {
 //  MARK: - 初始化
     func loadInfo()  {
         
-        lbUserName.text = userinfo.user
-        lbName.text = userinfo.userName
-        lbPhone.text = userinfo.cellPhone
-        lbClass.text = userinfo.departName
-        lbAdress.text = userinfo.roleName
+        //            测试
+        switch Judge {
+        case .test:
+            lbUserName.text = "用户名"
+            lbName.text = "昵称"
+            lbPhone.text = "电话"
+            lbClass.text = "班级"
+            lbAdress.text = "地址"
+        case .debug:
+            lbUserName.text = userinfo.user
+            lbName.text = userinfo.userName
+            lbPhone.text = userinfo.cellPhone
+            lbClass.text = userinfo.departName
+            lbAdress.text = userinfo.roleName
+        case .run:
+            break
+            
+        }
+
+        
+        
     }
 //  MARK: - 退出
     

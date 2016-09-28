@@ -15,6 +15,15 @@ let ScreenHeight = ScreenBounds.height
 
 let BarHeight = UIApplication.shared.statusBarFrame.height
 
+let Judge = OS.test // 运行模式
+
+
+enum OS{
+    case test
+    case debug
+    case run
+}
+
 struct ArticleCagetory {
     static let categoryDict = [
         "archive": "历史精华",

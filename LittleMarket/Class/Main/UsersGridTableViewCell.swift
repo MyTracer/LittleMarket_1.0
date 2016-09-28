@@ -20,21 +20,37 @@ class UsersGridTableViewCell: UITableViewCell {
     
     //    MARK: - 方法
     func bindModel(model:UsersGridModel){
-        lbName.text = "名称"
-        lbInfo.text = model.infonote
-        lbClass.text = "分类"
-        Alamofire.request("https://httpbin.org/image/png").responseImage { response in
-            debugPrint(response)
-            
-            print(response.request)
-            print(response.response)
-            debugPrint(response.result)
-            
-            if let image = response.result.value {
-                print("image downloaded: \(image)")
-                self.imageGrid.image = image
+        //            测试
+        switch Judge {
+        case .test:
+            lbName.text = "名称"
+            lbInfo.text = "商品简介：用来简单介绍所出售的商品信息，以此确定是否进一步取得联系"
+            lbClass.text = "分类"
+            imageGrid.image = UIImage.init(imageLiteralResourceName: "default_img")
+        case .debug:
+            lbName.text = "名称"
+            lbInfo.text = model.infonote
+            lbClass.text = "分类"
+            Alamofire.request("https://httpbin.org/image/png").responseImage { response in
+                debugPrint(response)
+                
+                print(response.request)
+                print(response.response)
+                debugPrint(response.result)
+                
+                if let image = response.result.value {
+                    print("image downloaded: \(image)")
+                    self.imageGrid.image = image
+                }
             }
+            
+        case .run:
+            break
+            
         }
+        
+        
+        
     }
 
 }

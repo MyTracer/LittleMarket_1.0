@@ -71,6 +71,8 @@ class LoginViewController: UIViewController {
             userinfo.pwd = pwdStr
             userinfo.loginStatus = true
             
+
+            
             userinfo.userId = response["userId"]
             userinfo.userName = response["userName"]
             userinfo.departName = response["departName"]

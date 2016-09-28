@@ -16,9 +16,23 @@ class UserDetailHeaderCell: UITableViewCell {
     
     // 绑定数据
     func bindModel(username: String, name: String, note:String) {
-        lbUserName.text = username
-        lbName.text = name
-        lbNote.text = note
+        //            测试
+        switch Judge {
+        case .test:
+            lbUserName.text = "用户名"
+            lbName.text = "昵称"
+            lbNote.text = "用户备注：行走的力量"
+        case .debug:
+            lbUserName.text = username
+            lbName.text = name
+            lbNote.text = note
+            
+        case .run:
+            break
+            
+        }
+        
+        
     }
     
     
