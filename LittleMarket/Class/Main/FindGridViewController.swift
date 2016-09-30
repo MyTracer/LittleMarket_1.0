@@ -48,6 +48,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     // 访问失败
     func responseError() {
         print("访问失败")
+        HUD.OnlyText(text: "加载失败")
     }
     // 访问成功
     func responseSuccess(responseObj: [AnyObject]) {
@@ -61,6 +62,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         self.cellCount = self.findGrid.count
         print(findGrid)
         self.tvGrid.reloadData()
+        HUD.dismiss()
         
     }
     
@@ -74,6 +76,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         // 加载数据
         self.getData()
         
+        HUD.loadImage()
         // Do any additional setup after loading the view.
     }
 
@@ -81,7 +84,11 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        HUD.dismiss()
+    }
 
     /*
     // MARK: - Navigation

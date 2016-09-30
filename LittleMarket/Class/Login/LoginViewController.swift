@@ -31,11 +31,16 @@ class LoginViewController: UIViewController {
         {
             // 存在未填写项
             print("登录信息不完整")
+            
+            // HUD提示
+            HUD.OnlyText(text: "请填写完整")
         }else
         {
             // 数据验证通过
             
             self.login()
+            // 等待提示框
+            HUD.loadImage()
         }
         // 初始判断
         print(userStr!,pwdStr!.md5)
@@ -46,6 +51,10 @@ class LoginViewController: UIViewController {
         // 请求参数（密码加密后传输）
         let parameter:Dictionary = ["lgn":userStr!,"pwd":pwdStr!.md5!];
         print(parameter)
+        
+        // 清空提示框
+        HUD.dismiss()
+        
         // 框架进行网络请求
         Alamofire.request(API.LoginAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -55,6 +64,9 @@ class LoginViewController: UIViewController {
                 self.loginWith(response: response.result.value as! Dictionary)
             case .failure(let error):
                 print(error)
+                
+                // HUD提示
+                HUD.OnlyText(text: "请确认信息")
             }
         }
     }
@@ -64,14 +76,16 @@ class LoginViewController: UIViewController {
         if response["userId"]!.isEmpty {
             // 数据不正确
             print("返回数据有误")
+            
+            // HUD提示
+            HUD.OnlyText(text: "请确认信息")
+            
         }else{
             // 解析
             let userinfo:UserInfo = UserInfo.shareUserInfo
             userinfo.user = userStr
             userinfo.pwd = pwdStr
             userinfo.loginStatus = true
-            
-
             
             userinfo.userId = response["userId"]
             userinfo.userName = response["userName"]
@@ -126,6 +140,13 @@ class LoginViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        HUD.dismiss()
+        
     }
     
 

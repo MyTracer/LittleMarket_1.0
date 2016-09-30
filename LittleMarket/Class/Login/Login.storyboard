@@ -19,30 +19,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0403" translatesAutoresizingMaskIntoConstraints="NO" id="dbV-Vm-ULw"/>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iRw-8p-Xgw">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ojg-89-NPv">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ojg-89-NPv">
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密 码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OZm-bx-Rfu">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密 码" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OZm-bx-Rfu">
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-ln-oif">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yQ-Rr-0BS">
-                                        <state key="normal" title="登录"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yQ-Rr-0BS">
+                                        <state key="normal" title="登    录">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="loginClick:" destination="Dvz-rU-laj" eventType="touchUpInside" id="z9q-L0-ha0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lws-v3-qxa">
-                                        <state key="normal" title="取消"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="取    消">
+                                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="cancelClick:" destination="Dvz-rU-laj" eventType="touchUpInside" id="1pG-z8-ppq"/>
                                         </connections>
@@ -50,7 +56,6 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AG1-GZ-mRq" userLabel="center">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="Xpt-aI-pNm"/>
                                 </constraints>
@@ -58,14 +63,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dbV-Vm-ULw" secondAttribute="trailing" id="0QM-5I-0SN"/>
                             <constraint firstItem="iRw-8p-Xgw" firstAttribute="centerX" secondItem="4JY-Ti-B90" secondAttribute="centerX" id="5tH-qk-fHM"/>
+                            <constraint firstItem="dbV-Vm-ULw" firstAttribute="leading" secondItem="4JY-Ti-B90" secondAttribute="leading" id="6jo-8f-kmx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="iRw-8p-Xgw" secondAttribute="trailing" id="7iI-L0-8Ua"/>
                             <constraint firstItem="AG1-GZ-mRq" firstAttribute="leading" secondItem="4JY-Ti-B90" secondAttribute="leadingMargin" id="AYF-b2-78Q"/>
                             <constraint firstItem="Qfk-ln-oif" firstAttribute="top" secondItem="AG1-GZ-mRq" secondAttribute="bottom" constant="22" id="FCr-Gk-ItZ"/>
                             <constraint firstItem="AG1-GZ-mRq" firstAttribute="centerY" secondItem="4JY-Ti-B90" secondAttribute="centerY" id="H6U-xJ-j4Q"/>
+                            <constraint firstItem="OoV-if-i2P" firstAttribute="top" secondItem="dbV-Vm-ULw" secondAttribute="bottom" id="Ni5-rw-2OU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qfk-ln-oif" secondAttribute="trailing" constant="22" id="Sgw-lX-bdt"/>
                             <constraint firstItem="AG1-GZ-mRq" firstAttribute="top" secondItem="iRw-8p-Xgw" secondAttribute="bottom" constant="22" id="cno-bN-AaR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AG1-GZ-mRq" secondAttribute="trailing" id="dkF-xd-egA"/>
+                            <constraint firstItem="dbV-Vm-ULw" firstAttribute="top" secondItem="HBo-iy-gxS" secondAttribute="bottom" id="iQD-Ft-cqY"/>
                             <constraint firstItem="Qfk-ln-oif" firstAttribute="leading" secondItem="4JY-Ti-B90" secondAttribute="leadingMargin" constant="22" id="qQ5-LZ-F3z"/>
                             <constraint firstItem="iRw-8p-Xgw" firstAttribute="leading" secondItem="4JY-Ti-B90" secondAttribute="leadingMargin" id="v9C-7Q-u2f"/>
                         </constraints>
@@ -80,4 +89,7 @@
             <point key="canvasLocation" x="29.600000000000001" y="126.38680659670166"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="IMG_0403" width="852" height="1608"/>
+    </resources>
 </document>

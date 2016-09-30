@@ -73,8 +73,8 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ie-ig-728">
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -89,7 +89,7 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="1" green="0.95227685299999998" blue="0.49540431600000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="value" red="1" green="0.88800037050000002" blue="0.80902585979999997" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                     <real key="value" value="1"/>
@@ -127,7 +127,7 @@
                             <outlet property="delegate" destination="3Sa-hv-OnA" id="uFo-ZV-Ly5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="oqj-7a-oKw"/>
+                    <navigationItem key="navigationItem" title="我的格子" id="oqj-7a-oKw"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUr-xp-Suh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -276,7 +276,7 @@
                             <outlet property="delegate" destination="YJD-Sx-9Cx" id="CCX-E9-CQF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="gE2-Wj-aDw">
+                    <navigationItem key="navigationItem" title="个人中心" id="gE2-Wj-aDw">
                         <barButtonItem key="rightBarButtonItem" title="注销" id="AWd-Uk-E9D">
                             <connections>
                                 <action selector="loginOut:" destination="YJD-Sx-9Cx" id="N0r-yw-gKX"/>
@@ -299,7 +299,7 @@
         <scene sceneID="elG-Oh-1KY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wcv-Y2-MHN" userLabel="导航-个人中心" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="个人中心" id="HDQ-df-JDo"/>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="HDQ-df-JDo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eeW-SW-X08">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -318,7 +318,7 @@
         <scene sceneID="dgN-6s-gdl">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pII-eI-8jW" userLabel="导航-我的格子" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="我的格子" id="Q32-mz-X8I"/>
+                    <tabBarItem key="tabBarItem" systemItem="recents" id="Q32-mz-X8I"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ydH-Sa-8f6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -337,7 +337,7 @@
         <scene sceneID="bih-oW-QJA">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Nqg-89-dzD" userLabel="导航-发现格子" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="发现格子" id="Gfr-iW-Lnh"/>
+                    <tabBarItem key="tabBarItem" title="" systemItem="more" id="Gfr-iW-Lnh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="iwk-Dg-Aug">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -465,7 +465,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yhz-L8-Ifq"/>
+                    <navigationItem key="navigationItem" title="发现格子" id="yhz-L8-Ifq"/>
                     <connections>
                         <outlet property="tvGrid" destination="2uY-wL-iMe" id="TXU-q1-C7x"/>
                     </connections>
@@ -576,7 +576,7 @@
                             <outlet property="delegate" destination="oqF-Q0-D0M" id="YOg-ho-jBT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="L5N-KS-3ru"/>
+                    <navigationItem key="navigationItem" title="寻找格子" id="L5N-KS-3ru"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YWr-oG-gJR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -810,6 +810,11 @@
                                     <constraint firstAttribute="height" constant="80" id="HuV-iZ-058"/>
                                     <constraint firstAttribute="width" constant="80" id="vij-nb-8Vd"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

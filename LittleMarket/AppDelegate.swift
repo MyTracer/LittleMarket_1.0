@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          2.验证用户
          */
         UserInfo.shareUserInfo.loadUserInfoFormSandbox()
+        if UserInfo.shareUserInfo.loginStatus == nil{
+            return true
+        }
         if UserInfo.shareUserInfo.loginStatus! {
             // 判断用户名密码正确性（服务器）主页中判断
             // 已登录，进入主页

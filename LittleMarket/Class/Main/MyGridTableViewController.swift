@@ -46,6 +46,7 @@ class MyGridTableViewController: UITableViewController {
     // 访问失败
     func responseError() {
         print("访问失败")
+        HUD.OnlyText(text: "加载失败")
     }
     // 访问成功
     func responseSuccess(responseObj: [AnyObject]) {
@@ -59,6 +60,7 @@ class MyGridTableViewController: UITableViewController {
         self.cellCount = self.myGrid.count
         print(myGrid)
         self.tableView.reloadData()
+        HUD.dismiss()
     }
 
 //  MARK: - 系统
@@ -66,6 +68,9 @@ class MyGridTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = cellHeight
+        
+        // 加载动画
+        HUD.loadImage()
         
         // 加载数据
         self.getData()
@@ -80,8 +85,13 @@ class MyGridTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        HUD.dismiss()
+    }
 
-    // MARK: - Table view data source
+//     MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections

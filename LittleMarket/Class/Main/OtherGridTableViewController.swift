@@ -47,6 +47,7 @@ class OtherGridTableViewController: UITableViewController {
     // 访问失败
     func responseError() {
         print("访问失败")
+        HUD.OnlyText(text: "加载失败")
     }
     // 访问成功
     func responseSuccess(responseObj: [AnyObject]) {
@@ -60,6 +61,7 @@ class OtherGridTableViewController: UITableViewController {
         self.cellCount = self.otherGrid.count
         print(otherGrid)
         self.tableView.reloadData()
+        HUD.dismiss()
     }
     
     //  MARK: - 系统
@@ -70,6 +72,8 @@ class OtherGridTableViewController: UITableViewController {
         
         // 加载数据
         self.getData()
+        
+        HUD.loadImage()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -81,8 +85,13 @@ class OtherGridTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        HUD.dismiss()
+    }
     
-    // MARK: - Table view data source
+//     MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
