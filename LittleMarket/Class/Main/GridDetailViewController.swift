@@ -26,8 +26,12 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
     // 内容
     var count:Int?
     var userGrid: [UsersGridModel] = []
+    
+    var personInfo = PersonInfoModel()
+    
+    var useridStr:String = ""
     // 获取数据
-    let userInfo:UserInfo = UserInfo.shareUserInfo
+    
     
     
 //     懒加载
@@ -51,7 +55,7 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
     }()
     lazy var userDetailDataSource: UserDetailDataSource = {
         let dataSource = UserDetailDataSource()
-//        dataSource.userDetail = self.userDetail
+        dataSource.userInfo = self.personInfo
         return dataSource
     }()
     // 头像
@@ -68,15 +72,15 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
 //    MARK: - 网络
     func getData()  {
         // 登陆网络请求
-        // 请求参数（密码加密后传输）
-        let parameter:Dictionary = ["date":"20160921","id":"02020003"]
+        // 请求参数
+        let parameter:Dictionary = ["userid":useridStr]
         // 框架进行网络请求
-        Alamofire.request(API.MyGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
+        Alamofire.request(API.UserGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
             case .success(_):
                 print("请求成功")
                 print(response.result.value)
-                self.responseSuccess(responseObj: response.result.value as! Array)
+                self.responseSuccess(response: response.result.value as! Dictionary)
                 
             case .failure(let error):
                 print(error)
@@ -90,19 +94,28 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         print("访问失败")
     }
     // 访问成功
-    func responseSuccess(responseObj: [AnyObject]) {
+    func responseSuccess(response: [String:AnyObject]) {
         print("访问成功")
         // 判断数据是否正常
-        for dict:NSDictionary in responseObj as! Array{
-            let p = UsersGridModel.objectWithKeyValues(keyValues: dict) as! UsersGridModel
+        if response["code"] as! String == "200" {
+            for dict:NSDictionary in response["msg"] as! Array{
+                let p = UsersGridModel.objectWithKeyValues(keyValues: dict) as! UsersGridModel
+                
+                self.userGrid.insert(p, at: (self.userGrid.count))
+            }
+            self.cellCount = self.userGrid.count
+            print(userGrid)
             
-            self.userGrid.insert(p, at: (self.userGrid.count))
+            
+            
+        }else{
+            // 数据不正确
+            print("返回数据有误")
         }
-        self.cellCount = self.userGrid.count
-        print(userGrid)
         
         // 未刷新表格
         self.setHeader()
+        
         
         
     }
@@ -111,8 +124,26 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
     func setHeader() {
         
         // 显示数据 ...  必填项
+        let parameter:Dictionary = ["userid":useridStr];
         
-        tableHeader.bindModel(username: "UserName", name: "name", note: "note")
+        // 框架进行网络请求
+        Alamofire.request(API.FindUserAPI, method: .get, parameters: parameter).responseJSON { (response) in
+            switch response.result{
+            case .success(_):
+                print("请求成功")
+                print(response.result.value)
+                self.findUserWith(response: response.result.value as! Dictionary)
+            case .failure(let error):
+                print(error)
+                
+                // HUD提示
+                HUD.OnlyText(text: "请确认信息")
+            }
+        }
+        
+        
+        
+        
         // 加载头像
         Alamofire.request("https://httpbin.org/image/png").responseImage { response in
             debugPrint(response)
@@ -132,6 +163,38 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         tableView.dataSource = userGridDataSource
         tableView.rowHeight = CGFloat(UserMenuItem.Grids.rawValue)
         tableView.reloadData()
+    }
+    func findUserWith(response:[String:AnyObject]){
+        
+        tableHeader.bindModel(username: "UserName", name: "name", note: "note")
+        // 解析数据
+        // 判断数据正确性
+        if response["code"] as! String == "200" {
+            var dic:Dictionary = response["msg"]![0] as! [String:AnyObject]
+            // 解析
+            
+            
+            personInfo.username = dic["username"] as! String
+            personInfo.userid = dic["userid"] as! String
+            personInfo.name = dic["name"] as! String
+            personInfo.pic = dic["pic"] as! String
+            personInfo.phone = dic["phone"] as! String
+            personInfo.adress = dic["adress"] as! String
+            personInfo.note = dic["note"] as! String
+            personInfo.score =  dic["score"] as! String
+            personInfo.grade = dic["grade"] as! String
+            personInfo.isuse = dic["isuse"] as! String
+            
+            tableHeader.bindModel(username: personInfo.username, name: personInfo.name, note: personInfo.note)
+            
+            
+            
+        }else{
+            // 数据不正确
+            print("返回数据有误")
+            
+            
+        }
     }
     
 //    MARK: - 系统

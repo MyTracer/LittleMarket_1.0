@@ -36,8 +36,8 @@ class FindGridTableViewCell: UITableViewCell {
             
             bgView.backgroundColor = UIColor.yellow
             
-            lbName.text = model.temp_pname
-            lbInfo.text = model.infonote
+            lbName.text = model.name
+            lbInfo.text = model.note
             //        imageProduct.image = UIImage.init(data: Data.)
             Alamofire.request("https://httpbin.org/image/png").responseImage { response in
                 debugPrint(response)

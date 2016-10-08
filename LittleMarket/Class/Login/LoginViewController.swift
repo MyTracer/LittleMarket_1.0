@@ -49,7 +49,7 @@ class LoginViewController: UIViewController {
     func login() {
         // 登陆网络请求
         // 请求参数（密码加密后传输）
-        let parameter:Dictionary = ["lgn":userStr!,"pwd":pwdStr!.md5!];
+        let parameter:Dictionary = ["username":userStr!,"password":pwdStr!.md5!];
         print(parameter)
         
         // 清空提示框
@@ -70,41 +70,50 @@ class LoginViewController: UIViewController {
             }
         }
     }
-    func loginWith(response:[String:String]){
+    func loginWith(response:[String:AnyObject]){
         // 解析数据
         // 判断数据正确性
-        if response["userId"]!.isEmpty {
+        if response["code"] as! String == "200" {
+            var dic:Dictionary = response["msg"]![0] as! [String:AnyObject]
+            // 解析
+            let userinfo:UserInfo = UserInfo.shareUserInfo
+            userinfo.username = userStr!
+            userinfo.password = pwdStr!
+            userinfo.loginStatus = true
+            
+            userinfo.userid = dic["userid"] as! String
+            userinfo.name = dic["name"] as! String
+            userinfo.pic = dic["pic"] as! String
+            userinfo.phone = dic["phone"] as! String
+            userinfo.adress = dic["adress"] as! String
+            userinfo.note = dic["note"] as! String
+            userinfo.score =  dic["score"] as! String
+            userinfo.grade = dic["grade"] as! String
+            userinfo.isuse = dic["isuse"] as! String
+            
+            print(userinfo)
+            
+            if !userinfo.userid.isEmpty {
+                // 用户存在，数据正常
+                // 必要信息持久化
+                userinfo.saveUserInfoToSandbox()
+                DispatchQueue.main.async(execute: {
+                    // 返回主线程
+                    // 刷新UI，并切换界面
+                    self.enterMainPage()
+                })
+                
+                
+            }
+            
+            
+        }else{
             // 数据不正确
             print("返回数据有误")
             
             // HUD提示
             HUD.OnlyText(text: "请确认信息")
             
-        }else{
-            // 解析
-            let userinfo:UserInfo = UserInfo.shareUserInfo
-            userinfo.user = userStr
-            userinfo.pwd = pwdStr
-            userinfo.loginStatus = true
-            
-            userinfo.userId = response["userId"]
-            userinfo.userName = response["userName"]
-            userinfo.departName = response["departName"]
-            userinfo.dutyName = response["dutyName"]
-            userinfo.cellPhone = response["cellPhone"]
-            userinfo.roleName = response["roleName"]
-            if !userinfo.userId!.isEmpty {
-                // 用户存在，数据正常
-                // 必要信息持久化
-                userinfo.saveUserInfoToSandbox()
-                DispatchQueue.main.async(execute: { 
-                    // 返回主线程
-                    // 刷新UI，并切换界面
-                    self.enterMainPage()
-                })
-                
-            
-            }
         }
     }
     // 取消事件

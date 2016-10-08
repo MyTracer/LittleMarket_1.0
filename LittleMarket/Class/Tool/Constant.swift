@@ -15,7 +15,7 @@ let ScreenHeight = ScreenBounds.height
 
 let BarHeight = UIApplication.shared.statusBarFrame.height
 
-let Judge = OS.test // 运行模式
+let Judge = OS.debug // 运行模式
 
 
 enum OS{
@@ -50,9 +50,18 @@ struct SegueId {
 }
 
 struct API {
-    static let APIHost = "http://112.124.30.42:8686/api/"
-    static let LoginAPI = API.APIHost + "User/GetLogin"
-    static let MyGirdAPI = API.APIHost + "Progress/GetRileiDetail"
+    static let APIHost = "http://localhost:3000/"
+    static let UserAPI = API.APIHost + "users/"
+    static let LoginAPI = API.UserAPI + "checkUser"
+    static let FindUserAPI = API.UserAPI + "findUser"
+    
+    
+    static let ProductAPI = API.APIHost + "products/"
+    static let UserGirdAPI = API.ProductAPI + "userProducts"
+    static let OtherGirdAPI = API.ProductAPI + "sortProducts"
+    
+    static let SortAPI = API.APIHost + "sorts/"
+    
     static let FindGirdAPI = API.APIHost + "Progress/GetRileiDetail"
-    static let OtherGirdAPI = API.APIHost + "Progress/GetRileiDetail"
+    
 }

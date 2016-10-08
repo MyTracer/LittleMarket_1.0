@@ -29,7 +29,6 @@
 		095BA1F81D98B3DF009B808D /* UsersGridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1F71D98B3DF009B808D /* UsersGridTableViewCell.swift */; };
 		095BA1FC1D98C6C0009B808D /* UserMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1FB1D98C6C0009B808D /* UserMenuTableViewCell.swift */; };
 		095BA1FE1D98DCB0009B808D /* UserDetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1FD1D98DCB0009B808D /* UserDetailDataSource.swift */; };
-		095BA2001D98E204009B808D /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA1FF1D98E204009B808D /* UserDetailModel.swift */; };
 		095BA2021D98E30A009B808D /* UserDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */; };
 		0970DA811D92690300FA9B1F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0970DA801D92690300FA9B1F /* Login.storyboard */; };
 		0970DA831D926E7000FA9B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0970DA821D926E7000FA9B1F /* LoginViewController.swift */; };
@@ -99,7 +98,6 @@
 		095BA1F71D98B3DF009B808D /* UsersGridTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersGridTableViewCell.swift; sourceTree = "<group>"; };
 		095BA1FB1D98C6C0009B808D /* UserMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMenuTableViewCell.swift; sourceTree = "<group>"; };
 		095BA1FD1D98DCB0009B808D /* UserDetailDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailDataSource.swift; sourceTree = "<group>"; };
-		095BA1FF1D98E204009B808D /* UserDetailModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
 		095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewCell.swift; sourceTree = "<group>"; };
 		0970DA801D92690300FA9B1F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0970DA821D926E7000FA9B1F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 				095BA1F31D98B191009B808D /* UserGridDataSource.swift */,
 				095BA1F51D98B21B009B808D /* UsersGridModel.swift */,
 				095BA1FD1D98DCB0009B808D /* UserDetailDataSource.swift */,
-				095BA1FF1D98E204009B808D /* UserDetailModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -414,7 +411,7 @@
 				TargetAttributes = {
 					0941ADEA1D90DE4D001D9857 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 24WZVK9M5D;
+						DevelopmentTeam = 7V5D8C986U;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -550,7 +547,6 @@
 				091E78CB1D94D04C003C49EF /* FindGridViewController.swift in Sources */,
 				09D22E6B1D9DFB8400E84539 /* SJProgressHUD.swift in Sources */,
 				09D22EEB1D9DFF7600E84539 /* HUD.swift in Sources */,
-				095BA2001D98E204009B808D /* UserDetailModel.swift in Sources */,
 				091E78D11D94FD75003C49EF /* FindGridModel.swift in Sources */,
 				09A4D12E1D93718C003CB8FF /* String-extension.swift in Sources */,
 				095BA1FE1D98DCB0009B808D /* UserDetailDataSource.swift in Sources */,
@@ -689,11 +685,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 24WZVK9M5D;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7V5D8C986U;
 				INFOPLIST_FILE = LittleMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.J.LittleMarket;
+				PRODUCT_BUNDLE_IDENTIFIER = com.J.LittleGrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/J/Desktop/App/LittleMarket/LittleMarket/Class/Other/MD-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -707,11 +704,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 24WZVK9M5D;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7V5D8C986U;
 				INFOPLIST_FILE = LittleMarket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.J.LittleMarket;
+				PRODUCT_BUNDLE_IDENTIFIER = com.J.LittleGrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/J/Desktop/App/LittleMarket/LittleMarket/Class/Other/MD-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

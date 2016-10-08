@@ -30,11 +30,11 @@ class PersonTableViewController: UITableViewController {
             lbClass.text = "班级"
             lbAdress.text = "地址"
         case .debug:
-            lbUserName.text = userinfo.user
-            lbName.text = userinfo.userName
-            lbPhone.text = userinfo.cellPhone
-            lbClass.text = userinfo.departName
-            lbAdress.text = userinfo.roleName
+            lbUserName.text = userinfo.username
+            lbName.text = userinfo.name
+            lbPhone.text = userinfo.phone
+            lbClass.text = userinfo.note
+            lbAdress.text = userinfo.adress
         case .run:
             break
             

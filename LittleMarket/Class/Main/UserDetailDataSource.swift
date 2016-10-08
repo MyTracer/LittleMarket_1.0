@@ -9,11 +9,7 @@
 import UIKit
 
 class UserDetailDataSource: NSObject ,UITableViewDataSource {
-    
-    
-    var userDetail:[UserDetailModel] = []
-    
-    
+    var userInfo = PersonInfoModel()
     func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -26,16 +22,16 @@ class UserDetailDataSource: NSObject ,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.UserDetail, for: indexPath) as! UserDetailTableViewCell
         switch indexPath.row {
+        case 0:
+            cell.bindModel(title: "用户名", detail: userInfo.username)
         case 1:
-            cell.bindModel(title: "用户名", detail: "Joke")
+            cell.bindModel(title: "昵称", detail: userInfo.name)
         case 2:
-            cell.bindModel(title: "昵称", detail: "J")
+            cell.bindModel(title: "联系方式", detail: userInfo.phone)
         case 3:
-            cell.bindModel(title: "联系方式", detail: "未知")
+            cell.bindModel(title: "地址", detail: userInfo.adress)
         case 4:
-            cell.bindModel(title: "班级", detail: "1111")
-        case 5:
-            cell.bindModel(title: "信用度", detail: "AAA")
+            cell.bindModel(title: "备注", detail: userInfo.note)
         default:
             break
         }

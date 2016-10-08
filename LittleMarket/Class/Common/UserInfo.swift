@@ -10,24 +10,26 @@ import UIKit
 
 class UserInfo: NSObject {
     // 预定义
-    let UserKey:String = "user"
-    let PwdKey = "pwd"
+    let UserKey:String = "username"
+    let PwdKey = "password"
     let LoginStatusKey:String = "loginStatus"
-    let UserNameKey:String = "userName"
+    let UserIdKey:String = "userid"
     
     // 变量
-    var user:String? // 登陆名
-    var pwd:String?  // 密码
-    var loginStatus:Bool?  // 状态
+    var username:String = "" // 登陆名
+    var password:String = ""   // 密码
+    var loginStatus:Bool = false  // 状态
     
-    var userId:String?
-    var userName:String?
-    var departName:String?
-    var dutyName:String?
-    var cellPhone:String?
-    var roleName:String?
-    var sanji:String?
+    var userid:String = ""
+    var name:String = ""
+    var pic:String = ""
+    var phone:String = ""
+    var adress:String = ""
+    var note:String = ""
     
+    var score:String  = ""
+    var grade:String  = ""
+    var isuse:String  = ""
     
     
     // 单例
@@ -36,8 +38,8 @@ class UserInfo: NSObject {
     // 保持数据到沙盒
     func saveUserInfoToSandbox() -> () {
         let defaults:UserDefaults = UserDefaults.standard
-        defaults.set(self.user, forKey: UserKey)
-        defaults.set(self.pwd, forKey: PwdKey)
+        defaults.set(self.username, forKey: UserKey)
+        defaults.set(self.password, forKey: PwdKey)
         defaults.set(self.loginStatus, forKey: LoginStatusKey)
         // 保存数据
         defaults.synchronize()
@@ -46,8 +48,8 @@ class UserInfo: NSObject {
     // 获取沙盒数据
     func loadUserInfoFormSandbox() -> () {
         let defaults:UserDefaults = UserDefaults.standard
-        self.user = defaults.object(forKey: UserKey) as? String
-        self.pwd = defaults.object(forKey: PwdKey) as? String
-        self.loginStatus = defaults.object(forKey: LoginStatusKey) as? Bool
+        self.username = defaults.object(forKey: UserKey) as! String
+        self.password = defaults.object(forKey: PwdKey) as! String
+        self.loginStatus = defaults.object(forKey: LoginStatusKey) as! Bool
     }
 }

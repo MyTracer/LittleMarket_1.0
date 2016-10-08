@@ -28,9 +28,9 @@ class UsersGridTableViewCell: UITableViewCell {
             lbClass.text = "分类"
             imageGrid.image = UIImage.init(imageLiteralResourceName: "default_img")
         case .debug:
-            lbName.text = "名称"
-            lbInfo.text = model.infonote
-            lbClass.text = "分类"
+            lbName.text = model.name
+            lbInfo.text = model.note
+            lbClass.text = model.sortid
             Alamofire.request("https://httpbin.org/image/png").responseImage { response in
                 debugPrint(response)
                 

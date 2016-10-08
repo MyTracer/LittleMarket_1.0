@@ -9,21 +9,10 @@
 import UIKit
 
 class FindGridModel: NSObject {
-    var temp_bdid:String?
-    var temp_pid:String?
-    var temp_pname:String?
-    var temp_pname1:String?
-    var temp_pname2:String?
-    var temp_pname3:String?
-    var sg_unit:String?
-    var riqi:String?
-    var sg_sjsw:String?
-    var sg_sjcz:String?
-    var dw_dwcsw:String?
-    var dw_dwccz:String?
-    var kl_wcsw:String?
-    var kl_wccz:String?
-    var baifenbi:String?
-    var temp_bdname:String?
-    var infonote:String?
+    var sortid:String = ""
+    var name:String = ""
+    var pic:String = ""
+    var note:String = ""
+    var grade:String = ""
+    var isuse:String = ""
 }

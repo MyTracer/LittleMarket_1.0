@@ -27,14 +27,14 @@ class MyGridTableViewController: UITableViewController {
     func getData()  {
         // 登陆网络请求
         // 请求参数（密码加密后传输）
-         let parameter:Dictionary = ["date":"20160921","id":"02020003"]
+         let parameter:Dictionary = ["userid":UserInfo.shareUserInfo.userid as String]
         // 框架进行网络请求
-        Alamofire.request(API.MyGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
+        Alamofire.request(API.UserGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
             case .success(_):
                 print("请求成功")
                 print(response.result.value)
-                self.responseSuccess(responseObj: response.result.value as! Array)
+                self.responseSuccess(response: response.result.value as! Dictionary)
                 
             case .failure(let error):
                 print(error)
@@ -49,17 +49,24 @@ class MyGridTableViewController: UITableViewController {
         HUD.OnlyText(text: "加载失败")
     }
     // 访问成功
-    func responseSuccess(responseObj: [AnyObject]) {
+    func responseSuccess(response: [String:AnyObject]) {
         print("访问成功")
         // 判断数据是否正常
-        for dict:NSDictionary in responseObj as! Array{
-            let p = MyGridModel.objectWithKeyValues(keyValues: dict) as! MyGridModel
+        if response["code"] as! String == "200" {
+            for dict:NSDictionary in response["msg"] as! Array{
+                let p = MyGridModel.objectWithKeyValues(keyValues: dict) as! MyGridModel
+                self.myGrid.insert(p, at: (self.myGrid.count))
+            }
+            self.cellCount = self.myGrid.count
+            print(myGrid)
+            self.tableView.reloadData()
             
-            self.myGrid.insert(p, at: (self.myGrid.count))
+        }else{
+            // 数据不正确
+            print("返回数据有误")
         }
-        self.cellCount = self.myGrid.count
-        print(myGrid)
-        self.tableView.reloadData()
+        
+        
         HUD.dismiss()
     }
 

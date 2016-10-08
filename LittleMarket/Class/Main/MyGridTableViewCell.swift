@@ -31,9 +31,9 @@ class MyGridTableViewCell: UITableViewCell {
             imageProduct.image = UIImage.init(imageLiteralResourceName: "default_img")
         case .debug:
             //let indexs = index
-            lbPart.text = model.temp_bdid
-            lbOwer.text = model.temp_pname
-            lbNote.text = model.infonote
+            lbPart.text = model.date
+            lbOwer.text = model.name
+            lbNote.text = model.note
             //        imageProduct.image = UIImage.init(data: Data.)
             Alamofire.request("https://httpbin.org/image/png").responseImage { response in
                 debugPrint(response)

@@ -15,7 +15,7 @@ class OtherGridTableViewController: UITableViewController {
     // 定义行高
     let cellHeight:CGFloat = 144
     
-    
+    var sortidStr:String = ""
     // 行数
     var cellCount:Int = 0
     
@@ -28,14 +28,14 @@ class OtherGridTableViewController: UITableViewController {
     func getData()  {
         // 登陆网络请求
         // 请求参数（密码加密后传输）
-        let parameter:Dictionary = ["date":"20160921","id":"02020003"]
+        let parameter:Dictionary = ["sortid":sortidStr]
         // 框架进行网络请求
         Alamofire.request(API.OtherGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
             case .success(_):
                 print("请求成功")
                 print(response.result.value)
-                self.responseSuccess(responseObj: response.result.value as! Array)
+                self.responseSuccess(response: response.result.value as! Dictionary)
                 
             case .failure(let error):
                 print(error)
@@ -50,17 +50,24 @@ class OtherGridTableViewController: UITableViewController {
         HUD.OnlyText(text: "加载失败")
     }
     // 访问成功
-    func responseSuccess(responseObj: [AnyObject]) {
+    func responseSuccess(response: [String:AnyObject]) {
         print("访问成功")
+        
         // 判断数据是否正常
-        for dict:NSDictionary in responseObj as! Array{
-            let p = OtherGridModel.objectWithKeyValues(keyValues: dict) as! OtherGridModel
+        if response["code"] as! String == "200" {
+            for dict:NSDictionary in response["msg"] as! Array{
+                let p = OtherGridModel.objectWithKeyValues(keyValues: dict) as! OtherGridModel
+                
+                self.otherGrid.insert(p, at: (self.otherGrid.count))
+            }
+            self.cellCount = self.otherGrid.count
+            self.tableView.reloadData()
             
-            self.otherGrid.insert(p, at: (self.otherGrid.count))
+        }else{
+            // 数据不正确
+            print("返回数据有误")
         }
-        self.cellCount = self.otherGrid.count
-        print(otherGrid)
-        self.tableView.reloadData()
+        
         HUD.dismiss()
     }
     
@@ -69,7 +76,6 @@ class OtherGridTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = cellHeight
-        
         // 加载数据
         self.getData()
         
@@ -150,14 +156,19 @@ class OtherGridTableViewController: UITableViewController {
      }
      */
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if let answerControlelr = segue.destination as? GridDetailViewController, let index = tableView.indexPathForSelectedRow?.section {
+            let answer = otherGrid[index]
+            answerControlelr.useridStr = answer.sortid
+            
+        }
      }
-     */
+     
 
 }

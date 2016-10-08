@@ -9,10 +9,19 @@
 import UIKit
 
 class PersonInfoModel: NSObject {
-    var userID:String?
-    var userName:String?
-    var phoneNum:String?
-    var note:String?
-    var score:String?
-    var isUse:Bool?
+    
+    
+    // 变量
+    var username:String = "" // 登陆名
+    
+    var userid:String = ""
+    var name:String = ""
+    var pic:String = ""
+    var phone:String = ""
+    var adress:String = ""
+    var note:String = ""
+    
+    var score:String  = ""
+    var grade:String  = ""
+    var isuse:String  = ""
 }
