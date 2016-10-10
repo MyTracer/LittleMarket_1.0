@@ -54,11 +54,17 @@ struct API {
     static let UserAPI = API.APIHost + "users/"
     static let LoginAPI = API.UserAPI + "checkUser"
     static let FindUserAPI = API.UserAPI + "findUser"
+    static let CheckUserAPI = API.UserAPI + "checkUserName"
+    static let AddUserAPI = API.UserAPI + "addUser"
+    
     
     
     static let ProductAPI = API.APIHost + "products/"
     static let UserGirdAPI = API.ProductAPI + "userProducts"
     static let OtherGirdAPI = API.ProductAPI + "sortProducts"
+    static let DeleteGirdAPI = API.ProductAPI + "deleteProducts"
+    static let AddGirdAPI = API.ProductAPI + "addProducts"
+    
     
     static let SortAPI = API.APIHost + "sorts/"
     

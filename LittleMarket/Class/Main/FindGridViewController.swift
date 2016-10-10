@@ -53,10 +53,18 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     func responseSuccess(response: [String:AnyObject]) {
         print("访问成功")
         
+        // 存储类别
+        
+        let sort:SortInfo = SortInfo.shareSortInfo
+        
         if response["code"] as! String == "200" {
             for dict:NSDictionary in response["msg"] as! Array{
                 let p = FindGridModel.objectWithKeyValues(keyValues: dict) as! FindGridModel
+                let s:Sort = Sort()
+                s.name = dict["name"] as! String
+                s.sortid = dict["sortid"] as! String
                 
+                sort.sortArray.insert(s, at: (self.findGrid.count))
                 self.findGrid.insert(p, at: (self.findGrid.count))
             }
             self.cellCount = self.findGrid.count

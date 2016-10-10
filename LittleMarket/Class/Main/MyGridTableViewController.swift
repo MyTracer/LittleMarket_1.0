@@ -65,11 +65,67 @@ class MyGridTableViewController: UITableViewController {
             // 数据不正确
             print("返回数据有误")
         }
-        
-        
         HUD.dismiss()
     }
+    
+    
+    
+//  MARK: - 编辑
 
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            // 删除数据
+            
+            let productidStr = myGrid[indexPath.section].productid
+            self.deletePath(productidStr: productidStr, indexPath: indexPath)
+            
+        }
+        if editingStyle == UITableViewCellEditingStyle.insert {
+            
+        }
+    }
+    
+    func deletePath(productidStr:String, indexPath: IndexPath)  {
+        // 登陆网络请求
+        // 请求参数（密码加密后传输）
+        let parameter:Dictionary = ["productid":productidStr]
+        // 框架进行网络请求
+        Alamofire.request(API.DeleteGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
+            switch response.result{
+            case .success(_):
+                print("请求成功")
+                print(response.result.value)
+                var response = response.result.value as! [String:AnyObject]
+                if response["code"] as! String == "200" {
+                    
+                    DispatchQueue.main.async(execute: {
+                        // 返回主线程
+                        // 刷新UI，并切换界面
+                        
+                        // 修改数据源：包括数据和行数
+                        self.myGrid.remove(at: indexPath.section)
+                        self.cellCount = self.cellCount - 1
+                        // 删除整个section时（section只有一个元素，只能调用deleteSection）
+                        self.tableView.deleteSections([indexPath.section], with: .fade)
+                        
+                    })
+                    
+                    
+                }else{
+                    // 数据不正确
+                    print("返回数据有误")
+                }
+                
+            case .failure(let error):
+                print(error)
+                HUD.OnlyText(text: "删除失败")
+            }
+        }
+    }
+    
 //  MARK: - 系统
     override func viewDidLoad() {
         super.viewDidLoad()
