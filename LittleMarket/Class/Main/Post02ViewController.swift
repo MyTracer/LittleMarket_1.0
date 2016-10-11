@@ -56,7 +56,7 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         productidStr = "P" + strNowTime
         dateStr = strNowTime
         picStr = Pic!
-        sortidStr = sort.sortArray[self.pvSort.selectedRow(inComponent: 1)].sortid
+        sortidStr = sort.sortArray[self.pvSort.selectedRow(inComponent: 0)].sortid
         useridStr = UserInfo.shareUserInfo.userid
         scoreStr = "1"
         gradeStr = "1"
@@ -79,7 +79,7 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                                     "grade":gradeStr,
                                     "isuse":isuseStr];
         // 框架进行网络请求
-        Alamofire.request(API.AddUserAPI, method: .post, parameters: parameter).responseJSON { (response) in
+        Alamofire.request(API.AddGirdAPI, method: .post, parameters: parameter).responseJSON { (response) in
             switch response.result{
             case .success(_):
                 print("请求成功")

@@ -14,10 +14,20 @@ class PersonTableViewController: UITableViewController {
     // 用户信息
     var userinfo:UserInfo = UserInfo.shareUserInfo
     @IBOutlet weak var lbUserName: UILabel!
-    @IBOutlet weak var lbName: UILabel!
-    @IBOutlet weak var lbPhone: UILabel!
-    @IBOutlet weak var lbClass: UILabel!
-    @IBOutlet weak var lbAdress: UILabel!
+    @IBOutlet weak var tbName: UITextField!
+    @IBOutlet weak var tbPhone: UITextField!
+    @IBOutlet weak var tbAdress: UITextField!
+    @IBOutlet weak var tbNote: UITextField!
+    // 编辑
+    @IBOutlet weak var btnEdit: UIBarButtonItem!
+    
+    @IBOutlet weak var btnCancel: UIBarButtonItem!
+    // 记录修改前的值
+    var lastName:String = ""
+    var lastPhone:String = ""
+    var lastAdress:String = ""
+    var lastNote:String = ""
+    
 //  MARK: - 初始化
     func loadInfo()  {
         
@@ -25,16 +35,18 @@ class PersonTableViewController: UITableViewController {
         switch Judge {
         case .test:
             lbUserName.text = "用户名"
-            lbName.text = "昵称"
-            lbPhone.text = "电话"
-            lbClass.text = "班级"
-            lbAdress.text = "地址"
+            tbName.text = "昵称"
+            tbPhone.text = "电话"
+            
+            tbAdress.text = "地址"
+            tbNote.text = "备注"
         case .debug:
             lbUserName.text = userinfo.username
-            lbName.text = userinfo.name
-            lbPhone.text = userinfo.phone
-            lbClass.text = userinfo.note
-            lbAdress.text = userinfo.adress
+            tbName.text = userinfo.name
+            tbPhone.text = userinfo.phone
+            
+            tbAdress.text = userinfo.adress
+            tbNote.text = userinfo.note
         case .run:
             break
             
@@ -43,17 +55,164 @@ class PersonTableViewController: UITableViewController {
         
         
     }
+//  MARK: - 编辑
+    @IBAction func editClick(_ sender: UIBarButtonItem) {
+        self.tbCancel()
+        if btnEdit.tag == 0 {
+            
+            btnCancel.title = "取消"
+            // 保存原有内容
+            lastName = tbName.text!
+            lastPhone = tbPhone.text!
+            
+            lastAdress = tbAdress.text!
+            lastNote = tbNote.text!
+            
+            btnEdit.tag = 1
+            btnEdit.title = "保存"
+            // 在单元格点击方法中修改数据
+        }
+        else {
+            // 数据验证
+            let newName:String = tbName.text!
+            let newPhone:String = tbPhone.text!
+            var newAdress:String = tbAdress.text!
+            var newNote:String = tbNote.text!
+            
+            if newName.isEmpty || newPhone.isEmpty {
+                // HUD提示
+                HUD.OnlyText(text: "请确认信息")
+                return
+            }
+            if newAdress.isEmpty {
+                newAdress = "- -"
+                tbAdress.text = newAdress
+            }
+            if newNote.isEmpty {
+                newNote = "- -"
+                tbNote.text = newNote
+            }
+            
+            if !Validate.nickname(newName).isRight {
+                HUD.OnlyText(text: "请确认姓名格式")
+                return
+            }
+            if !Validate.phoneNum(newPhone).isRight {
+                HUD.OnlyText(text: "请确认电话格式")
+                return
+            }
+            
+            // 数据上传
+            // 验证用户名是否存在
+            self.userNameisFind(newName: newName, newPhone: newPhone, newAdress: newAdress, newNote: newNote)
+            
+        }
+    }
+    func userNameisFind(newName:String , newPhone:String , newAdress:String , newNote:String){
+        let parameter:Dictionary = ["username":userinfo.username];
+        
+        // 框架进行网络请求
+        Alamofire.request(API.CheckUserAPI, method: .get, parameters: parameter).responseJSON { (response) in
+            switch response.result{
+            case .success(_):
+                print("请求成功")
+                print(response.result.value)
+                let response = response.result.value as! [String:AnyObject]
+                if response["isuse"] as! String == "0"
+                {
+                    HUD.OnlyText(text: "无法找到用户")
+                    
+                }
+                // 存入数据库
+                self.updateLoad(newName: newName, newPhone: newPhone, newAdress: newAdress, newNote: newNote)
+                
+            case .failure(let error):
+                print(error)
+                
+                // HUD提示
+                HUD.OnlyText(text: "请确认信息")
+                
+            }
+        }
+
+    }
+    
+    
+    
+    
+    func updateLoad(newName:String , newPhone:String , newAdress:String , newNote:String)  {
+        
+        let parameter:Dictionary = ["userid":userinfo.userid,
+                                    "name":newName,
+                                    "phone":newPhone,
+                                    "adress":newAdress,
+                                    "note":newNote];
+        // 框架进行网络请求
+        Alamofire.request(API.EditUserAPI, method: .post, parameters: parameter).responseJSON { (response) in
+            switch response.result{
+            case .success(_):
+                print("请求成功")
+                print(response.result.value)
+                let response = response.result.value as! [String:AnyObject]
+                if response["code"] as! String == "200"
+                {
+                    HUD.OnlyText(text: "保存成功")
+                    
+                        
+                    self.btnEdit.tag = 0
+                    self.btnEdit.title = "编辑"
+                    self.btnCancel.title = "注销"
+                    
+                    
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+                
+                // HUD提示
+                HUD.OnlyText(text: "请确认信息")
+                
+            }
+        }
+        
+    }
+    
+    // 取消所有按键可用
+    func tbCancel()  {
+        let tb:Array = [tbName,tbPhone,tbAdress,tbNote]
+        for textbox in tb{
+            textbox?.isEnabled = false
+        }
+    }
 //  MARK: - 退出
     
     @IBAction func loginOut(_ sender: AnyObject) {
-        // 修改信息
-        userinfo.loginStatus = false
-        userinfo.saveUserInfoToSandbox()
+        if btnEdit.tag == 0 {
+            // 修改信息
+            userinfo.loginStatus = false
+            userinfo.saveUserInfoToSandbox()
+            
+            // 如有推送，修改推送信息
+            
+            // 跳转到登录界面
+            self.enterLoginPage()
+        }
         
-        // 如有推送，修改推送信息
+        if btnEdit.tag == 1 {
+            // 修改信息
+            tbName.text = lastName
+            tbPhone.text = lastPhone
+            
+            tbAdress.text = lastAdress
+            tbNote.text = lastNote
+            self.tbCancel()
+            self.btnEdit.tag = 0
+            self.btnEdit.title = "编辑"
+            self.btnCancel.title = "注销"
+        }
         
-        // 跳转到登录界面
-        self.enterLoginPage()
+        
     }
 //    MARK: - 跳转
     // 跳转至Login
@@ -67,7 +226,11 @@ class PersonTableViewController: UITableViewController {
 //  MARK: - 系统
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadInfo()
+        
+        btnEdit.title = "编辑"
+        
+        self.loadInfo() // 可以去除，主页加载时会重新登录验证并写入缓存
+        
         // All three of these calls are equivalent
         
         // Uncomment the following line to preserve selection between presentations
@@ -81,7 +244,43 @@ class PersonTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+//    点击单元格触发事件
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
+        
+        self.view.endEditing(true)
+        // 取消所有按键可用
+        self.tbCancel()
+        // 定位
+        if btnEdit.tag == 1{
+            switch indexPath {
+            case [0,1]:
+                tbName.isEnabled = true
+            case [1,0]:
+                tbPhone.isEnabled = true
+            case [1,1]:
+                tbAdress.isEnabled = true
+            case [1,2]:
+                tbNote.isEnabled = true
+            default:
+                break
+            }
+            
+        }
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//         无法触发
+        self.tbCancel()
+        // 退出编辑模式
+        self.view.endEditing(true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.tbCancel()
+        // 清空提示框
+        HUD.dismiss()
+        
+    }
     /*
     // MARK: - Table view data source
 

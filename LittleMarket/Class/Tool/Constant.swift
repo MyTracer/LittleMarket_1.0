@@ -56,6 +56,7 @@ struct API {
     static let FindUserAPI = API.UserAPI + "findUser"
     static let CheckUserAPI = API.UserAPI + "checkUserName"
     static let AddUserAPI = API.UserAPI + "addUser"
+    static let EditUserAPI = API.UserAPI + "updateUser"
     
     
     
