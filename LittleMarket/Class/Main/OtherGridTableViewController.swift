@@ -48,6 +48,7 @@ class OtherGridTableViewController: UITableViewController {
     func responseError() {
         print("访问失败")
         HUD.OnlyText(text: "加载失败")
+        self.tableView.dg_stopLoading()
     }
     // 访问成功
     func responseSuccess(response: [String:AnyObject]) {
@@ -69,6 +70,8 @@ class OtherGridTableViewController: UITableViewController {
         }
         
         HUD.dismiss()
+        
+        self.tableView.dg_stopLoading()
     }
     
     //  MARK: - 系统
@@ -85,6 +88,45 @@ class OtherGridTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    //   MARK: -  下拉刷新
+    override func loadView() {
+        super.loadView()
+        
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.barTintColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0)
+        
+        
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        tableView.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+                
+                self?.reloadGO()
+                
+                // 移除视图，应该在网络请求处理完成之后
+                // self?.tableView.dg_stopLoading()
+                
+            })
+            }, loadingView: loadingView)
+        tableView.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        tableView.dg_setPullToRefreshBackgroundColor(tableView.backgroundColor!)
+    }
+    
+    deinit {
+        tableView.dg_removePullToRefresh()
+    }
+    func reloadGO()  {
+        // 清除原有数据
+        otherGrid = []
+        cellCount = 0
+        
+        // 加载
+        self.getData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -118,6 +160,9 @@ class OtherGridTableViewController: UITableViewController {
         // Configure the cell...
         
         return cell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     

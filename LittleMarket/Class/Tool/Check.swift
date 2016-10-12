@@ -37,16 +37,16 @@ enum Validate {
             predicateStr = "^[A-Za-z]{1}[A-Za-z_0-9]{5}$"
             currObject = str
         case let .username(str):
-            predicateStr = "^[A-Za-z0-9]{4,20}+$"
+            predicateStr = "^[A-Za-z0-9]{4,10}+$"
             currObject = str
         case let .password(str):
-            predicateStr = "^[a-zA-Z0-9]{6,20}+$"
+            predicateStr = "^[a-zA-Z0-9]{6,12}+$"
             currObject = str
         case let .nickname(str):
-            predicateStr = "^[\\u4e00-\\u9fa5]{4,8}$"
+            predicateStr = "^[\\u4e00-\\u9fa5]{2,6}$"
             currObject = str
         case let .text(str):
-            predicateStr = "^[\\u4e00-\\u9fa5a-zA-Z0-9]{4,20}$"
+            predicateStr = "^[\\u4e00-\\u9fa5a-zA-Z0-9]{4,12}$"
             currObject = str
         case let .numDe(str):
             predicateStr = "^([1-9]\\d{0,6}|0)(\\.\\d{1,2})?$"

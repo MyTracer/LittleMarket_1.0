@@ -48,6 +48,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     func responseError() {
         print("访问失败")
         HUD.OnlyText(text: "加载失败")
+        self.tvGrid.dg_stopLoading()
     }
     // 访问成功
     func responseSuccess(response: [String:AnyObject]) {
@@ -56,6 +57,9 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         // 存储类别
         
         let sort:SortInfo = SortInfo.shareSortInfo
+        
+        // 移除
+        sort.sortArray.removeAll()
         
         if response["code"] as! String == "200" {
             for dict:NSDictionary in response["msg"] as! Array{
@@ -75,6 +79,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
             print("返回数据有误")
         }
         HUD.dismiss()
+        self.tvGrid.dg_stopLoading()
     
     }
     // 登陆请求
@@ -156,6 +161,42 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         
         // Do any additional setup after loading the view.
     }
+    
+    override func loadView() {
+        super.loadView()
+        // 修饰
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.barTintColor = UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0)
+        
+        let loadingView = DGElasticPullToRefreshLoadingViewCircle()
+        loadingView.tintColor = UIColor(red: 78/255.0, green: 221/255.0, blue: 200/255.0, alpha: 1.0)
+        self.tvGrid.dg_addPullToRefreshWithActionHandler({ [weak self] () -> Void in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+                
+                self?.reloadGO()
+                
+                // 移除视图，应该在网络请求处理完成之后
+                // self?.tableView.dg_stopLoading()
+                
+            })
+            }, loadingView: loadingView)
+        self.tvGrid.dg_setPullToRefreshFillColor(UIColor(red: 57/255.0, green: 67/255.0, blue: 89/255.0, alpha: 1.0))
+        self.tvGrid.dg_setPullToRefreshBackgroundColor(self.tvGrid.backgroundColor!)
+        
+    }
+    deinit {
+        self.tvGrid.dg_removePullToRefresh()
+    }
+    func reloadGO()  {
+        // 清除原有数据
+        findGrid = []
+        cellCount = 0
+        
+        // 加载
+        self.getData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -204,5 +245,10 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
 
 }
+

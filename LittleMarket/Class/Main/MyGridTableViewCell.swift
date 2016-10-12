@@ -13,6 +13,7 @@ import Alamofire
 class MyGridTableViewCell: UITableViewCell {
 
 //    MARK: - 变量
+    let sort:SortInfo = SortInfo.shareSortInfo
     @IBOutlet weak var lbPart: UILabel!
     @IBOutlet weak var lbOwer: UILabel!
     @IBOutlet weak var imageProduct: UIImageView!
@@ -31,9 +32,15 @@ class MyGridTableViewCell: UITableViewCell {
             imageProduct.image = UIImage.init(imageLiteralResourceName: "default_img")
         case .debug:
             //let indexs = index
-            lbPart.text = model.date
-            lbOwer.text = model.name
-            lbNote.text = model.note
+            lbPart.text = model.name
+            lbOwer.text = " "
+            for sortarr in sort.sortArray{
+                if sortarr.sortid == model.sortid {
+                    lbOwer.text = sortarr.name
+                }
+            }
+            
+            lbNote.text = model.note + "    价格:$" + model.price
             //        imageProduct.image = UIImage.init(data: Data.)
             Alamofire.request("https://httpbin.org/image/png").responseImage { response in
                 debugPrint(response)

@@ -20,6 +20,12 @@
 		091E78D71D950CB9003C49EF /* OtherGridTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E78D61D950CB9003C49EF /* OtherGridTableViewCell.swift */; };
 		091E78D91D950D22003C49EF /* OtherGridTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E78D81D950D22003C49EF /* OtherGridTableViewController.swift */; };
 		091E78DB1D950DB6003C49EF /* OtherGridModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091E78DA1D950DB6003C49EF /* OtherGridModel.swift */; };
+		092EDBE71DACD2E4004BF705 /* NavigationController-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EDBE61DACD2E4004BF705 /* NavigationController-extension.swift */; };
+		092EDBEE1DACD469004BF705 /* DGElasticPullToRefreshConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EDBE91DACD469004BF705 /* DGElasticPullToRefreshConstants.swift */; };
+		092EDBEF1DACD469004BF705 /* DGElasticPullToRefreshExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EDBEA1DACD469004BF705 /* DGElasticPullToRefreshExtensions.swift */; };
+		092EDBF01DACD469004BF705 /* DGElasticPullToRefreshLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EDBEB1DACD469004BF705 /* DGElasticPullToRefreshLoadingView.swift */; };
+		092EDBF11DACD469004BF705 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EDBEC1DACD469004BF705 /* DGElasticPullToRefreshLoadingViewCircle.swift */; };
+		092EDBF21DACD469004BF705 /* DGElasticPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092EDBED1DACD469004BF705 /* DGElasticPullToRefreshView.swift */; };
 		0941ADEF1D90DE4E001D9857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0941ADEE1D90DE4E001D9857 /* AppDelegate.swift */; };
 		0941ADF41D90DE4E001D9857 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0941ADF21D90DE4E001D9857 /* Main.storyboard */; };
 		0941ADF61D90DE4E001D9857 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0941ADF51D90DE4E001D9857 /* Assets.xcassets */; };
@@ -93,6 +99,12 @@
 		091E78D61D950CB9003C49EF /* OtherGridTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherGridTableViewCell.swift; sourceTree = "<group>"; };
 		091E78D81D950D22003C49EF /* OtherGridTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherGridTableViewController.swift; sourceTree = "<group>"; };
 		091E78DA1D950DB6003C49EF /* OtherGridModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherGridModel.swift; sourceTree = "<group>"; };
+		092EDBE61DACD2E4004BF705 /* NavigationController-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NavigationController-extension.swift"; sourceTree = "<group>"; };
+		092EDBE91DACD469004BF705 /* DGElasticPullToRefreshConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshConstants.swift; sourceTree = "<group>"; };
+		092EDBEA1DACD469004BF705 /* DGElasticPullToRefreshExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshExtensions.swift; sourceTree = "<group>"; };
+		092EDBEB1DACD469004BF705 /* DGElasticPullToRefreshLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingView.swift; sourceTree = "<group>"; };
+		092EDBEC1DACD469004BF705 /* DGElasticPullToRefreshLoadingViewCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshLoadingViewCircle.swift; sourceTree = "<group>"; };
+		092EDBED1DACD469004BF705 /* DGElasticPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DGElasticPullToRefreshView.swift; sourceTree = "<group>"; };
 		0941ADEB1D90DE4E001D9857 /* LittleMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LittleMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0941ADEE1D90DE4E001D9857 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0941ADF31D90DE4E001D9857 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -194,6 +206,7 @@
 		09155EF41D90E2C1007AC201 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				092EDBE81DACD469004BF705 /* DGElasticPullToRefresh */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -238,6 +251,7 @@
 				090BB28E1D93D3E60090FA8E /* NSObject-extension.swift */,
 				09D22EEA1D9DFF7600E84539 /* HUD.swift */,
 				09E2B2B51DAA138200DA1FF2 /* Check.swift */,
+				092EDBE61DACD2E4004BF705 /* NavigationController-extension.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -306,6 +320,18 @@
 				09E2B2B71DAA213300DA1FF2 /* Sign02ViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		092EDBE81DACD469004BF705 /* DGElasticPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				092EDBE91DACD469004BF705 /* DGElasticPullToRefreshConstants.swift */,
+				092EDBEA1DACD469004BF705 /* DGElasticPullToRefreshExtensions.swift */,
+				092EDBEB1DACD469004BF705 /* DGElasticPullToRefreshLoadingView.swift */,
+				092EDBEC1DACD469004BF705 /* DGElasticPullToRefreshLoadingViewCircle.swift */,
+				092EDBED1DACD469004BF705 /* DGElasticPullToRefreshView.swift */,
+			);
+			path = DGElasticPullToRefresh;
 			sourceTree = "<group>";
 		};
 		0941ADE21D90DE4D001D9857 = {
@@ -558,15 +584,19 @@
 				091E78D31D94FE42003C49EF /* FindGridTableViewCell.swift in Sources */,
 				091E78D71D950CB9003C49EF /* OtherGridTableViewCell.swift in Sources */,
 				09F622751D922D9A0040B277 /* PersonTableViewController.swift in Sources */,
+				092EDBEE1DACD469004BF705 /* DGElasticPullToRefreshConstants.swift in Sources */,
 				095BA1F61D98B21B009B808D /* UsersGridModel.swift in Sources */,
+				092EDBF21DACD469004BF705 /* DGElasticPullToRefreshView.swift in Sources */,
 				091E78D91D950D22003C49EF /* OtherGridTableViewController.swift in Sources */,
 				095BA1FC1D98C6C0009B808D /* UserMenuTableViewCell.swift in Sources */,
 				09CC8F081DAB8C4E00603726 /* SortInfo.swift in Sources */,
 				090BB28B1D93BF130090FA8E /* MyGridTableViewCell.swift in Sources */,
+				092EDBF01DACD469004BF705 /* DGElasticPullToRefreshLoadingView.swift in Sources */,
 				09F0205F1D97E64500E2CE9B /* UserDetailHeaderCell.swift in Sources */,
 				09CC8F061DAB5EE500603726 /* Post02ViewController.swift in Sources */,
 				091E78DB1D950DB6003C49EF /* OtherGridModel.swift in Sources */,
 				091E78CB1D94D04C003C49EF /* FindGridViewController.swift in Sources */,
+				092EDBEF1DACD469004BF705 /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				09D22E6B1D9DFB8400E84539 /* SJProgressHUD.swift in Sources */,
 				09D22EEB1D9DFF7600E84539 /* HUD.swift in Sources */,
 				091E78D11D94FD75003C49EF /* FindGridModel.swift in Sources */,
@@ -581,8 +611,10 @@
 				090BB28F1D93D3E60090FA8E /* NSObject-extension.swift in Sources */,
 				09CC8F041DAB5C9800603726 /* Post01ViewController.swift in Sources */,
 				09F622771D922F4B0040B277 /* PersonInfoModel.swift in Sources */,
+				092EDBF11DACD469004BF705 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				095BA1F81D98B3DF009B808D /* UsersGridTableViewCell.swift in Sources */,
 				09F0205D1D97DC0900E2CE9B /* GridDetailViewController.swift in Sources */,
+				092EDBE71DACD2E4004BF705 /* NavigationController-extension.swift in Sources */,
 				09155EFA1D90E311007AC201 /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

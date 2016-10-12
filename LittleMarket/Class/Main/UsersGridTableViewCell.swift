@@ -13,6 +13,7 @@ import Alamofire
 class UsersGridTableViewCell: UITableViewCell {
 
     // MARK: - 变量
+    let sort:SortInfo = SortInfo.shareSortInfo
     @IBOutlet weak var imageGrid: UIImageView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbInfo: UILabel!
@@ -29,8 +30,15 @@ class UsersGridTableViewCell: UITableViewCell {
             imageGrid.image = UIImage.init(imageLiteralResourceName: "default_img")
         case .debug:
             lbName.text = model.name
-            lbInfo.text = model.note
-            lbClass.text = model.sortid
+            lbInfo.text = model.note + "    价格:$" + model.price
+            
+            lbClass.text = " "
+            for sortarr in sort.sortArray{
+                if sortarr.sortid == model.sortid {
+                    lbClass.text = sortarr.name
+                }
+            }
+            
             Alamofire.request("https://httpbin.org/image/png").responseImage { response in
                 debugPrint(response)
                 
