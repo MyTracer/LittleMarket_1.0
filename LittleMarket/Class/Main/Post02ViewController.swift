@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 //    MARK: - 变量
     var nameStr:String = ""
     var priceStr:String = ""
@@ -26,9 +26,76 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     
     let sort:SortInfo = SortInfo.shareSortInfo
     
-    @IBOutlet weak var lbPic: UITextField!
+ 
+    
     @IBOutlet weak var pvSort: UIPickerView!
 //    MARK: - 事件
+    // 上传图片
+    @IBAction func picUpdate(_ sender: UIButton) {
+        /// 判断数据源是否合法，这里的.photoLibrary省略了其类名，Swift会自动推导
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.allowsEditing = true
+            // 这一句，开始调用图库
+            self.present(imagePicker,animated: true)
+        }
+    }
+    //选择图片成功后代理
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage{
+            // 将图片显示给UIImageView
+            // imagePicked.image = image
+            
+            
+            //将选择的图片保存到Document目录下
+            let fileManager = FileManager.default
+            let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
+                                                               .userDomainMask, true)[0] as String
+            let filePath = "\(rootPath)/pickedimage.JPG"
+            let imageData = UIImageJPEGRepresentation(image, 1.0)
+            fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
+            
+            //上传图片
+            if (fileManager.fileExists(atPath: filePath)){
+                //取得NSURL
+                let imageNSURL:URL = URL.init(fileURLWithPath: filePath)
+                
+                //使用Alamofire上传
+                
+                Alamofire.upload(imageNSURL, to: URL.init(string: API.UploadPicAPI)!, method: .post).validate().responseJSON(completionHandler: { (response) in
+                    switch response.result{
+                    case .success(_):
+                        print("请求成功")
+                        print(response.result.value)
+                        self.picName(response: response.result.value as! Dictionary)
+                    case .failure(let error):
+                        print(error)
+                        
+                    }
+                })
+                
+            }
+        }else{
+            print("pick image wrong")
+        }
+        
+        
+        // 收回图库选择界面
+        self.dismiss(animated: true, completion: nil)
+    }
+    // 确认图片
+    func picName(response:[String:AnyObject]) {
+        if response["code"] as! String == "200" {
+            if (response["image_url"] as!String).isEmpty {
+                return
+            }
+            self.picStr = response["image_url"] as!String
+            HUD.OnlyText(text: "上传成功")
+        }
+    }
     // 提交
     @IBAction func step(_ sender: UIButton) {
         // 取消键盘
@@ -38,10 +105,12 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     }
     func check() {
         // 为空
-        var Pic = lbPic.text
         
-        if Pic!.isEmpty {
-            Pic = "- -"
+        
+        if picStr.isEmpty {
+            // HUD提示
+            HUD.OnlyText(text: "请先上传图片")
+            return
         }
         
         let date = Date()
@@ -55,7 +124,7 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
 //        noteStr = noteStr
         productidStr = "P" + strNowTime
         dateStr = strNowTime
-        picStr = Pic!
+        // picStr = Pic
         sortidStr = sort.sortArray[self.pvSort.selectedRow(inComponent: 0)].sortid
         useridStr = UserInfo.shareUserInfo.userid
         scoreStr = "1"

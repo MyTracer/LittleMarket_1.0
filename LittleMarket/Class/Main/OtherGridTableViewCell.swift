@@ -40,8 +40,7 @@ class OtherGridTableViewCell: UITableViewCell {
             }
             
             lbNote.text = model.note + "    价格:$" + model.price
-            //        imageProduct.image = UIImage.init(data: Data.)
-            Alamofire.request("https://httpbin.org/image/png").responseImage { response in
+            Alamofire.request(model.pic).responseImage { response in
                 debugPrint(response)
                 
                 print(response.request)
@@ -49,7 +48,6 @@ class OtherGridTableViewCell: UITableViewCell {
                 debugPrint(response.result)
                 
                 if let image = response.result.value {
-                    print("image downloaded: \(image)")
                     self.imageProduct.image = image
                 }
             }

@@ -144,19 +144,7 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         
         
         
-        // 加载头像
-        Alamofire.request("http://localhost:8888/Grid/image/92755-100.jpg").responseImage { response in
-            debugPrint(response)
-            
-            print(response.request)
-            print(response.response)
-            debugPrint(response.result)
-            
-            if let image = response.result.value {
-                print("image downloaded: \(image)")
-                self.avaterImageView.image = image
-            }
-        }
+        
 
         
         // 绑定数据源
@@ -193,7 +181,20 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             
             
             tableHeader.bindModel(username: personInfo.username, name: personInfo.name, note: personInfo.note)
+            // 加载头像
+            self.avaterImageView.image = UIImage.init(imageLiteralResourceName: "default_img")
             
+            Alamofire.request(personInfo.pic).responseImage { response in
+                debugPrint(response)
+                
+                print(response.request)
+                print(response.response)
+                debugPrint(response.result)
+                
+                if let image = response.result.value {
+                    self.avaterImageView.image = image
+                }
+            }
             
             
         }else{

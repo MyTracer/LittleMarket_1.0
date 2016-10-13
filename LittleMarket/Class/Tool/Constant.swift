@@ -69,6 +69,10 @@ struct API {
     
     static let SortAPI = API.APIHost + "sorts/"
     
-    static let FindGirdAPI = API.APIHost + "Progress/GetRileiDetail"
+    static let PicAPI = API.APIHost + "pic/"
+    static let UploadPicAPI = API.PicAPI + "upload"
+    
+    
+    
     
 }

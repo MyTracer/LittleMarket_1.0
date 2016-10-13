@@ -1072,10 +1072,8 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iRf-8S-qPN">
-                                                        <nil key="textColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YML-Sw-qz0" userLabel="Pic">
+                                                        <state key="normal" title="上传"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" red="1" green="0.88800037050000002" blue="0.80902585979999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -1084,14 +1082,17 @@
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="8"/>
+                                                                <real key="value" value="22"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                    </textField>
+                                                        <connections>
+                                                            <action selector="picUpdate:" destination="g0y-7L-uCv" eventType="touchUpInside" id="KlP-7a-MBC"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="YjF-oE-00F" secondAttribute="trailing" id="DBi-lU-IR0"/>
-                                                    <constraint firstAttribute="trailing" secondItem="iRf-8S-qPN" secondAttribute="trailing" id="LWa-cx-xWh"/>
+                                                    <constraint firstAttribute="trailing" secondItem="YML-Sw-qz0" secondAttribute="trailing" id="VP1-Rf-iAZ"/>
                                                     <constraint firstItem="YjF-oE-00F" firstAttribute="leading" secondItem="f2h-L8-LSx" secondAttribute="leading" id="Z46-6H-mTt"/>
                                                 </constraints>
                                             </stackView>
@@ -1151,7 +1152,6 @@
                     <navigationItem key="navigationItem" title="详细信息" id="iRg-Hi-TsS"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="lbPic" destination="iRf-8S-qPN" id="ezS-to-EBl"/>
                         <outlet property="pvSort" destination="KRC-BH-1lE" id="chE-lV-scg"/>
                     </connections>
                 </viewController>
