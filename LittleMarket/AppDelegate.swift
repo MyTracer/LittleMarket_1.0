@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          2.验证用户
          */
         UserInfo.shareUserInfo.loadUserInfoFormSandbox()
+        
         if UserInfo.shareUserInfo.loginStatus == false{
             return true
         }

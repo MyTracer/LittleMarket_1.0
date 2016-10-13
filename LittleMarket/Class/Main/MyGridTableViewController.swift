@@ -186,7 +186,7 @@ class MyGridTableViewController: UITableViewController {
     }
     
     deinit {
-        tableView.dg_removePullToRefresh()
+        tableView?.dg_removePullToRefresh()
     }
     func reloadGO()  {
         // 清除原有数据

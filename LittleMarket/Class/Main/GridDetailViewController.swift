@@ -145,7 +145,7 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         
         
         // 加载头像
-        Alamofire.request("https://httpbin.org/image/png").responseImage { response in
+        Alamofire.request("http://localhost:8888/Grid/image/92755-100.jpg").responseImage { response in
             debugPrint(response)
             
             print(response.request)
@@ -169,21 +169,28 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         tableHeader.bindModel(username: "UserName", name: "name", note: "note")
         // 解析数据
         // 判断数据正确性
-        if response["code"] as! String == "200" {
-            var dic:Dictionary = response["msg"]![0] as! [String:AnyObject]
-            // 解析
+        if response["code"] as? String == "200" {
+            for dic:NSDictionary in response["msg"] as! Array{
+                // 解析
+                // 解析
+                
+                
+                personInfo.username = dic["username"] as! String
+                personInfo.userid = dic["userid"] as! String
+                personInfo.name = dic["name"] as! String
+                personInfo.pic = dic["pic"] as! String
+                personInfo.phone = dic["phone"] as! String
+                personInfo.adress = dic["adress"] as! String
+                personInfo.note = dic["note"] as! String
+                personInfo.score =  dic["score"] as! String
+                personInfo.grade = dic["grade"] as! String
+                personInfo.isuse = dic["isuse"] as! String
+                
+                break
+            }
+
             
             
-            personInfo.username = dic["username"] as! String
-            personInfo.userid = dic["userid"] as! String
-            personInfo.name = dic["name"] as! String
-            personInfo.pic = dic["pic"] as! String
-            personInfo.phone = dic["phone"] as! String
-            personInfo.adress = dic["adress"] as! String
-            personInfo.note = dic["note"] as! String
-            personInfo.score =  dic["score"] as! String
-            personInfo.grade = dic["grade"] as! String
-            personInfo.isuse = dic["isuse"] as! String
             
             tableHeader.bindModel(username: personInfo.username, name: personInfo.name, note: personInfo.note)
             

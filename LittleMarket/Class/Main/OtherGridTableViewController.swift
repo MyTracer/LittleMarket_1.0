@@ -118,7 +118,7 @@ class OtherGridTableViewController: UITableViewController {
     }
     
     deinit {
-        tableView.dg_removePullToRefresh()
+        tableView?.dg_removePullToRefresh()
     }
     func reloadGO()  {
         // 清除原有数据
@@ -210,7 +210,7 @@ class OtherGridTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if let answerControlelr = segue.destination as? GridDetailViewController, let index = tableView.indexPathForSelectedRow?.section {
             let answer = otherGrid[index]
-            answerControlelr.useridStr = answer.sortid
+            answerControlelr.useridStr = answer.userid
             
         }
      }

@@ -72,24 +72,32 @@ class LoginViewController: UIViewController {
     }
     func loginWith(response:[String:AnyObject]){
         // 解析数据
+        let userinfo:UserInfo = UserInfo.shareUserInfo
         // 判断数据正确性
         if response["code"] as! String == "200" {
-            var dic:Dictionary = response["msg"]![0] as! [String:AnyObject]
-            // 解析
-            let userinfo:UserInfo = UserInfo.shareUserInfo
-            userinfo.username = userStr!
-            userinfo.password = pwdStr!
-            userinfo.loginStatus = true
+            for dic:NSDictionary in response["msg"] as! Array{
+                
+                // 解析
+                
+                userinfo.username = userStr!
+                userinfo.password = pwdStr!
+                userinfo.loginStatus = true
+                
+                userinfo.userid = dic["userid"] as! String
+                userinfo.name = dic["name"] as! String
+                userinfo.pic = dic["pic"] as! String
+                userinfo.phone = dic["phone"] as! String
+                userinfo.adress = dic["adress"] as! String
+                userinfo.note = dic["note"] as! String
+                userinfo.score =  dic["score"] as! String
+                userinfo.grade = dic["grade"] as! String
+                userinfo.isuse = dic["isuse"] as! String
+                
+                break
+            }
+
             
-            userinfo.userid = dic["userid"] as! String
-            userinfo.name = dic["name"] as! String
-            userinfo.pic = dic["pic"] as! String
-            userinfo.phone = dic["phone"] as! String
-            userinfo.adress = dic["adress"] as! String
-            userinfo.note = dic["note"] as! String
-            userinfo.score =  dic["score"] as! String
-            userinfo.grade = dic["grade"] as! String
-            userinfo.isuse = dic["isuse"] as! String
+            
             
             print(userinfo)
             

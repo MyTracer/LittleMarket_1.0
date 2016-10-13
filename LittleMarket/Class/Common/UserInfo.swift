@@ -48,8 +48,11 @@ class UserInfo: NSObject {
     // 获取沙盒数据
     func loadUserInfoFormSandbox() -> () {
         let defaults:UserDefaults = UserDefaults.standard
-        self.username = defaults.object(forKey: UserKey) as! String
-        self.password = defaults.object(forKey: PwdKey) as! String
-        self.loginStatus = defaults.object(forKey: LoginStatusKey) as! Bool
+        if defaults.object(forKey: UserKey) != nil && defaults.object(forKey: PwdKey) != nil  && defaults.object(forKey: LoginStatusKey) != nil
+        {
+            self.username = defaults.object(forKey: UserKey) as! String
+            self.password = defaults.object(forKey: PwdKey) as! String
+            self.loginStatus = defaults.object(forKey: LoginStatusKey) as! Bool
+        }
     }
 }
