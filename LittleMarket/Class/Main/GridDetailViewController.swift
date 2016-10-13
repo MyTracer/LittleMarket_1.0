@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-import AlamofireImage
+import Kingfisher
 
 class GridDetailViewController: UIViewController ,UITableViewDelegate{
 //    MARK: - 变量
@@ -182,20 +182,13 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             
             tableHeader.bindModel(username: personInfo.username, name: personInfo.name, note: personInfo.note)
             // 加载头像
-            self.avaterImageView.image = UIImage.init(imageLiteralResourceName: "default_img")
             
-            Alamofire.request(personInfo.pic).responseImage { response in
-                debugPrint(response)
-                
-                print(response.request)
-                print(response.response)
-                debugPrint(response.result)
-                
-                if let image = response.result.value {
-                    self.avaterImageView.image = image
-                }
-            }
-            
+            let url = URL(string: personInfo.pic)!
+            self.avaterImageView.kf.setImage(with: url,
+                                          placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
+                                          options: [.transition(.fade(1))],
+                                          progressBlock: nil,
+                                          completionHandler: nil)
             
         }else{
             // 数据不正确

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import AlamofireImage
 import Alamofire
+import Kingfisher
 
 class MyGridTableViewCell: UITableViewCell {
 
@@ -21,9 +21,7 @@ class MyGridTableViewCell: UITableViewCell {
     
 //    MARK: - 方法
     func bindModel(model: MyGridModel,index:Int) {
-        
-        
-        //            测试
+        //  测试
         switch Judge {
         case .test:
             lbPart.text = "商品分类"
@@ -42,12 +40,12 @@ class MyGridTableViewCell: UITableViewCell {
             
             lbNote.text = model.note + "    价格:$" + model.price
             
-            Alamofire.request(model.pic).responseImage { response in
-                
-                if let image = response.result.value {
-                    self.imageProduct.image = image
-                }
-            }
+            let url = URL(string: model.pic)!
+            self.imageProduct.kf.setImage(with: url,
+                                  placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
+                                  options: [.transition(.fade(1))],
+                                  progressBlock: nil,
+                                  completionHandler: nil)
             
         case .run:
             break

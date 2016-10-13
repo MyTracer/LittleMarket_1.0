@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import AlamofireImage
+
+import Kingfisher
 import Alamofire
 
 class OtherGridTableViewCell: UITableViewCell {
@@ -40,19 +41,14 @@ class OtherGridTableViewCell: UITableViewCell {
             }
             
             lbNote.text = model.note + "    价格:$" + model.price
-            Alamofire.request(model.pic).responseImage { response in
-                debugPrint(response)
-                
-                print(response.request)
-                print(response.response)
-                debugPrint(response.result)
-                
-                if let image = response.result.value {
-                    self.imageProduct.image = image
-                }
-            }
-
             
+            let url = URL(string: model.pic)!
+            self.imageProduct.kf.setImage(with: url,
+                                          placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
+                                          options: [.transition(.fade(1))],
+                                          progressBlock: nil,
+                                          completionHandler: nil)
+
         case .run:
             break
             

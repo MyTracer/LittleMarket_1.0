@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import AlamofireImage
+
+import Kingfisher
 import Alamofire
 
 class UsersGridTableViewCell: UITableViewCell {
@@ -39,13 +40,12 @@ class UsersGridTableViewCell: UITableViewCell {
                 }
             }
             
-            Alamofire.request(model.pic).responseImage { response in
-                
-                if let image = response.result.value {
-                    print("image downloaded: \(image)")
-                    self.imageGrid.image = image
-                }
-            }
+            let url = URL(string: model.pic)!
+            self.imageGrid.kf.setImage(with: url,
+                                          placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
+                                          options: [.transition(.fade(1))],
+                                          progressBlock: nil,
+                                          completionHandler: nil)
             
         case .run:
             break
