@@ -152,6 +152,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0403" translatesAutoresizingMaskIntoConstraints="NO" id="XTB-gK-bgm"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2p-eJ-bmo">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="496-4q-flq"/>
@@ -276,7 +277,6 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="jyP-M9-3QA" firstAttribute="leading" secondItem="gXM-RC-p4Y" secondAttribute="leading" constant="22" id="Y9J-Wj-Eqb"/>
                                     <constraint firstItem="jyP-M9-3QA" firstAttribute="top" secondItem="gXM-RC-p4Y" secondAttribute="top" constant="44" id="Yl8-o8-nJx"/>
@@ -288,10 +288,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="gXM-RC-p4Y" secondAttribute="trailing" constant="8" id="4Tb-b1-BYa"/>
+                            <constraint firstAttribute="trailing" secondItem="XTB-gK-bgm" secondAttribute="trailing" id="8BC-iX-s6c"/>
+                            <constraint firstItem="XTB-gK-bgm" firstAttribute="top" secondItem="j9s-8d-sPp" secondAttribute="bottom" id="8iD-hH-bCV"/>
                             <constraint firstItem="x2p-eJ-bmo" firstAttribute="trailing" secondItem="pqy-0T-KAq" secondAttribute="trailingMargin" id="CKj-Bv-GwT"/>
                             <constraint firstItem="gXM-RC-p4Y" firstAttribute="leading" secondItem="pqy-0T-KAq" secondAttribute="leadingMargin" constant="8" id="F9P-Hu-cdi"/>
+                            <constraint firstItem="XTB-gK-bgm" firstAttribute="leading" secondItem="pqy-0T-KAq" secondAttribute="leading" id="cir-Co-E1V"/>
                             <constraint firstItem="gXM-RC-p4Y" firstAttribute="top" secondItem="j9s-8d-sPp" secondAttribute="bottom" constant="10" id="h2a-Ru-blW"/>
                             <constraint firstItem="x2p-eJ-bmo" firstAttribute="top" secondItem="gXM-RC-p4Y" secondAttribute="bottom" constant="10" id="qpn-LW-TKN"/>
+                            <constraint firstItem="A4v-Wq-yB9" firstAttribute="top" secondItem="XTB-gK-bgm" secondAttribute="bottom" id="tY3-EM-aN8"/>
                             <constraint firstItem="A4v-Wq-yB9" firstAttribute="top" secondItem="x2p-eJ-bmo" secondAttribute="bottom" constant="8" id="uye-BE-zQr"/>
                         </constraints>
                     </view>
@@ -1036,6 +1040,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0403" translatesAutoresizingMaskIntoConstraints="NO" id="tBe-Ec-GVq"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TO-U5-vGa">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="0LJ-Do-dtA"/>
@@ -1131,7 +1136,6 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="rSy-mU-03M" firstAttribute="centerY" secondItem="SqZ-ly-wXn" secondAttribute="centerY" id="RXa-0g-avD"/>
                                     <constraint firstItem="rSy-mU-03M" firstAttribute="centerX" secondItem="SqZ-ly-wXn" secondAttribute="centerX" id="a4j-uW-eIJ"/>
@@ -1140,12 +1144,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Geo-ui-Z7c" firstAttribute="top" secondItem="tBe-Ec-GVq" secondAttribute="bottom" id="6FI-zX-dYR"/>
                             <constraint firstItem="Geo-ui-Z7c" firstAttribute="top" secondItem="8TO-U5-vGa" secondAttribute="bottom" constant="8" id="S2p-FY-VSU"/>
                             <constraint firstItem="SqZ-ly-wXn" firstAttribute="leading" secondItem="Olf-kA-2N2" secondAttribute="leadingMargin" constant="22" id="Tb1-1H-YyQ"/>
                             <constraint firstItem="SqZ-ly-wXn" firstAttribute="top" secondItem="U3l-xI-gbu" secondAttribute="bottom" constant="8" id="Zn9-zr-noW"/>
                             <constraint firstItem="SqZ-ly-wXn" firstAttribute="trailing" secondItem="Olf-kA-2N2" secondAttribute="trailingMargin" constant="-22" id="eMb-As-CQD"/>
+                            <constraint firstItem="tBe-Ec-GVq" firstAttribute="leading" secondItem="Olf-kA-2N2" secondAttribute="leading" id="gYM-kN-oC3"/>
+                            <constraint firstAttribute="trailing" secondItem="tBe-Ec-GVq" secondAttribute="trailing" id="gmu-e8-Ak2"/>
                             <constraint firstItem="8TO-U5-vGa" firstAttribute="trailing" secondItem="Olf-kA-2N2" secondAttribute="trailingMargin" id="hAH-KY-UGE"/>
                             <constraint firstItem="8TO-U5-vGa" firstAttribute="top" secondItem="SqZ-ly-wXn" secondAttribute="bottom" constant="8" id="jcY-LT-pXd"/>
+                            <constraint firstItem="tBe-Ec-GVq" firstAttribute="top" secondItem="U3l-xI-gbu" secondAttribute="bottom" id="n6z-yk-qpQ"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -1161,6 +1169,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="IMG_0403" width="852" height="1608"/>
         <image name="default_img" width="60" height="60"/>
     </resources>
 </document>

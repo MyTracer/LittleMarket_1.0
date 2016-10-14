@@ -50,7 +50,7 @@ struct SegueId {
 }
 
 struct API {
-    static let APIHost = "http://192.168.1.101:3000/"
+    static let APIHost = "http://192.168.1.105:3000/"
     static let UserAPI = API.APIHost + "users/"
     static let LoginAPI = API.UserAPI + "checkUser"
     static let FindUserAPI = API.UserAPI + "findUser"

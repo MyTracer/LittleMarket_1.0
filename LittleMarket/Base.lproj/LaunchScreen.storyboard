@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,19 +20,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0355" translatesAutoresizingMaskIntoConstraints="NO" id="oqV-2L-hgk"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="© 北京华建汇达科技有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95x-cV-SR3">
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="格子    铺" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TAV-es-nop">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="140" id="4s4-f6-SU6"/>
+                                    <constraint firstAttribute="width" constant="140" id="gw5-8u-ilI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="TAV-es-nop" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="11y-Go-4C4"/>
                             <constraint firstItem="oqV-2L-hgk" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="NEX-qF-buv"/>
-                            <constraint firstItem="oqV-2L-hgk" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="Zp7-HT-QwY"/>
+                            <constraint firstItem="95x-cV-SR3" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailingMargin" id="TVh-w8-dOn"/>
+                            <constraint firstItem="TAV-es-nop" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="XBx-cV-RAw"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="95x-cV-SR3" secondAttribute="bottom" constant="20" id="alk-bm-wfn"/>
                             <constraint firstAttribute="trailing" secondItem="oqV-2L-hgk" secondAttribute="trailing" id="nEm-dJ-7xS"/>
+                            <constraint firstItem="95x-cV-SR3" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="urJ-QG-kaY"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="oqV-2L-hgk" secondAttribute="bottom" id="v4l-EQ-kAL"/>
+                            <constraint firstItem="oqV-2L-hgk" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="xjE-aP-rE0"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="53.600000000000001" y="381.85907046476763"/>
         </scene>
     </scenes>
     <resources>
