@@ -56,7 +56,7 @@ class Sign02ViewController: UIViewController {
         
         if Name!.isEmpty || Phone!.isEmpty{
             // HUD提示
-            HUD.OnlyText(text: "请确认信息")
+            self.HUDtext(text: "请确认信息")
             return
         }
         if Adress!.isEmpty {
@@ -67,12 +67,12 @@ class Sign02ViewController: UIViewController {
         }
         
         if !Validate.nickname(Name!).isRight {
-            HUD.OnlyText(text: "请确认姓名格式")
+            self.HUDtext(text: "请确认姓名格式")
             return
         }
         
         if !Validate.phoneNum(Phone!).isRight {
-            HUD.OnlyText(text: "请确认电话格式")
+            self.HUDtext(text: "请确认电话格式")
             return
         }
         
@@ -103,6 +103,13 @@ class Sign02ViewController: UIViewController {
     func userNameisUsed(UserNameStr:String) {
         
         let parameter:Dictionary = ["username":UserNameStr];
+        
+        // 等待提示框
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        hud?.label.text = NSLocalizedString("Check", comment: "HUD loading title")
+        
         // 框架进行网络请求
         Alamofire.request(API.CheckUserAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -112,17 +119,23 @@ class Sign02ViewController: UIViewController {
                 let response = response.result.value as! [String:AnyObject]
                 if response["isuse"] as! String == "1"
                 {
-                    HUD.OnlyText(text: "请重新注册")
-                    return
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "用户名已占用")
+                        return
+                    })
+                    
                 }
                 // 存入数据库
                 self.upLoad()
-                
             case .failure(let error):
                 print(error)
                 
                 // HUD提示
-                HUD.OnlyText(text: "请确认信息")
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "请求失败")
+                })
             }
         }
     }
@@ -148,9 +161,15 @@ class Sign02ViewController: UIViewController {
                 let response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200"
                 {
-                    HUD.OnlyText(text: "注册成功")
-                    let _ = self.navigationController?.popToRootViewController(animated: true)
-                    return
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "注册成功")
+                        sleep(3)
+                        let _ = self.navigationController?.popToRootViewController(animated: true)
+                        return
+                    })
+
+                    
                 }
                 
                 
@@ -158,7 +177,10 @@ class Sign02ViewController: UIViewController {
                 print(error)
                 
                 // HUD提示
-                HUD.OnlyText(text: "请确认信息")
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "注册失败")
+                })
             }
         }
     }
@@ -176,13 +198,7 @@ class Sign02ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // 清空提示框
-        HUD.dismiss()
-        
-    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -199,5 +215,26 @@ class Sign02ViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    //     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    func HUDtext(text:String)  {
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
+    }
+    
     
 }

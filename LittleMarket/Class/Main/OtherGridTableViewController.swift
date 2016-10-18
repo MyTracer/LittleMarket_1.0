@@ -29,6 +29,10 @@ class OtherGridTableViewController: UITableViewController {
         // 登陆网络请求
         // 请求参数（密码加密后传输）
         let parameter:Dictionary = ["sortid":sortidStr]
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
         // 框架进行网络请求
         Alamofire.request(API.OtherGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -47,8 +51,11 @@ class OtherGridTableViewController: UITableViewController {
     // 访问失败
     func responseError() {
         print("访问失败")
-        HUD.OnlyText(text: "加载失败")
-        self.tableView.dg_stopLoading()
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            self.HUDtext(text: "请求失败")
+            self.tableView.dg_stopLoading()
+        })
     }
     // 访问成功
     func responseSuccess(response: [String:AnyObject]) {
@@ -69,9 +76,10 @@ class OtherGridTableViewController: UITableViewController {
             print("返回数据有误")
         }
         
-        HUD.dismiss()
-        
-        self.tableView.dg_stopLoading()
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            self.tableView.dg_stopLoading()
+        })
     }
     
     //  MARK: - 系统
@@ -79,15 +87,17 @@ class OtherGridTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.rowHeight = cellHeight
-        // 加载数据
-        self.getData()
         
-        HUD.loadImage()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.reloadGO()
     }
     
     //   MARK: -  下拉刷新
@@ -133,11 +143,7 @@ class OtherGridTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        HUD.dismiss()
-    }
+   
     
 //     MARK: - Table view data source
     
@@ -214,6 +220,28 @@ class OtherGridTableViewController: UITableViewController {
             
         }
      }
+//     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    
+    func HUDtext(text:String)  {
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
+    }
      
 
 }

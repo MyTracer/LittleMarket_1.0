@@ -39,22 +39,22 @@ class Sign01ViewController: UIViewController {
         
         if UserName!.isEmpty || PWD01!.isEmpty || PWD02!.isEmpty{
             // HUD提示
-            HUD.OnlyText(text: "请确认信息")
+            self.HUDtext(text: "请确认信息")
             return
         }
         
         if PWD01 != PWD02 {
-            HUD.OnlyText(text: "输入密码不一致")
+            self.HUDtext(text: "两次密码输入不一致")
             return
         }
         
         if !Validate.username(lbUserName.text!).isRight {
-            HUD.OnlyText(text: "用户名输入不规范")
+            self.HUDtext(text: "用户名输入不规范")
             return
         }
         
         if !Validate.password(lbPWD01.text!).isRight {
-            HUD.OnlyText(text: "密码输入不规范")
+            self.HUDtext(text: "密码输入不规范")
             return
         }
         
@@ -66,6 +66,13 @@ class Sign01ViewController: UIViewController {
     func userNameisUsed(UserNameStr:String) {
         
         let parameter:Dictionary = ["username":UserNameStr];
+        
+        // 等待提示框
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        hud?.label.text = NSLocalizedString("Check", comment: "HUD loading title")
+        
         // 框架进行网络请求
         Alamofire.request(API.CheckUserAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -75,8 +82,12 @@ class Sign01ViewController: UIViewController {
                 let response = response.result.value as! [String:AnyObject]
                 if response["isuse"] as! String == "1"
                 {
-                    HUD.OnlyText(text: "用户名已占用")
-                    return
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "用户名已占用")
+                        return
+                    })
+                    
                 }
                 // 进入下一页
                 self.performSegue(withIdentifier:self.segueID, sender: nil)
@@ -84,7 +95,10 @@ class Sign01ViewController: UIViewController {
                 print(error)
                 
                 // HUD提示
-                HUD.OnlyText(text: "请确认信息")
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "请求失败")
+                })
             }
         }
     }
@@ -102,13 +116,7 @@ class Sign01ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // 清空提示框
-        HUD.dismiss()
-        
-    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -129,6 +137,25 @@ class Sign01ViewController: UIViewController {
             controller.passwordStr = lbPWD01.text!.md5
         }
     }
- 
+    //     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    func HUDtext(text:String)  {
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
+    }
 
 }

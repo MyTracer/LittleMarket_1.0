@@ -63,6 +63,9 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 //取得NSURL
                 let imageNSURL:URL = URL.init(fileURLWithPath: filePath)
                 
+                
+
+                
                 //使用Alamofire上传
                 
                 Alamofire.upload(imageNSURL, to: URL.init(string: API.UploadPicAPI)!, method: .post).validate().responseJSON(completionHandler: { (response) in
@@ -73,13 +76,17 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                         self.picName(response: response.result.value as! Dictionary)
                     case .failure(let error):
                         print(error)
-                        
+                        DispatchQueue.main.async(execute: {
+                            self.HUDHide()
+                            self.HUDtext(text: "请求失败")
+                        })
                     }
                 })
                 
             }
         }else{
             print("pick image wrong")
+            // 还没返回界面无法提示
         }
         
         
@@ -93,7 +100,10 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 return
             }
             self.picStr = response["image_url"] as!String
-            HUD.OnlyText(text: "上传成功")
+            DispatchQueue.main.async(execute: {
+                self.HUDHide()
+                self.HUDtext(text: "上传成功")
+            })
         }
     }
     // 提交
@@ -109,7 +119,7 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         
         if picStr.isEmpty {
             // HUD提示
-            HUD.OnlyText(text: "请先上传图片")
+            self.HUDtext(text: "请先上传图片")
             return
         }
         
@@ -148,6 +158,11 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                                     "grade":gradeStr,
                                     "isuse":isuseStr];
         // 框架进行网络请求
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        
         Alamofire.request(API.AddGirdAPI, method: .post, parameters: parameter).responseJSON { (response) in
             switch response.result{
             case .success(_):
@@ -156,9 +171,20 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 let response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200"
                 {
-                    HUD.OnlyText(text: "发布成功")
-                    let _ = self.navigationController?.popToRootViewController(animated: true)
-                    return
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "发布成功")
+                        let _ = self.navigationController?.popToRootViewController(animated: true)
+                        return
+                    })
+                }else{
+                    // 数据不正确
+                    print("返回数据有误")
+                    // HUD提示
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "发布失败")
+                    })
                 }
                 
                 
@@ -166,7 +192,10 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                 print(error)
                 
                 // HUD提示
-                HUD.OnlyText(text: "请确认信息")
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "请求失败")
+                })
             }
         }
     }
@@ -201,14 +230,6 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
     }
     
 //    MARK: - 系统
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // 清空提示框
-        HUD.dismiss()
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -234,5 +255,27 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         // Pass the selected object to the new view controller.
     }
     */
+//     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    
+    func HUDtext(text:String)  {
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
+    }
 
 }

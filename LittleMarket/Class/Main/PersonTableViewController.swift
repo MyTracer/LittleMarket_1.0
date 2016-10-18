@@ -81,7 +81,7 @@ class PersonTableViewController: UITableViewController {
             
             if newName.isEmpty || newPhone.isEmpty {
                 // HUD提示
-                HUD.OnlyText(text: "请确认信息")
+                self.HUDtext(text: "请确认信息")
                 return
             }
             if newAdress.isEmpty {
@@ -94,11 +94,11 @@ class PersonTableViewController: UITableViewController {
             }
             
             if !Validate.nickname(newName).isRight {
-                HUD.OnlyText(text: "请确认姓名格式")
+                self.HUDtext(text: "请确认姓名格式")
                 return
             }
             if !Validate.phoneNum(newPhone).isRight {
-                HUD.OnlyText(text: "请确认电话格式")
+                self.HUDtext(text: "请确认电话格式")
                 return
             }
             
@@ -111,6 +111,11 @@ class PersonTableViewController: UITableViewController {
     func userNameisFind(newName:String , newPhone:String , newAdress:String , newNote:String){
         let parameter:Dictionary = ["username":userinfo.username];
         
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        hud?.label.text = NSLocalizedString("Check", comment: "HUD loading title")
+        
         // 框架进行网络请求
         Alamofire.request(API.CheckUserAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -120,7 +125,11 @@ class PersonTableViewController: UITableViewController {
                 let response = response.result.value as! [String:AnyObject]
                 if response["isuse"] as! String == "0"
                 {
-                    HUD.OnlyText(text: "无法找到用户")
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "无法找到用户")
+                        return
+                    })
                     
                 }
                 // 存入数据库
@@ -130,7 +139,10 @@ class PersonTableViewController: UITableViewController {
                 print(error)
                 
                 // HUD提示
-                HUD.OnlyText(text: "请确认信息")
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "请求失败")
+                })
                 
             }
         }
@@ -147,6 +159,12 @@ class PersonTableViewController: UITableViewController {
                                     "phone":newPhone,
                                     "adress":newAdress,
                                     "note":newNote];
+        // 上传
+        self.HUDHide()
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        
         // 框架进行网络请求
         Alamofire.request(API.EditUserAPI, method: .post, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -156,7 +174,11 @@ class PersonTableViewController: UITableViewController {
                 let response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200"
                 {
-                    HUD.OnlyText(text: "保存成功")
+                    // HUD提示
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "保存成功")
+                    })
                     
                         
                     self.btnEdit.tag = 0
@@ -171,7 +193,10 @@ class PersonTableViewController: UITableViewController {
                 print(error)
                 
                 // HUD提示
-                HUD.OnlyText(text: "请确认信息")
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "请求失败")
+                })
                 
             }
         }
@@ -283,13 +308,7 @@ class PersonTableViewController: UITableViewController {
         // 退出编辑模式
         self.view.endEditing(true)
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tbCancel()
-        // 清空提示框
-        HUD.dismiss()
-        
-    }
+   
     /*
     // MARK: - Table view data source
 
@@ -356,5 +375,29 @@ class PersonTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+//     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    
+    func HUDtext(text:String)  {
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // 取消键盘
+        self.tbCancel()
+        // 清空提示框
+        self.HUDHide()
+        
+    }
 
 }

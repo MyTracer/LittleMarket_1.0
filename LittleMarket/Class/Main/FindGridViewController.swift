@@ -27,7 +27,6 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     
     //  MARK: - 网络请求
     func getData()  {
-        HUD.loadImage()
         // 登陆网络请求
         // 框架进行网络请求
         Alamofire.request(API.SortAPI, method: .get, parameters: nil).responseJSON { (response) in
@@ -47,8 +46,12 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     // 访问失败
     func responseError() {
         print("访问失败")
-        HUD.OnlyText(text: "加载失败")
-        self.tvGrid.dg_stopLoading()
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            self.HUDtext(text: "请求失败")
+            self.tvGrid.dg_stopLoading()
+        })
+        
     }
     // 访问成功
     func responseSuccess(response: [String:AnyObject]) {
@@ -78,8 +81,10 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
             // 数据不正确
             print("返回数据有误")
         }
-        HUD.dismiss()
-        self.tvGrid.dg_stopLoading()
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            self.tvGrid.dg_stopLoading()
+        })
     
     }
     // 登陆请求
@@ -87,6 +92,10 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         // 登陆网络请求
         // 请求参数（密码加密后传输）
         let parameter:Dictionary = ["username":UserInfo.shareUserInfo.username,"password":UserInfo.shareUserInfo.password.md5!]
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
         
         // 框架进行网络请求
         Alamofire.request(API.LoginAPI, method: .get, parameters: parameter).responseJSON { (response) in
@@ -96,8 +105,12 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
                 print(response.result.value)
                 self.loginWith(response: response.result.value as! Dictionary)
             case .failure(let error):
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.enterLoginPage()
+                })
                 print(error)
-                self.enterLoginPage()
+                
             }
         }
     }
@@ -134,16 +147,19 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
                 DispatchQueue.main.async(execute: {
                     // 返回主线程
                     // 刷新UI，并切换界面
-                    self.getData()
+                    self.reloadGO()
                 })
+                return
             }
-        }else{
-            // 数据不正确
-            print("返回数据有误")
-            
-            self.enterLoginPage()
-            
         }
+        // 数据不正确
+        print("返回数据有误")
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            self.enterLoginPage()
+        })
+        
+        
     }
     //    MARK: - 跳转
     // 跳转至Login
@@ -161,11 +177,16 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         tvGrid.delegate = self
         self.tvGrid.rowHeight = cellHeight
         
-        // 登陆成功后自动加载数据
-        self.login()
+        
         
         
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 登陆成功后自动加载数据
+        self.login()
     }
     
     override func loadView() {
@@ -208,11 +229,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        HUD.dismiss()
-    }
+    
 
     
     // MARK: - Navigation
@@ -255,6 +272,28 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+//     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    
+    func HUDtext(text:String)  {
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
+    }
 
 }
 

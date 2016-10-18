@@ -32,15 +32,15 @@ class Post01ViewController: UIViewController {
         
         if Name!.isEmpty || Price!.isEmpty || Note!.isEmpty{
             // HUD提示
-            HUD.OnlyText(text: "请确认信息")
+            self.HUDtext(text: "请确认信息")
             return
         }
         if !Validate.text(Name!).isRight {
-            HUD.OnlyText(text: "请确认名称格式")
+            self.HUDtext(text: "请确认名称格式")
             return
         }
         if !Validate.numDe(Price!).isRight {
-            HUD.OnlyText(text: "请确认价格格式")
+            self.HUDtext(text: "请确认价格格式")
             return
         }
         
@@ -59,13 +59,7 @@ class Post01ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // 清空提示框
-        HUD.dismiss()
-        
-    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -86,6 +80,30 @@ class Post01ViewController: UIViewController {
             controller.priceStr = lbPrice.text!
             controller.noteStr = lbNote.text!
         }
+    }
+    
+    
+//     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    
+    func HUDtext(text:String)  {
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
     }
     
 

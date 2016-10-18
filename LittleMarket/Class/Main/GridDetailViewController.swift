@@ -74,6 +74,11 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         // 登陆网络请求
         // 请求参数
         let parameter:Dictionary = ["userid":useridStr]
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        
         // 框架进行网络请求
         Alamofire.request(API.UserGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -92,6 +97,10 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
     // 访问失败
     func responseError() {
         print("访问失败")
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            self.HUDtext(text: "请求失败")
+        })
     }
     // 访问成功
     func responseSuccess(response: [String:AnyObject]) {
@@ -112,9 +121,12 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             // 数据不正确
             print("返回数据有误")
         }
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            // 未刷新表格
+            self.setHeader()
+        })
         
-        // 未刷新表格
-        self.setHeader()
         
         
         
@@ -126,6 +138,9 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         // 显示数据 ...  必填项
         let parameter:Dictionary = ["userid":useridStr];
         
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
         // 框架进行网络请求
         Alamofire.request(API.FindUserAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -136,8 +151,10 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             case .failure(let error):
                 print(error)
                 
-                // HUD提示
-                HUD.OnlyText(text: "请确认信息")
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "请求失败")
+                })
             }
         }
         
@@ -196,6 +213,9 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             
             
         }
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+        })
     }
     
 //    MARK: - 系统
@@ -211,11 +231,16 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         super.viewDidLoad()
         // 加载头部，设置头部信息（读取UserInfo）在加载完数据之后。防止两次刷新重叠
         tableView.tableHeaderView = tableHeader
-        // 网络请求加载数据
-        self.getData()
+        
         
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 网络请求加载数据
+        self.getData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -272,6 +297,30 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         avatarHeight.isActive = true
         avatarWidth.isActive = true
     }
+    
+//     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    
+    func HUDtext(text:String)  {
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
+    }
+    
 }
 
 // MARK: - UserMenuDelegate

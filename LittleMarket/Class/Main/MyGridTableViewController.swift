@@ -29,7 +29,12 @@ class MyGridTableViewController: UITableViewController {
     func getData()  {
         // 登陆网络请求
         // 请求参数（密码加密后传输）
-         let parameter:Dictionary = ["userid":UserInfo.shareUserInfo.userid as String]
+        let parameter:Dictionary = ["userid":UserInfo.shareUserInfo.userid as String]
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        
         // 框架进行网络请求
         Alamofire.request(API.UserGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -48,12 +53,18 @@ class MyGridTableViewController: UITableViewController {
     // 访问失败
     func responseError() {
         print("访问失败")
-        HUD.OnlyText(text: "加载失败")
-        self.tableView.dg_stopLoading()
+        // HUD提示
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            self.HUDtext(text: "请求失败")
+            self.tableView.dg_stopLoading()
+        })
+        
     }
     // 访问成功
     func responseSuccess(response: [String:AnyObject]) {
         print("访问成功")
+        
         // 判断数据是否正常
         if response["code"] as! String == "200" {
             for dict:NSDictionary in response["msg"] as! Array{
@@ -68,8 +79,11 @@ class MyGridTableViewController: UITableViewController {
             // 数据不正确
             print("返回数据有误")
         }
-        HUD.dismiss()
-        self.tableView.dg_stopLoading()
+        DispatchQueue.main.async(execute: {
+            self.HUDHide()
+            
+            self.tableView.dg_stopLoading()
+        })
     }
     
     
@@ -96,6 +110,10 @@ class MyGridTableViewController: UITableViewController {
         // 登陆网络请求
         // 请求参数（密码加密后传输）
         let parameter:Dictionary = ["productid":productidStr]
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
         // 框架进行网络请求
         Alamofire.request(API.DeleteGirdAPI, method: .get, parameters: parameter).responseJSON { (response) in
             switch response.result{
@@ -108,7 +126,7 @@ class MyGridTableViewController: UITableViewController {
                     DispatchQueue.main.async(execute: {
                         // 返回主线程
                         // 刷新UI，并切换界面
-                        
+                        self.HUDHide()
                         // 修改数据源：包括数据和行数
                         self.myGrid.remove(at: indexPath.section)
                         self.cellCount = self.cellCount - 1
@@ -119,13 +137,22 @@ class MyGridTableViewController: UITableViewController {
                 }else{
                     // 数据不正确
                     print("返回数据有误")
+                    // HUD提示
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "删除失败")
+                    })
                 }
                 
                 
             case .failure(let error):
                 
                 print(error)
-                HUD.OnlyText(text: "删除失败")
+                // HUD提示
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "请求失败")
+                })
             }
         }
     }
@@ -136,27 +163,25 @@ class MyGridTableViewController: UITableViewController {
         
         tableView.rowHeight = cellHeight
         
-        // 加载动画
-        HUD.loadImage()
+        // 不直接加载数据：1.调用了window。2.切换到该页面及时刷新
         
-        // 加载数据
-        self.getData()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // 加载数据
+        self.reloadGO()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        HUD.dismiss()
-    }
+    
     
 //   MARK: -  下拉刷新
     override func loadView() {
@@ -269,5 +294,27 @@ class MyGridTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+//     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    
+    func HUDtext(text:String)  {
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
+    }
 
 }

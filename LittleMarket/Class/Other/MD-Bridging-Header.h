@@ -10,5 +10,6 @@
 #define MD_Bridging_Header_h
 
 #import <CommonCrypto/CommonHMAC.h>
+#import "MBProgressHUD.h"
 
 #endif /* MD_Bridging_Header_h */

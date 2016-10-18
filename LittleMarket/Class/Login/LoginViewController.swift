@@ -11,6 +11,8 @@ import Alamofire
 
 class LoginViewController: UIViewController {
 //    MARK: - 变量
+    
+    
     var userStr:String?
     // 用户名
     var pwdStr:String?
@@ -33,14 +35,14 @@ class LoginViewController: UIViewController {
             print("登录信息不完整")
             
             // HUD提示
-            HUD.OnlyText(text: "请填写完整")
+            self.HUDtext(text: "请确认信息")
         }else
         {
+            
+            
             // 数据验证通过
             
             self.login()
-            // 等待提示框
-            HUD.loadImage()
         }
         // 初始判断
         print(userStr!,pwdStr!.md5)
@@ -53,7 +55,11 @@ class LoginViewController: UIViewController {
         print(parameter)
         
         // 清空提示框
-        HUD.dismiss()
+        // 等待提示框
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        hud?.label.text = NSLocalizedString("Loading...", comment: "HUD loading title")
         
         // 框架进行网络请求
         Alamofire.request(API.LoginAPI, method: .get, parameters: parameter).responseJSON { (response) in
@@ -64,9 +70,13 @@ class LoginViewController: UIViewController {
                 self.loginWith(response: response.result.value as! Dictionary)
             case .failure(let error):
                 print(error)
+                DispatchQueue.main.async(execute: {
+                    // HUD提示
+                    self.HUDHide()
+                    self.HUDtext(text: "登陆失败，请验证信息")
+                    
+                })
                 
-                // HUD提示
-                HUD.OnlyText(text: "请确认信息")
             }
         }
     }
@@ -107,6 +117,7 @@ class LoginViewController: UIViewController {
                 userinfo.saveUserInfoToSandbox()
                 DispatchQueue.main.async(execute: {
                     // 返回主线程
+                    self.HUDHide()
                     // 刷新UI，并切换界面
                     self.enterMainPage()
                 })
@@ -119,8 +130,10 @@ class LoginViewController: UIViewController {
             // 数据不正确
             print("返回数据有误")
             
-            // HUD提示
-            HUD.OnlyText(text: "请确认信息")
+            DispatchQueue.main.async(execute: {
+                self.HUDHide()
+                self.HUDtext(text: "请求失败")
+            })
             
         }
     }
@@ -158,15 +171,6 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        // 清空提示框
-        HUD.dismiss()
-        
-    }
-    
-
     /*
     // MARK: - Navigation
 
@@ -176,5 +180,24 @@ class LoginViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-}
+//     MRAK: - HUDTEXT
+    var hud:MBProgressHUD?
+    func HUDtext(text:String)  {
+        hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        hud?.mode = MBProgressHUDMode.text
+        hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
+        hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
+        hud?.hide(animated: true, afterDelay: 3)
+    }
+    func HUDHide()  {
+        hud?.hide(animated: true)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // 清空提示框
+        self.HUDHide()
+        
+    }
+} 
