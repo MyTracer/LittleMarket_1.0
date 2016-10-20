@@ -159,6 +159,14 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // 判断网络
+        let app = UIApplication.shared.delegate as! AppDelegate
+        if (app.managr?.isReachableOnEthernetOrWiFi)! {
+            self.HUDtext(text: "已连接到WiFi")
+        }else{
+            self.HUDtext(text: "请优先连接到WiFi")
+        }
     }
     // 滑动
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

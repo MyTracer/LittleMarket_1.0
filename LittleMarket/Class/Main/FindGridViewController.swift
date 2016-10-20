@@ -13,6 +13,10 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     //  MARK: - 变量
     @IBOutlet weak var tvGrid: UITableView!
     
+    // Appdelegte
+    let app = UIApplication.shared.delegate as! AppDelegate
+    
+    
     // 定义行高
     let cellHeight:CGFloat = 96
     
@@ -176,9 +180,6 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         
         tvGrid.delegate = self
         self.tvGrid.rowHeight = cellHeight
-        
-        
-        
         
         // Do any additional setup after loading the view.
     }

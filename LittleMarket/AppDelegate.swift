@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var managr:NetworkReachabilityManager?
 //    MARK: - 跳转
     func enterMainPage()  {
         // 获取主界面的故事版
@@ -23,6 +24,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    MARK: - 系统
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // 检查网络
+        self.managr = NetworkReachabilityManager(host: API.APIHost)
+        self.managr?.listener = { status in
+            if status == NetworkReachabilityManager.NetworkReachabilityStatus.notReachable{
+                print("无法连接")
+            }
+            if status == NetworkReachabilityManager.NetworkReachabilityStatus.unknown{
+                print("未知网络")
+            }
+            if status == NetworkReachabilityManager.NetworkReachabilityStatus.reachable(NetworkReachabilityManager.ConnectionType.ethernetOrWiFi){
+                print("3G`WIFI")
+            }
+            
+            print("Network Status Changes:\(status)")
+        }
+        self.managr?.startListening()
         
 //        用户登录验证
         /*
