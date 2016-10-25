@@ -9,10 +9,11 @@
 import UIKit
 import Alamofire
 
-class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableViewDataSource{
+class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableViewDataSource , UIViewControllerPreviewingDelegate{
     //  MARK: - 变量
     @IBOutlet weak var tvGrid: UITableView!
     
+    var isCan3DTouch = true
     // Appdelegte
     let app = UIApplication.shared.delegate as! AppDelegate
     
@@ -181,6 +182,14 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         tvGrid.delegate = self
         self.tvGrid.rowHeight = cellHeight
         
+        if traitCollection.forceTouchCapability == UIForceTouchCapability.available {
+            
+            self.isCan3DTouch = true
+        }
+        else {
+            self.isCan3DTouch = false
+        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -263,6 +272,10 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.FindGrid, for: indexPath) as! FindGridTableViewCell
         
+        if self.isCan3DTouch{
+            registerForPreviewing(with: self, sourceView: cell.contentView)
+        }
+        
         let index = indexPath.section
         cell.bindModel(model: findGrid[index], index: index)
         // Configure the cell...
@@ -272,6 +285,17 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    //    MARK: - 3Dtouch代理方法
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let indexPath = self.tvGrid.indexPath(for: previewingContext.sourceView.superview as! UITableViewCell)
+        let dic = findGrid[indexPath!.section]
+        let peekVC = DTouchViewController.init(imgUrl: dic.pic)
+        return peekVC
+    }
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
+    
     
 //     MRAK: - HUDTEXT
     var hud:MBProgressHUD?

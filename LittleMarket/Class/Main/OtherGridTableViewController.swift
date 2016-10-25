@@ -9,9 +9,10 @@
 import UIKit
 import Alamofire
 
-class OtherGridTableViewController: UITableViewController {
+class OtherGridTableViewController: UITableViewController, UIViewControllerPreviewingDelegate {
 
     //  MARK: - 变量
+    var isCan3DTouch = true
     // 定义行高
     let cellHeight:CGFloat = 144
     
@@ -89,6 +90,14 @@ class OtherGridTableViewController: UITableViewController {
         tableView.rowHeight = cellHeight
         
         
+        if traitCollection.forceTouchCapability == UIForceTouchCapability.available {
+            
+            self.isCan3DTouch = true
+        }
+        else {
+            self.isCan3DTouch = false
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -160,6 +169,9 @@ class OtherGridTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.OtherGrid, for: indexPath) as! OtherGridTableViewCell
+        if self.isCan3DTouch{
+            registerForPreviewing(with: self, sourceView: cell.contentView)
+        }
         
         let index = indexPath.section
         cell.bindModel(model: otherGrid[index], index: index)
@@ -170,7 +182,16 @@ class OtherGridTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
+    //    MARK: - 3Dtouch代理方法
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let indexPath = self.tableView.indexPath(for: previewingContext.sourceView.superview as! UITableViewCell)
+        let dic = otherGrid[indexPath!.section]
+        let peekVC = DTouchViewController.init(imgUrl: dic.pic)
+        return peekVC
+    }
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
     
     /*
      // Override to support conditional editing of the table view.
