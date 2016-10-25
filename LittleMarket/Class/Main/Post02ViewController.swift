@@ -49,13 +49,13 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             // 将图片显示给UIImageView
             // imagePicked.image = image
             
-            
+            let imageT = image.reSizeImage(reSize: Magic.reSize)
             //将选择的图片保存到Document目录下
             let fileManager = FileManager.default
             let rootPath = NSSearchPathForDirectoriesInDomains(.documentDirectory,
                                                                .userDomainMask, true)[0] as String
             let filePath = "\(rootPath)/pickedimage.JPG"
-            let imageData = UIImageJPEGRepresentation(image, 1.0)
+            let imageData = UIImageJPEGRepresentation(imageT, 1.0)
             fileManager.createFile(atPath: filePath, contents: imageData, attributes: nil)
             
             //上传图片

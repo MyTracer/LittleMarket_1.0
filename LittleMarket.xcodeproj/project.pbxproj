@@ -37,6 +37,7 @@
 		095BA2021D98E30A009B808D /* UserDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */; };
 		0970DA811D92690300FA9B1F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0970DA801D92690300FA9B1F /* Login.storyboard */; };
 		0970DA831D926E7000FA9B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0970DA821D926E7000FA9B1F /* LoginViewController.swift */; };
+		097F96351DBF26C00023B4DC /* UIImage-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097F96341DBF26C00023B4DC /* UIImage-extension.swift */; };
 		098989611DB5BD3E00DA2155 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 098989601DB5BD3E00DA2155 /* MBProgressHUD.m */; };
 		09A4D12E1D93718C003CB8FF /* String-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4D12D1D93718C003CB8FF /* String-extension.swift */; };
 		09C8AAC31DBEF46800A63D6C /* DTouchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C8AAC21DBEF46800A63D6C /* DTouchViewController.swift */; };
@@ -87,6 +88,7 @@
 		095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewCell.swift; sourceTree = "<group>"; };
 		0970DA801D92690300FA9B1F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0970DA821D926E7000FA9B1F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		097F96341DBF26C00023B4DC /* UIImage-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-extension.swift"; sourceTree = "<group>"; };
 		0989895F1DB5BD3E00DA2155 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		098989601DB5BD3E00DA2155 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		09A4D12C1D937089003CB8FF /* MD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MD-Bridging-Header.h"; path = "LittleMarket/Class/Other/MD-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
@@ -190,6 +192,7 @@
 				090BB28E1D93D3E60090FA8E /* NSObject-extension.swift */,
 				09E2B2B51DAA138200DA1FF2 /* Check.swift */,
 				092EDBE61DACD2E4004BF705 /* NavigationController-extension.swift */,
+				097F96341DBF26C00023B4DC /* UIImage-extension.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				09E2B2B41DAA0B6D00DA1FF2 /* Sign01ViewController.swift in Sources */,
 				0941ADEF1D90DE4E001D9857 /* AppDelegate.swift in Sources */,
 				090BB2871D93B0BA0090FA8E /* MyGridTableViewController.swift in Sources */,
+				097F96351DBF26C00023B4DC /* UIImage-extension.swift in Sources */,
 				090BB28F1D93D3E60090FA8E /* NSObject-extension.swift in Sources */,
 				09CC8F041DAB5C9800603726 /* Post01ViewController.swift in Sources */,
 				09F622771D922F4B0040B277 /* PersonInfoModel.swift in Sources */,

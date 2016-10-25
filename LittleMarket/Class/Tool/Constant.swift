@@ -44,8 +44,8 @@ struct CellReuseIdentifier {
     
 }
 
-struct SegueId {
-    static let PopoverSortOrderMenu = "PopoverSortOrderMenu"
+struct Magic {
+    static let reSize = CGSize(width: 400, height: 600)
     
 }
 
