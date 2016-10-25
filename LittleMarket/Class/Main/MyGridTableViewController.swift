@@ -9,9 +9,9 @@
 import UIKit
 import Alamofire
 
-class MyGridTableViewController: UITableViewController {
+class MyGridTableViewController: UITableViewController , UIViewControllerPreviewingDelegate{
 //  MARK: - 变量
-    
+    var isCan3DTouch = true
     
     // 定义行高
     let cellHeight:CGFloat = 144
@@ -165,6 +165,15 @@ class MyGridTableViewController: UITableViewController {
         
         // 不直接加载数据：1.调用了window。2.切换到该页面及时刷新
         
+        
+        if traitCollection.forceTouchCapability == UIForceTouchCapability.available {
+            
+            self.isCan3DTouch = true
+        }
+        else {
+            self.isCan3DTouch = false
+        }
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -239,6 +248,9 @@ class MyGridTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.MyGrid, for: indexPath) as! MyGridTableViewCell
+        if self.isCan3DTouch{
+            registerForPreviewing(with: self, sourceView: cell.contentView)
+        }
         
         let index = indexPath.section
         cell.bindModel(model: myGrid[index], index: index)
@@ -248,6 +260,17 @@ class MyGridTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+//    MARK: - 3Dtouch代理方法
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let indexPath = self.tableView.indexPath(for: previewingContext.sourceView.superview as! UITableViewCell)
+        let dic = myGrid[indexPath!.section]
+        let peekVC = DTouchViewController.init(imgUrl: dic.pic)
+        return peekVC
+    }
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 
     /*

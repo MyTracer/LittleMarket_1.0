@@ -58,8 +58,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }else{
             print("进入登录窗口")
         }
+        self.configShortCutItems()
         
         return true
+    }
+//    MARK: - 3Dtouch
+    func configShortCutItems() {
+        // 动态添加
+        let icon1 = UIApplicationShortcutIcon.init(type: .share)
+        let item1 = UIMutableApplicationShortcutItem.init(type: "share", localizedTitle: "分享", localizedSubtitle: nil, icon: icon1, userInfo: nil)
+        
+        UIApplication.shared.shortcutItems = [item1]
+    }
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        switch shortcutItem.type {
+        case "share":
+            print("share click")
+        default:
+            print("shortcutItem")
+        }
     }
    
     func applicationWillResignActive(_ application: UIApplication) {

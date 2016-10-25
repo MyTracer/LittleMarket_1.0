@@ -39,6 +39,7 @@
 		0970DA831D926E7000FA9B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0970DA821D926E7000FA9B1F /* LoginViewController.swift */; };
 		098989611DB5BD3E00DA2155 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 098989601DB5BD3E00DA2155 /* MBProgressHUD.m */; };
 		09A4D12E1D93718C003CB8FF /* String-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4D12D1D93718C003CB8FF /* String-extension.swift */; };
+		09C8AAC31DBEF46800A63D6C /* DTouchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C8AAC21DBEF46800A63D6C /* DTouchViewController.swift */; };
 		09CC8F041DAB5C9800603726 /* Post01ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CC8F031DAB5C9800603726 /* Post01ViewController.swift */; };
 		09CC8F061DAB5EE500603726 /* Post02ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CC8F051DAB5EE500603726 /* Post02ViewController.swift */; };
 		09CC8F081DAB8C4E00603726 /* SortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CC8F071DAB8C4E00603726 /* SortInfo.swift */; };
@@ -90,6 +91,7 @@
 		098989601DB5BD3E00DA2155 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		09A4D12C1D937089003CB8FF /* MD-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MD-Bridging-Header.h"; path = "LittleMarket/Class/Other/MD-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		09A4D12D1D93718C003CB8FF /* String-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String-extension.swift"; sourceTree = "<group>"; };
+		09C8AAC21DBEF46800A63D6C /* DTouchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTouchViewController.swift; sourceTree = "<group>"; };
 		09CC8F031DAB5C9800603726 /* Post01ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post01ViewController.swift; sourceTree = "<group>"; };
 		09CC8F051DAB5EE500603726 /* Post02ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post02ViewController.swift; sourceTree = "<group>"; };
 		09CC8F071DAB8C4E00603726 /* SortInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SortInfo.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				09F0205C1D97DC0900E2CE9B /* GridDetailViewController.swift */,
 				09CC8F031DAB5C9800603726 /* Post01ViewController.swift */,
 				09CC8F051DAB5EE500603726 /* Post02ViewController.swift */,
+				09C8AAC21DBEF46800A63D6C /* DTouchViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -470,6 +473,7 @@
 				09F0205F1D97E64500E2CE9B /* UserDetailHeaderCell.swift in Sources */,
 				09CC8F061DAB5EE500603726 /* Post02ViewController.swift in Sources */,
 				091E78DB1D950DB6003C49EF /* OtherGridModel.swift in Sources */,
+				09C8AAC31DBEF46800A63D6C /* DTouchViewController.swift in Sources */,
 				091E78CB1D94D04C003C49EF /* FindGridViewController.swift in Sources */,
 				092EDBEF1DACD469004BF705 /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				091E78D11D94FD75003C49EF /* FindGridModel.swift in Sources */,
