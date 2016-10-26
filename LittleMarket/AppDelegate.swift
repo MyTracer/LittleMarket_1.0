@@ -74,9 +74,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         switch shortcutItem.type {
         case "share":
             print("share click")
+            self.share()
         default:
             print("shortcutItem")
         }
+    }
+    
+    func share()  {
+        let activity:UIActivityViewController = UIActivityViewController.init(activityItems: [Magic.Appinfo], applicationActivities: nil)
+        activity.excludedActivityTypes = [UIActivityType.airDrop]
+        if let popover:UIPopoverPresentationController = activity.popoverPresentationController{
+//            popover.sourceView = 
+            popover.permittedArrowDirections = UIPopoverArrowDirection.up
+            self.window?.rootViewController?.present(activity, animated: true, completion: nil)
+        }
+        
+        
+        
     }
    
     func applicationWillResignActive(_ application: UIApplication) {
