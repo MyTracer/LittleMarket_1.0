@@ -42,7 +42,7 @@ class OtherGridTableViewCell: UITableViewCell {
             
             lbNote.text = model.note + "    价格:$" + model.price
             
-            let url = URL(string: model.pic)!
+            let url = URL(string: (API.APIHost + model.pic))!
             self.imageProduct.kf.setImage(with: url,
                                           placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
                                           options: [.transition(.fade(1))],

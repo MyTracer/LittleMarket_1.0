@@ -40,7 +40,7 @@ class UsersGridTableViewCell: UITableViewCell {
                 }
             }
             
-            let url = URL(string: model.pic)!
+            let url = URL(string: (API.APIHost + model.pic))!
             self.imageGrid.kf.setImage(with: url,
                                           placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
                                           options: [.transition(.fade(1))],

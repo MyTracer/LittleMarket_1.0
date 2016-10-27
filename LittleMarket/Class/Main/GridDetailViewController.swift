@@ -200,7 +200,7 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             tableHeader.bindModel(username: personInfo.username, name: personInfo.name, note: personInfo.note)
             // 加载头像
             
-            let url = URL(string: personInfo.pic)!
+            let url = URL(string: (API.APIHost + personInfo.pic))!
             self.avaterImageView.kf.setImage(with: url,
                                           placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
                                           options: [.transition(.fade(1))],
