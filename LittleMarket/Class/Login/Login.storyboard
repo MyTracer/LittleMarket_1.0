@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="flu-RN-fqD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="flu-RN-fqD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -19,8 +19,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0403" translatesAutoresizingMaskIntoConstraints="NO" id="dbV-Vm-ULw"/>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iRw-8p-Xgw">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0101" translatesAutoresizingMaskIntoConstraints="NO" id="dbV-Vm-ULw"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="iRw-8p-Xgw">
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入用户名" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ojg-89-NPv">
                                         <nil key="textColor"/>
@@ -56,7 +56,7 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-ln-oif">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Qfk-ln-oif">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yQ-Rr-0BS">
                                         <state key="normal" title="登    录">
@@ -122,11 +122,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="iRw-8p-Xgw" secondAttribute="trailing" id="7iI-L0-8Ua"/>
                             <constraint firstItem="AG1-GZ-mRq" firstAttribute="leading" secondItem="4JY-Ti-B90" secondAttribute="leadingMargin" id="AYF-b2-78Q"/>
                             <constraint firstAttribute="trailing" secondItem="r7d-qJ-pAe" secondAttribute="trailing" constant="22" id="Bw2-S1-leF"/>
-                            <constraint firstItem="Qfk-ln-oif" firstAttribute="top" secondItem="AG1-GZ-mRq" secondAttribute="bottom" constant="22" id="FCr-Gk-ItZ"/>
+                            <constraint firstItem="Qfk-ln-oif" firstAttribute="top" secondItem="AG1-GZ-mRq" secondAttribute="bottom" constant="44" id="FCr-Gk-ItZ"/>
                             <constraint firstItem="AG1-GZ-mRq" firstAttribute="centerY" secondItem="4JY-Ti-B90" secondAttribute="centerY" id="H6U-xJ-j4Q"/>
                             <constraint firstItem="OoV-if-i2P" firstAttribute="top" secondItem="dbV-Vm-ULw" secondAttribute="bottom" id="Ni5-rw-2OU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Qfk-ln-oif" secondAttribute="trailing" constant="22" id="Sgw-lX-bdt"/>
-                            <constraint firstItem="AG1-GZ-mRq" firstAttribute="top" secondItem="iRw-8p-Xgw" secondAttribute="bottom" constant="22" id="cno-bN-AaR"/>
+                            <constraint firstItem="AG1-GZ-mRq" firstAttribute="top" secondItem="iRw-8p-Xgw" secondAttribute="bottom" constant="44" id="cno-bN-AaR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AG1-GZ-mRq" secondAttribute="trailing" id="dkF-xd-egA"/>
                             <constraint firstItem="OoV-if-i2P" firstAttribute="top" secondItem="r7d-qJ-pAe" secondAttribute="bottom" constant="22" id="emL-lh-MxG"/>
                             <constraint firstItem="dbV-Vm-ULw" firstAttribute="top" secondItem="4JY-Ti-B90" secondAttribute="top" id="mMa-WY-4bf"/>
@@ -156,7 +156,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0403" translatesAutoresizingMaskIntoConstraints="NO" id="DCa-9e-Abq"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0201" translatesAutoresizingMaskIntoConstraints="NO" id="DCa-9e-Abq"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7dw-Ys-WJw" userLabel="title">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第一步" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKp-lS-DC1">
@@ -176,7 +176,7 @@
                                     <constraint firstAttribute="height" constant="60" id="LCb-HK-OTE"/>
                                     <constraint firstAttribute="width" constant="60" id="wH6-zN-smM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="35"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="50"/>
                                 <state key="normal" title="✘"/>
                                 <connections>
                                     <action selector="back:" destination="D88-GK-vez" eventType="touchUpInside" id="9K5-3G-fnM"/>
@@ -187,7 +187,7 @@
                                     <constraint firstAttribute="width" constant="60" id="5jD-RL-Gds"/>
                                     <constraint firstAttribute="height" constant="60" id="mOJ-HR-zXN"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="51"/>
                                 <state key="normal" title="✔︎"/>
                                 <connections>
                                     <action selector="step:" destination="D88-GK-vez" eventType="touchUpInside" id="Ftt-dy-jyc"/>
@@ -364,7 +364,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0403" translatesAutoresizingMaskIntoConstraints="NO" id="wo4-0C-4jl"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="IMG_0202" translatesAutoresizingMaskIntoConstraints="NO" id="wo4-0C-4jl"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d2M-hP-2wI" userLabel="title">
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="第二步" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKB-ol-ynJ">
@@ -384,7 +384,7 @@
                                     <constraint firstAttribute="height" constant="60" id="JjH-HU-KgG"/>
                                     <constraint firstAttribute="width" constant="60" id="cgJ-fE-Fop"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="35"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="56"/>
                                 <state key="normal" title="✘"/>
                                 <connections>
                                     <action selector="back:" destination="1wY-x1-BGC" eventType="touchUpInside" id="DEk-Rx-wE8"/>
@@ -395,7 +395,7 @@
                                     <constraint firstAttribute="height" constant="60" id="Po4-xE-Qnb"/>
                                     <constraint firstAttribute="width" constant="60" id="XnW-53-96e"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
                                 <state key="normal" title="✔︎"/>
                                 <connections>
                                     <action selector="step:" destination="1wY-x1-BGC" eventType="touchUpInside" id="dpp-lC-WpN"/>
@@ -569,6 +569,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="IMG_0403" width="852" height="1608"/>
+        <image name="IMG_0101" width="576" height="1024"/>
+        <image name="IMG_0201" width="370" height="750"/>
+        <image name="IMG_0202" width="370" height="750"/>
     </resources>
 </document>

@@ -51,7 +51,7 @@ struct Magic {
 }
 
 struct API {
-    static let APIHost = "http://223.20.54.173:3000/"
+    static let APIHost = "http://223.20.38.105:3000/"
     static let UserAPI = API.APIHost + "users/"
     static let LoginAPI = API.UserAPI + "checkUser"
     static let FindUserAPI = API.UserAPI + "findUser"

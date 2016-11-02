@@ -87,7 +87,7 @@ class Sign02ViewController: UIViewController {
 //        passwordStr = passwordStr
         useridStr = "U"+strNowTime
         nameStr = Name!
-        picStr = "-"
+        picStr = "image/me.png"
         phoneStr = Phone!
         adressStr = Adress!
         noteStr = Note!
