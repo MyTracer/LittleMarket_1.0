@@ -82,6 +82,93 @@ class OtherGridTableViewController: UITableViewController, UIViewControllerPrevi
             self.tableView.dg_stopLoading()
         })
     }
+    //  MARK: - 编辑
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        //  覆盖后会失效
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            
+        }
+        if editingStyle == UITableViewCellEditingStyle.insert {
+            
+        }
+    }
+    // 重写后，会覆盖commit editingStyle的方法
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        //
+        var judge:Int = 0
+        let deleteRoWAction:UITableViewRowAction = UITableViewRowAction.init(style: .default, title: "举报", handler: {(UITableViewRowAction, IndexPath) -> Void in
+            print("举报")
+            judge = -1
+            self.judgePath(judge: judge, indexPath: IndexPath)
+            })
+        let addRowAction:UITableViewRowAction = UITableViewRowAction.init(style: .destructive, title: "喜爱", handler:{(UITableViewRowAction, IndexPath) -> Void in
+            judge = 1
+            self.judgePath(judge: judge, indexPath: IndexPath)
+            print("喜爱")
+        })
+        deleteRoWAction.backgroundColor = UIColor.red
+        addRowAction.backgroundColor = UIColor.blue
+        return [deleteRoWAction,addRowAction]
+    }
+    
+    func judgePath(judge:Int, indexPath: IndexPath)  {
+        // 网络请求
+        // 请求参数
+        var score:String = self.otherGrid[indexPath.section].score
+        score = "\(Int.init(score)! + judge)"
+        print(score)
+        let parameter:Dictionary = ["productid":self.otherGrid[indexPath.section].productid,"score":score]
+        
+        hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
+        hud?.backgroundView.style = MBProgressHUDBackgroundStyle.solidColor
+        hud?.contentColor = UIColor.init(colorLiteralRed: 0, green: 0.6, blue: 0.7, alpha: 1)
+        // 框架进行网络请求
+        Alamofire.request(API.JudgeGirdAPI, method: .post, parameters: parameter).responseJSON { (response) in
+            switch response.result{
+            case .success(_):
+                print("请求成功")
+                print(response.result.value!)
+                var response = response.result.value as! [String:AnyObject]
+                if response["code"] as! String == "200" {
+                    
+                    DispatchQueue.main.async(execute: {
+                        // 返回主线程
+                        // 刷新UI，并切换界面
+                        self.HUDHide()
+                        // 提示
+                        self.HUDtext(text: "操作成功")
+                        
+                        self.otherGrid[indexPath.section].score = score
+                        
+                    })
+                }else{
+                    // 数据不正确
+                    print("返回数据有误")
+                    // HUD提示
+                    DispatchQueue.main.async(execute: {
+                        self.HUDHide()
+                        self.HUDtext(text: "操作失败")
+                    })
+                }
+                
+                
+            case .failure(let error):
+                
+                print(error)
+                // HUD提示
+                DispatchQueue.main.async(execute: {
+                    self.HUDHide()
+                    self.HUDtext(text: "请求失败")
+                })
+            }
+        }
+        
+    }
     
     //  MARK: - 系统
     override func viewDidLoad() {

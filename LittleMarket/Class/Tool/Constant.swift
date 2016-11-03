@@ -47,11 +47,13 @@ struct CellReuseIdentifier {
 struct Magic {
     static let reSize = CGSize(width: 400, height: 600)
     static let Appinfo = "格子铺...一个有趣的交易信息共享平台"
+    static let AppDetail = "格子铺...一个有趣的交易信息共享平台 --条款"
     
 }
 
 struct API {
     static let APIHost = "http://223.20.38.105:3000/"
+//    static let APIHost = "http://localhost:3000/"
     static let UserAPI = API.APIHost + "users/"
     static let LoginAPI = API.UserAPI + "checkUser"
     static let FindUserAPI = API.UserAPI + "findUser"
@@ -66,6 +68,7 @@ struct API {
     static let OtherGirdAPI = API.ProductAPI + "sortProducts"
     static let DeleteGirdAPI = API.ProductAPI + "deleteProducts"
     static let AddGirdAPI = API.ProductAPI + "addProducts"
+    static let JudgeGirdAPI = API.ProductAPI + "updateScore"
     
     
     static let SortAPI = API.APIHost + "sorts/"

@@ -20,7 +20,7 @@ class Sign01ViewController: UIViewController {
     @IBAction func back(_ sender: UIButton) {
         
         self.view.endEditing(true)
-        let _ = navigationController?.popViewController(animated: true)
+        let _ = self.navigationController?.popToRootViewController(animated: true)
     }
     
     @IBAction func step(_ sender: UIButton) {
