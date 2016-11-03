@@ -1,0 +1,150 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0Ie-ig-728"; */
+"0Ie-ig-728.text" = "Label";
+
+/* Class = "UILabel"; text = "价格："; ObjectID = "3gs-7a-UnK"; */
+"3gs-7a-UnK.text" = "价格：";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "5qs-9p-Nj0"; */
+"5qs-9p-Nj0.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "4~12位(*)"; ObjectID = "61y-4H-3ta"; */
+"61y-4H-3ta.placeholder" = "4~12位(*)";
+
+/* Class = "UILabel"; text = "分类"; ObjectID = "6Ny-Pf-nCp"; */
+"6Ny-Pf-nCp.text" = "分类";
+
+/* Class = "UIBarButtonItem"; title = "发布"; ObjectID = "6mW-8S-CZj"; */
+"6mW-8S-CZj.title" = "发布";
+
+/* Class = "UIButton"; normalTitle = "博主"; ObjectID = "7in-eb-QQx"; */
+"7in-eb-QQx.normalTitle" = "博主";
+
+/* Class = "UIButton"; normalTitle = "⚐"; ObjectID = "8TO-U5-vGa"; */
+"8TO-U5-vGa.normalTitle" = "⚐";
+
+/* Class = "UIBarButtonItem"; title = "取消"; ObjectID = "AW8-6I-Arc"; */
+"AW8-6I-Arc.title" = "取消";
+
+/* Class = "UIBarButtonItem"; title = "注销"; ObjectID = "AWd-Uk-E9D"; */
+"AWd-Uk-E9D.title" = "注销";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "AeP-bl-NDW"; */
+"AeP-bl-NDW.text" = "Title";
+
+/* Class = "UILabel"; text = "分类"; ObjectID = "Buy-v3-yb6"; */
+"Buy-v3-yb6.text" = "分类";
+
+/* Class = "UITextField"; placeholder = "2~6位汉字(*)"; ObjectID = "EQf-Q2-w7p"; */
+"EQf-Q2-w7p.placeholder" = "2~6位汉字(*)";
+
+/* Class = "UILabel"; text = "用户"; ObjectID = "FQ0-g8-KnV"; */
+"FQ0-g8-KnV.text" = "用户";
+
+/* Class = "UILabel"; text = "➤"; ObjectID = "Ga4-YB-38c"; */
+"Ga4-YB-38c.text" = "➤";
+
+/* Class = "UIButton"; normalTitle = "格子"; ObjectID = "GuL-2i-3jL"; */
+"GuL-2i-3jL.normalTitle" = "格子";
+
+/* Class = "UILabel"; text = "地址："; ObjectID = "HQQ-OZ-Eqg"; */
+"HQQ-OZ-Eqg.text" = "地址：";
+
+/* Class = "UITextField"; placeholder = "(*)"; ObjectID = "HVo-44-CxS"; */
+"HVo-44-CxS.placeholder" = "(*)";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "Jjn-GN-t8M"; */
+"Jjn-GN-t8M.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "寻找格子"; ObjectID = "L5N-KS-3ru"; */
+"L5N-KS-3ru.title" = "寻找格子";
+
+/* Class = "UILabel"; text = "简介："; ObjectID = "Lav-cb-sDz"; */
+"Lav-cb-sDz.text" = "简介：";
+
+/* Class = "UITableViewSection"; headerTitle = "基本资料"; ObjectID = "Nx0-GC-nf7"; */
+"Nx0-GC-nf7.headerTitle" = "基本资料";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "P53-Nj-gn7"; */
+"P53-Nj-gn7.text" = "name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Q34-sv-jrN"; */
+"Q34-sv-jrN.text" = "Label";
+
+/* Class = "UILabel"; text = "名称："; ObjectID = "S7P-zN-6eu"; */
+"S7P-zN-6eu.text" = "名称：";
+
+/* Class = "UITextView"; text = "请简短介绍商品信息(*)"; ObjectID = "Tz3-qz-DmD"; */
+"Tz3-qz-DmD.text" = "请简短介绍商品信息(*)";
+
+/* Class = "UILabel"; text = "分类"; ObjectID = "VT1-xA-3w9"; */
+"VT1-xA-3w9.text" = "分类";
+
+/* Class = "UILabel"; text = "用户"; ObjectID = "Vvn-qB-pg1"; */
+"Vvn-qB-pg1.text" = "用户";
+
+/* Class = "UIButton"; normalTitle = "上传"; ObjectID = "YML-Sw-qz0"; */
+"YML-Sw-qz0.normalTitle" = "上传";
+
+/* Class = "UINavigationItem"; title = "基本信息"; ObjectID = "Ybd-eZ-0iU"; */
+"Ybd-eZ-0iU.title" = "基本信息";
+
+/* Class = "UILabel"; text = "图片："; ObjectID = "YjF-oE-00F"; */
+"YjF-oE-00F.text" = "图片：";
+
+/* Class = "UILabel"; text = "电话："; ObjectID = "Zvx-UA-ZOg"; */
+"Zvx-UA-ZOg.text" = "电话：";
+
+/* Class = "UITableViewSection"; headerTitle = "详细资料"; ObjectID = "aEx-hS-vyf"; */
+"aEx-hS-vyf.headerTitle" = "详细资料";
+
+/* Class = "UIBarButtonItem"; title = "编辑"; ObjectID = "acw-Ls-Tgl"; */
+"acw-Ls-Tgl.title" = "编辑";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "adE-tQ-Sye"; */
+"adE-tQ-Sye.text" = "Label";
+
+/* Class = "UILabel"; text = "UserName"; ObjectID = "axg-3s-Gsy"; */
+"axg-3s-Gsy.text" = "UserName";
+
+/* Class = "UITextField"; placeholder = "(*)"; ObjectID = "buM-VR-7YK"; */
+"buM-VR-7YK.placeholder" = "(*)";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "cmD-fb-Tha"; */
+"cmD-fb-Tha.text" = "Label";
+
+/* Class = "UILabel"; text = "备注："; ObjectID = "dca-md-cxn"; */
+"dca-md-cxn.text" = "备注：";
+
+/* Class = "UINavigationItem"; title = "个人中心"; ObjectID = "gE2-Wj-aDw"; */
+"gE2-Wj-aDw.title" = "个人中心";
+
+/* Class = "UINavigationItem"; title = "详细信息"; ObjectID = "iRg-Hi-TsS"; */
+"iRg-Hi-TsS.title" = "详细信息";
+
+/* Class = "UILabel"; text = "用户名："; ObjectID = "kjm-Hd-LNe"; */
+"kjm-Hd-LNe.text" = "用户名：";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "nsR-b2-iGC"; */
+"nsR-b2-iGC.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "我的格子"; ObjectID = "oqj-7a-oKw"; */
+"oqj-7a-oKw.title" = "我的格子";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "tUT-FC-q92"; */
+"tUT-FC-q92.text" = "Label";
+
+/* Class = "UILabel"; text = "分类："; ObjectID = "vY6-81-SDQ"; */
+"vY6-81-SDQ.text" = "分类：";
+
+/* Class = "UIButton"; normalTitle = "➥"; ObjectID = "x2p-eJ-bmo"; */
+"x2p-eJ-bmo.normalTitle" = "➥";
+
+/* Class = "UILabel"; text = "介绍"; ObjectID = "x3z-KT-HqX"; */
+"x3z-KT-HqX.text" = "介绍";
+
+/* Class = "UILabel"; text = "姓名："; ObjectID = "xye-Sl-l5W"; */
+"xye-Sl-l5W.text" = "姓名：";
+
+/* Class = "UINavigationItem"; title = "发现格子"; ObjectID = "yhz-L8-Ifq"; */
+"yhz-L8-Ifq.title" = "发现格子";

@@ -38,7 +38,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value)
+                print(response.result.value!)
                 self.responseSuccess(response: response.result.value as! Dictionary)
                 
             case .failure(let error):
@@ -107,7 +107,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value)
+                print(response.result.value!)
                 self.loginWith(response: response.result.value as! Dictionary)
             case .failure(let error):
                 DispatchQueue.main.async(execute: {

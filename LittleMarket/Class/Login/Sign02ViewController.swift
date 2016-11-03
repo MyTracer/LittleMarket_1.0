@@ -115,7 +115,7 @@ class Sign02ViewController: UIViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value)
+                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["isuse"] as! String == "1"
                 {
@@ -157,7 +157,7 @@ class Sign02ViewController: UIViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value)
+                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200"
                 {

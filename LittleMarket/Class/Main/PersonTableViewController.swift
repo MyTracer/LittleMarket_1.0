@@ -121,7 +121,7 @@ class PersonTableViewController: UITableViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value)
+                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["isuse"] as! String == "0"
                 {
@@ -170,7 +170,7 @@ class PersonTableViewController: UITableViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value)
+                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200"
                 {

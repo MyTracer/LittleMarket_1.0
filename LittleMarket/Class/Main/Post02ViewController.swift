@@ -72,7 +72,7 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                     switch response.result{
                     case .success(_):
                         print("请求成功")
-                        print(response.result.value)
+                        print(response.result.value!)
                         self.picName(response: response.result.value as! Dictionary)
                     case .failure(let error):
                         print(error)
@@ -167,7 +167,7 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value)
+                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200"
                 {

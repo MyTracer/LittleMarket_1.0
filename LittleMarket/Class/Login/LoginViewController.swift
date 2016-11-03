@@ -66,7 +66,7 @@ class LoginViewController: UIViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value)
+                print(response.result.value!)
                 self.loginWith(response: response.result.value as! Dictionary)
             case .failure(let error):
                 print(error)
