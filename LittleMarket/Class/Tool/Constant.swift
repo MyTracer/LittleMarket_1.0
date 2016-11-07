@@ -47,7 +47,7 @@ struct CellReuseIdentifier {
 struct Magic {
     static let reSize = CGSize(width: 400, height: 600)
     static let Appinfo = "格子铺...一个有趣的交易信息共享平台"
-    static let AppDetail = "格子铺...一个有趣的交易信息共享平台 --条款"
+    static let AppDetail = "1.文明用语\n2.禁止欺骗行为\n              --条款"
     
 }
 

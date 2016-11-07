@@ -19,7 +19,8 @@ class Sign00ViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
+        // 条款显示
+
         tvDetail.text = Magic.AppDetail
         super.viewDidLoad()
 
