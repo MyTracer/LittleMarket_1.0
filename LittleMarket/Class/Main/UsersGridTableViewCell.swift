@@ -40,12 +40,13 @@ class UsersGridTableViewCell: UITableViewCell {
                 }
             }
             
-            let url = URL(string: (API.APIHost + model.pic))!
+            if let url = URL(string: (API.APIHost + model.pic)){
             self.imageGrid.kf.setImage(with: url,
                                           placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
                                           options: [.transition(.fade(1))],
                                           progressBlock: nil,
                                           completionHandler: nil)
+            }
             
         case .run:
             break
