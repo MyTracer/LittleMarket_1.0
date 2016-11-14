@@ -55,7 +55,7 @@ class Post01ViewController: UIViewController {
 //    MARK: - 系统
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view.
     }
     

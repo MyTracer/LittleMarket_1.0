@@ -45,14 +45,17 @@ class LoginViewController: UIViewController {
             self.login()
         }
         // 初始判断
-        print(userStr!,pwdStr!.md5)
     }
     // 登陆请求
     func login() {
         // 登陆网络请求
         // 请求参数（密码加密后传输）
-        let parameter:Dictionary = ["username":userStr!,"password":pwdStr!.md5!];
-        print(parameter)
+        guard let username = userStr,let password = pwdStr else {
+            return
+        }
+        let parameter:Dictionary = ["username":username as String,"password":password.md5 as String];
+        // 传递参数
+        print("登陆参数\(parameter)")
         
         // 清空提示框
         // 等待提示框
@@ -105,11 +108,6 @@ class LoginViewController: UIViewController {
                 
                 break
             }
-
-            
-            
-            
-            print(userinfo)
             
             if !userinfo.userid.isEmpty {
                 // 用户存在，数据正常
@@ -128,7 +126,7 @@ class LoginViewController: UIViewController {
             
         }else{
             // 数据不正确
-            print("返回数据有误")
+            print("登陆返回数据有误")
             
             DispatchQueue.main.async(execute: {
                 self.HUDHide()
@@ -159,11 +157,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         // 判断网络
         let app = UIApplication.shared.delegate as! AppDelegate
         if (app.managr?.isReachableOnEthernetOrWiFi)! {
-            self.HUDtext(text: "已连接到WiFi")
+            // 正常不提示
+            // self.HUDtext(text: "已连接到WiFi")
         }else{
             self.HUDtext(text: "请优先连接到WiFi")
         }
@@ -196,7 +194,8 @@ class LoginViewController: UIViewController {
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
+        // 提示持续时间
     }
     func HUDHide()  {
         hud?.hide(animated: true)

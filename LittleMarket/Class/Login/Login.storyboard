@@ -170,10 +170,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3A3-aV-8A2">
-                                <rect key="frame" x="60" y="20" width="255" height="44"/>
+                                <rect key="frame" x="60" y="36" width="255" height="28"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="注册条款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jo3-xI-pkv">
-                                        <rect key="frame" x="86.5" y="10" width="82" height="24"/>
+                                        <rect key="frame" x="86.5" y="2" width="82" height="24"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -181,7 +181,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Bld-tw-yFr"/>
+                                    <constraint firstAttribute="height" constant="28" id="Bld-tw-yFr"/>
                                     <constraint firstItem="Jo3-xI-pkv" firstAttribute="centerX" secondItem="3A3-aV-8A2" secondAttribute="centerX" id="QuP-cd-G9d"/>
                                     <constraint firstItem="Jo3-xI-pkv" firstAttribute="centerY" secondItem="3A3-aV-8A2" secondAttribute="centerY" id="ZMr-SE-oBV"/>
                                 </constraints>
@@ -202,9 +202,10 @@
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tbs-a8-tCY">
                                         <rect key="frame" x="22" y="22" width="299" height="439"/>
-                                        <color key="backgroundColor" red="0.83964124096163839" green="0.85549067246481547" blue="0.63031650268790551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <mutableString key="text">Lorem ipsum dolor sit erelit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.\n Lorem ipsum dolor sit erelit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
+                                        <color key="backgroundColor" red="0.83964124100000004" green="0.85549067249999999" blue="0.63031650269999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <string key="text">Lorem ipsum dolor sit erelit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.\n Lorem ipsum dolor sit erelit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -231,13 +232,13 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="VKD-5S-gWg">
-                                <rect key="frame" x="99.5" y="587" width="176" height="36"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="VKD-5S-gWg">
+                                <rect key="frame" x="77.5" y="587" width="220" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gr5-0c-n2b">
-                                        <rect key="frame" x="0.0" y="0.0" width="44" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="88" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="YRn-BB-XyJ"/>
+                                            <constraint firstAttribute="width" constant="88" id="YRn-BB-XyJ"/>
                                             <constraint firstAttribute="height" constant="36" id="ljj-jJ-7QJ"/>
                                         </constraints>
                                         <state key="normal" title="拒绝">
@@ -259,9 +260,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOl-Dw-0DK">
-                                        <rect key="frame" x="132" y="0.0" width="44" height="36"/>
+                                        <rect key="frame" x="132" y="0.0" width="88" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="FpC-tc-eXE"/>
+                                            <constraint firstAttribute="width" constant="88" id="FpC-tc-eXE"/>
                                             <constraint firstAttribute="height" constant="36" id="jsi-gc-1kk"/>
                                         </constraints>
                                         <state key="normal" title="同意">
@@ -295,7 +296,7 @@
                             <constraint firstItem="3A3-aV-8A2" firstAttribute="leading" secondItem="Ek9-e1-TWA" secondAttribute="leadingMargin" constant="44" id="DYc-8s-vfs"/>
                             <constraint firstItem="lCW-yC-x5Q" firstAttribute="top" secondItem="VKD-5S-gWg" secondAttribute="bottom" constant="44" id="Dws-Kf-Nz0"/>
                             <constraint firstItem="P2d-7J-gg0" firstAttribute="leading" secondItem="Ek9-e1-TWA" secondAttribute="leadingMargin" id="d7h-cl-JPh"/>
-                            <constraint firstItem="3A3-aV-8A2" firstAttribute="top" secondItem="fwC-Lq-BeO" secondAttribute="bottom" id="hZ6-wz-hup"/>
+                            <constraint firstItem="3A3-aV-8A2" firstAttribute="top" secondItem="fwC-Lq-BeO" secondAttribute="bottom" constant="16" id="hZ6-wz-hup"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3A3-aV-8A2" secondAttribute="trailing" constant="44" id="zZG-3Y-8FE"/>
                         </constraints>
                     </view>
@@ -674,7 +675,7 @@
                                                         <rect key="frame" x="84" y="0.0" width="171" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" red="1" green="0.88800037050000002" blue="0.80902585979999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -706,7 +707,7 @@
                                                         <rect key="frame" x="84" y="0.0" width="171" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                        <textInputTraits key="textInputTraits"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="8"/>

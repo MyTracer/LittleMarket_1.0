@@ -78,7 +78,6 @@ class Sign01ViewController: UIViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["isuse"] as! String == "1"
                 {
@@ -88,11 +87,12 @@ class Sign01ViewController: UIViewController {
                         return
                     })
                     
+                }else{
+                    // 进入下一页
+                    self.performSegue(withIdentifier:self.segueID, sender: nil)
                 }
-                // 进入下一页
-                self.performSegue(withIdentifier:self.segueID, sender: nil)
             case .failure(let error):
-                print(error)
+                print("请求失败\(error)")
                 
                 // HUD提示
                 DispatchQueue.main.async(execute: {
@@ -145,7 +145,7 @@ class Sign01ViewController: UIViewController {
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
     }
     func HUDHide()  {
         hud?.hide(animated: true)

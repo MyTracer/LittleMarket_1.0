@@ -60,10 +60,10 @@ class Sign02ViewController: UIViewController {
             return
         }
         if Adress!.isEmpty {
-            Adress = "- -"
+            Adress = "未录入"
         }
         if Note!.isEmpty {
-            Note = "- -"
+            Note = "未录入"
         }
         
         if !Validate.nickname(Name!).isRight {
@@ -115,7 +115,6 @@ class Sign02ViewController: UIViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["isuse"] as! String == "1"
                 {
@@ -125,9 +124,10 @@ class Sign02ViewController: UIViewController {
                         return
                     })
                     
+                }else{
+                    // 存入数据库
+                    self.upLoad()
                 }
-                // 存入数据库
-                self.upLoad()
             case .failure(let error):
                 print(error)
                 
@@ -157,7 +157,6 @@ class Sign02ViewController: UIViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200"
                 {
@@ -223,7 +222,7 @@ class Sign02ViewController: UIViewController {
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
     }
     func HUDHide()  {
         hud?.hide(animated: true)
