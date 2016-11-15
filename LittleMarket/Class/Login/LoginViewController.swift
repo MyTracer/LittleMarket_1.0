@@ -55,7 +55,6 @@ class LoginViewController: UIViewController {
         }
         let parameter:Dictionary = ["username":username as String,"password":password.md5 as String];
         // 传递参数
-        print("登陆参数\(parameter)")
         
         // 清空提示框
         // 等待提示框
@@ -69,7 +68,6 @@ class LoginViewController: UIViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 self.loginWith(response: response.result.value as! Dictionary)
             case .failure(let error):
                 print(error)

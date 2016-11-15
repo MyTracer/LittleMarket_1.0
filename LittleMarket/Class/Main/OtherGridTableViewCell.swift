@@ -23,7 +23,7 @@ class OtherGridTableViewCell: UITableViewCell {
     //    MARK: - 方法
     func bindModel(model: OtherGridModel,index:Int) {
         
-        //            测试
+        // 测试
         switch Judge {
         case .test:
             lbPart.text = "商品分类"
@@ -41,7 +41,7 @@ class OtherGridTableViewCell: UITableViewCell {
             }
             
             lbNote.text = model.note + "    价格:$" + model.price
-            print(API.APIHost + model.pic)
+            
             if let url = URL(string: (API.APIHost + model.pic)){
             self.imageProduct.kf.setImage(with: url,
                                           placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
@@ -49,14 +49,10 @@ class OtherGridTableViewCell: UITableViewCell {
                                           progressBlock: nil,
                                           completionHandler: nil)
             }
-
         case .run:
             break
             
         }
-        
-        
-        
     }
     //    MARK: - 函数
     override func awakeFromNib() {
