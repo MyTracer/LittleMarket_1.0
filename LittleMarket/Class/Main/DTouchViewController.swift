@@ -38,12 +38,13 @@ class DTouchViewController: UIViewController {
     
     func initData()
     {
-        let url = URL(string: (API.APIHost + self.imageUrl!))
-        self.potoView?.kf.setImage(with: url,
-                                   placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
-                                   options: [.transition(.fade(1))],
-                                   progressBlock: nil,
-                                   completionHandler: nil)
+        if let url = URL(string: (API.APIHost + self.imageUrl!)){
+            self.potoView?.kf.setImage(with: url,
+                                       placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
+                                       options: [.transition(.fade(1))],
+                                       progressBlock: nil,
+                                       completionHandler: nil)
+        }
         
         
     }

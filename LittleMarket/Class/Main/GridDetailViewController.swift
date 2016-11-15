@@ -31,9 +31,7 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
     
     var useridStr:String = ""
     // 获取数据
-    
-    
-    
+  
 //     懒加载
     lazy var userMenu: UserMenuTableViewCell = {
         let userMenu = self.tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifier.UserMenu) as! UserMenuTableViewCell
@@ -84,7 +82,6 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 self.responseSuccess(response: response.result.value as! Dictionary)
                 
             case .failure(let error):
@@ -113,9 +110,6 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
                 self.userGrid.insert(p, at: (self.userGrid.count))
             }
             self.cellCount = self.userGrid.count
-            print(userGrid)
-            
-            
             
         }else{
             // 数据不正确
@@ -126,9 +120,6 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             // 未刷新表格
             self.setHeader()
         })
-        
-        
-        
         
     }
 //    MARK: - 数据
@@ -146,7 +137,6 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 self.findUserWith(response: response.result.value as! Dictionary)
             case .failure(let error):
                 print(error)
@@ -157,13 +147,6 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
                 })
             }
         }
-        
-        
-        
-        
-        
-
-        
         // 绑定数据源
         tableView.dataSource = userGridDataSource
         tableView.rowHeight = CGFloat(UserMenuItem.Grids.rawValue)
@@ -177,9 +160,6 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         if response["code"] as? String == "200" {
             for dic:NSDictionary in response["msg"] as! Array{
                 // 解析
-                // 解析
-                
-                
                 personInfo.username = dic["username"] as! String
                 personInfo.userid = dic["userid"] as! String
                 personInfo.name = dic["name"] as! String
@@ -194,18 +174,16 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
                 break
             }
 
-            
-            
-            
             tableHeader.bindModel(username: personInfo.username, name: personInfo.name, note: personInfo.note)
             // 加载头像
             
-            let url = URL(string: (API.APIHost + personInfo.pic))!
+            if let url = URL(string: (API.APIHost + personInfo.pic)){
             self.avaterImageView.kf.setImage(with: url,
                                           placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
                                           options: [.transition(.fade(1))],
                                           progressBlock: nil,
                                           completionHandler: nil)
+            }
             
         }else{
             // 数据不正确
@@ -231,9 +209,6 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         super.viewDidLoad()
         // 加载头部，设置头部信息（读取UserInfo）在加载完数据之后。防止两次刷新重叠
         tableView.tableHeaderView = tableHeader
-        
-        
-
         // Do any additional setup after loading the view.
     }
     
@@ -308,7 +283,7 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
     }
     func HUDHide()  {
         hud?.hide(animated: true)

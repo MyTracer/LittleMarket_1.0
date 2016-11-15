@@ -38,7 +38,6 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 self.responseSuccess(response: response.result.value as! Dictionary)
                 
             case .failure(let error):
@@ -107,7 +106,6 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 self.loginWith(response: response.result.value as! Dictionary)
             case .failure(let error):
                 DispatchQueue.main.async(execute: {
@@ -141,9 +139,6 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
                 userinfo.isuse = dic["isuse"] as! String
                 break
             }
-
-            
-            print(userinfo)
             
             if !userinfo.userid.isEmpty {
                 // 用户存在，数据正常
@@ -179,6 +174,8 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // 设置tabbar:图标分辨率过大会导致无法正常显示
+
         tvGrid.delegate = self
         self.tvGrid.rowHeight = cellHeight
         
@@ -196,7 +193,9 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // 登陆成功后自动加载数据
-        self.login()
+        
+        // 每次都界面重新出现都会验证登陆
+        self.login()// FIXME: - 多次重复登陆问题
     }
     
     override func loadView() {
@@ -307,7 +306,7 @@ class FindGridViewController: UIViewController ,UITableViewDelegate ,UITableView
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
     }
     func HUDHide()  {
         hud?.hide(animated: true)

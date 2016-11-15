@@ -31,10 +31,7 @@ class UserDetailHeaderCell: UITableViewCell {
             break
             
         }
-        
-        
+     
     }
-    
-    
 
 }

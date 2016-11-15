@@ -11,6 +11,7 @@ import Alamofire
 
 class MyGridTableViewController: UITableViewController , UIViewControllerPreviewingDelegate{
 //  MARK: - 变量
+    let segueID = "Post"
     var isCan3DTouch = true
     
     // 定义行高
@@ -28,7 +29,7 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
 //  MARK: - 网络请求
     func getData()  {
         // 登陆网络请求
-        // 请求参数（密码加密后传输）
+        // 请求参数
         let parameter:Dictionary = ["userid":UserInfo.shareUserInfo.userid as String]
         
         hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
@@ -40,7 +41,6 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 self.responseSuccess(response: response.result.value as! Dictionary)
                 
             case .failure(let error):
@@ -72,7 +72,6 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
                 self.myGrid.insert(p, at: (self.myGrid.count))
             }
             self.cellCount = self.myGrid.count
-            print(myGrid)
             self.tableView.reloadData()
             
         }else{
@@ -119,7 +118,6 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 var response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200" {
                     
@@ -157,6 +155,14 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
         }
     }
     
+    @IBAction func PostClick(_ sender: Any) {
+        if cellCount >= Magic.GridNum {
+            self.HUDHide()
+            self.HUDtext(text: "发布数量不能超过\(Magic.GridNum)个")
+        }else{
+            self.performSegue(withIdentifier: segueID, sender: nil)
+        }
+    }
 //  MARK: - 系统
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -308,15 +314,18 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == segueID{
+            
+        }
     }
-    */
+    
 //     MRAK: - HUDTEXT
     var hud:MBProgressHUD?
     
@@ -327,7 +336,7 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
     }
     func HUDHide()  {
         hud?.hide(animated: true)

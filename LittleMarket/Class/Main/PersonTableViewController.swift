@@ -71,6 +71,10 @@ class PersonTableViewController: UITableViewController {
             btnEdit.tag = 1
             btnEdit.title = "保存"
             // 在单元格点击方法中修改数据
+            tbName.textColor = UIColor.lightGray
+            tbPhone.textColor = UIColor.lightGray
+            tbAdress.textColor = UIColor.lightGray
+            tbNote.textColor = UIColor.lightGray
         }
         else {
             // 数据验证
@@ -121,7 +125,6 @@ class PersonTableViewController: UITableViewController {
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["isuse"] as! String == "0"
                 {
@@ -178,13 +181,16 @@ class PersonTableViewController: UITableViewController {
                     DispatchQueue.main.async(execute: {
                         self.HUDHide()
                         self.HUDtext(text: "保存成功")
-                    })
-                    
                         
-                    self.btnEdit.tag = 0
-                    self.btnEdit.title = "编辑"
-                    self.btnCancel.title = "注销"
-                    
+                        self.btnEdit.tag = 0
+                        self.btnEdit.title = "编辑"
+                        self.btnCancel.title = "注销"
+                        // 改回颜色，退出编辑
+                        self.tbName.textColor = UIColor.black
+                        self.tbPhone.textColor = UIColor.black
+                        self.tbAdress.textColor = UIColor.black
+                        self.tbNote.textColor = UIColor.black
+                    })
                     
                 }
                 
@@ -235,6 +241,12 @@ class PersonTableViewController: UITableViewController {
             self.btnEdit.tag = 0
             self.btnEdit.title = "编辑"
             self.btnCancel.title = "注销"
+            
+            // 改回颜色，退出编辑
+            self.tbName.textColor = UIColor.black
+            self.tbPhone.textColor = UIColor.black
+            self.tbAdress.textColor = UIColor.black
+            self.tbNote.textColor = UIColor.black
         }
         
         
@@ -248,6 +260,66 @@ class PersonTableViewController: UITableViewController {
         self.view.window?.rootViewController = storyboard.instantiateInitialViewController()
         
     }
+//  MRAK: - 清理缓存
+    @IBAction func Clean(_ sender: UIButton) {
+        // 取出cache文件夹路径
+        let cachePath = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first
+        // 打印路径,需要测试的可以往这个路径下放东西
+        print(cachePath ?? "0")
+        // 取出文件夹下所有文件数组
+        let files = FileManager.default.subpaths(atPath: cachePath!)
+        // 用于统计文件夹内所有文件大小
+        var big = Int();
+        
+        
+        // 快速枚举取出所有文件名
+        for p in files!{
+            // 把文件名拼接到路径中
+            let path = cachePath!.appendingFormat("/\(p)")
+            // 取出文件属性
+            let floder = try! FileManager.default.attributesOfItem(atPath: path)
+            // 用元组取出文件大小属性
+            for (abc,bcd) in floder {
+                // 只去出文件大小进行拼接
+                if abc == FileAttributeKey.size{
+                    big += (bcd as AnyObject).integerValue
+                }
+            }
+        }
+        
+        // 提示框
+        let message = "\(big/(1024*1024))M缓存"
+        let alert = UIAlertController(title: "清除缓存", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        
+        let alertConfirm = UIAlertAction(title: "确定", style: UIAlertActionStyle.default) { (alertConfirm) -> Void in
+            // 点击确定时开始删除
+            for p in files!{
+                // 拼接路径
+                let path = cachePath!.appendingFormat("/\(p)")
+                // 判断是否可以删除
+                if(FileManager.default.fileExists(atPath: path)){
+                    // 删除
+                    do {
+                        try FileManager.default.removeItem(atPath: path)
+                    } catch let error as NSError {
+                        print(error)
+                    }
+                    
+                }
+            }
+        }
+        alert.addAction(alertConfirm)
+        let cancle = UIAlertAction(title: "取消", style: UIAlertActionStyle.cancel) { (cancle) -> Void in
+            
+        }
+        alert.addAction(cancle)
+        // 提示框弹出
+        present(alert, animated: true) { () -> Void in
+            
+        }
+    }
+    
+    
 //  MARK: - 系统
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -280,7 +352,6 @@ class PersonTableViewController: UITableViewController {
     }
 //    点击单元格触发事件
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
         
         self.view.endEditing(true)
         // 取消所有按键可用
@@ -386,7 +457,7 @@ class PersonTableViewController: UITableViewController {
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
     }
     func HUDHide()  {
         hud?.hide(animated: true)

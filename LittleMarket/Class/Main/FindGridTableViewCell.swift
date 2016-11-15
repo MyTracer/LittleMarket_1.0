@@ -38,12 +38,13 @@ class FindGridTableViewCell: UITableViewCell {
             
             lbName.text = model.name
             lbInfo.text = model.note
-            let url = URL(string: (API.APIHost + model.pic))!
+            if let url = URL(string: (API.APIHost + model.pic)){
             self.ivImg.kf.setImage(with: url,
                                           placeholder: UIImage.init(imageLiteralResourceName: "default_img"),
                                           options: [.transition(.fade(1))],
                                           progressBlock: nil,
                                           completionHandler: nil)
+            }
             
         case .run:
             break

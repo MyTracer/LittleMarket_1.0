@@ -39,7 +39,6 @@ class OtherGridTableViewController: UITableViewController, UIViewControllerPrevi
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 self.responseSuccess(response: response.result.value as! Dictionary)
                 
             case .failure(let error):
@@ -66,10 +65,13 @@ class OtherGridTableViewController: UITableViewController, UIViewControllerPrevi
         if response["code"] as! String == "200" {
             for dict:NSDictionary in response["msg"] as! Array{
                 let p = OtherGridModel.objectWithKeyValues(keyValues: dict) as! OtherGridModel
-                
+                // 测试- 过多数据问题
+                // FIXME: - 数据缓存
                 self.otherGrid.insert(p, at: (self.otherGrid.count))
+                
             }
             self.cellCount = self.otherGrid.count
+            
             self.tableView.reloadData()
             
         }else{
@@ -121,7 +123,6 @@ class OtherGridTableViewController: UITableViewController, UIViewControllerPrevi
         // 请求参数
         var score:String = self.otherGrid[indexPath.section].score
         score = "\(Int.init(score)! + judge)"
-        print(score)
         let parameter:Dictionary = ["productid":self.otherGrid[indexPath.section].productid,"score":score]
         
         hud = MBProgressHUD.showAdded(to: self.view.window!, animated: true)
@@ -132,7 +133,6 @@ class OtherGridTableViewController: UITableViewController, UIViewControllerPrevi
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 var response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200" {
                     
@@ -338,7 +338,7 @@ class OtherGridTableViewController: UITableViewController, UIViewControllerPrevi
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
     }
     func HUDHide()  {
         hud?.hide(animated: true)

@@ -204,9 +204,9 @@
 		09155EFD1D90E4C6007AC201 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				091E78CA1D94D04C003C49EF /* FindGridViewController.swift */,
 				09F622741D922D9A0040B277 /* PersonTableViewController.swift */,
 				090BB2861D93B0BA0090FA8E /* MyGridTableViewController.swift */,
-				091E78CA1D94D04C003C49EF /* FindGridViewController.swift */,
 				091E78D81D950D22003C49EF /* OtherGridTableViewController.swift */,
 				09F0205C1D97DC0900E2CE9B /* GridDetailViewController.swift */,
 				09CC8F031DAB5C9800603726 /* Post01ViewController.swift */,

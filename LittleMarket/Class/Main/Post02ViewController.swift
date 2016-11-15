@@ -72,7 +72,6 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
                     switch response.result{
                     case .success(_):
                         print("请求成功")
-                        print(response.result.value!)
                         self.picName(response: response.result.value as! Dictionary)
                     case .failure(let error):
                         print(error)
@@ -167,7 +166,6 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
             switch response.result{
             case .success(_):
                 print("请求成功")
-                print(response.result.value!)
                 let response = response.result.value as! [String:AnyObject]
                 if response["code"] as! String == "200"
                 {
@@ -265,7 +263,7 @@ class Post02ViewController: UIViewController,UIPickerViewDataSource,UIPickerView
         hud?.mode = MBProgressHUDMode.text
         hud?.label.text = NSLocalizedString(text, comment: "HUD message title")
         hud?.offset = CGPoint.init(x: 0, y: MBProgressMaxOffset)
-        hud?.hide(animated: true, afterDelay: 3)
+        hud?.hide(animated: true, afterDelay: 2)
     }
     func HUDHide()  {
         hud?.hide(animated: true)
