@@ -53,19 +53,15 @@ class DTouchViewController: UIViewController {
         titleView.backgroundColor = UIColor(red: 52/255, green: 222/255, blue: 136/255, alpha: 1).withAlphaComponent(0.8)
         titleView.textAlignment = NSTextAlignment.center
         titleView.text = "More Detail"
-        self.view.addSubview(titleView)
-        
+//        self.view.addSubview(titleView)
         self.potoView = UIImageView(frame: CGRect.init(x: 0, y: 64, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-60))
+     
+        
         self.potoView?.contentMode = UIViewContentMode.scaleToFill
         self.view.addSubview(self.potoView!)
     }
     //pragma mark - 底部预览界面选项
-
-    
-    
-    
-    
-
+  
     /*
     // MARK: - Navigation
 
