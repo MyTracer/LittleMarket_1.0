@@ -38,6 +38,9 @@
 		095BA2021D98E30A009B808D /* UserDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */; };
 		0970DA811D92690300FA9B1F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0970DA801D92690300FA9B1F /* Login.storyboard */; };
 		0970DA831D926E7000FA9B1F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0970DA821D926E7000FA9B1F /* LoginViewController.swift */; };
+		097318E41DF6746F008F776E /* Bundle+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097318E31DF6746F008F776E /* Bundle+extensions.swift */; };
+		097318EC1DF67E9B008F776E /* WBWelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097318E81DF67E9B008F776E /* WBWelcomeView.swift */; };
+		097318ED1DF67E9B008F776E /* WBWelcomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 097318E91DF67E9B008F776E /* WBWelcomeView.xib */; };
 		097F96351DBF26C00023B4DC /* UIImage-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097F96341DBF26C00023B4DC /* UIImage-extension.swift */; };
 		098989611DB5BD3E00DA2155 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 098989601DB5BD3E00DA2155 /* MBProgressHUD.m */; };
 		09A4D12E1D93718C003CB8FF /* String-extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4D12D1D93718C003CB8FF /* String-extension.swift */; };
@@ -90,6 +93,9 @@
 		095BA2011D98E30A009B808D /* UserDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailTableViewCell.swift; sourceTree = "<group>"; };
 		0970DA801D92690300FA9B1F /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		0970DA821D926E7000FA9B1F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		097318E31DF6746F008F776E /* Bundle+extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+extensions.swift"; sourceTree = "<group>"; };
+		097318E81DF67E9B008F776E /* WBWelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WBWelcomeView.swift; sourceTree = "<group>"; };
+		097318E91DF67E9B008F776E /* WBWelcomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WBWelcomeView.xib; sourceTree = "<group>"; };
 		09742DE71DC9DBF2005D7FAF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		09742DE81DC9DBF2005D7FAF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		097F96341DBF26C00023B4DC /* UIImage-extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage-extension.swift"; sourceTree = "<group>"; };
@@ -171,6 +177,7 @@
 		09155EF61D90E2C1007AC201 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				097318E51DF67E9B008F776E /* NewFeature */,
 				09155EFD1D90E4C6007AC201 /* Controller */,
 				09155EFE1D90E4D3007AC201 /* View */,
 				09155EFF1D90E4E5007AC201 /* Model */,
@@ -197,6 +204,7 @@
 				09E2B2B51DAA138200DA1FF2 /* Check.swift */,
 				092EDBE61DACD2E4004BF705 /* NavigationController-extension.swift */,
 				097F96341DBF26C00023B4DC /* UIImage-extension.swift */,
+				097318E31DF6746F008F776E /* Bundle+extensions.swift */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -311,6 +319,15 @@
 			path = LittleMarket;
 			sourceTree = "<group>";
 		};
+		097318E51DF67E9B008F776E /* NewFeature */ = {
+			isa = PBXGroup;
+			children = (
+				097318E81DF67E9B008F776E /* WBWelcomeView.swift */,
+				097318E91DF67E9B008F776E /* WBWelcomeView.xib */,
+			);
+			path = NewFeature;
+			sourceTree = "<group>";
+		};
 		0989895E1DB5BD3E00DA2155 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +419,7 @@
 			files = (
 				0970DA811D92690300FA9B1F /* Login.storyboard in Resources */,
 				09E8DFF31DB4B28A00795E8C /* Assets.xcassets in Resources */,
+				097318ED1DF67E9B008F776E /* WBWelcomeView.xib in Resources */,
 				0941ADF91D90DE4E001D9857 /* LaunchScreen.storyboard in Resources */,
 				0941ADF41D90DE4E001D9857 /* Main.storyboard in Resources */,
 			);
@@ -486,6 +504,7 @@
 				092EDBEF1DACD469004BF705 /* DGElasticPullToRefreshExtensions.swift in Sources */,
 				091E78D11D94FD75003C49EF /* FindGridModel.swift in Sources */,
 				09A4D12E1D93718C003CB8FF /* String-extension.swift in Sources */,
+				097318EC1DF67E9B008F776E /* WBWelcomeView.swift in Sources */,
 				095BA1FE1D98DCB0009B808D /* UserDetailDataSource.swift in Sources */,
 				09155EFC1D90E3B6007AC201 /* UserInfo.swift in Sources */,
 				095BA1F41D98B191009B808D /* UserGridDataSource.swift in Sources */,
@@ -501,6 +520,7 @@
 				092EDBF11DACD469004BF705 /* DGElasticPullToRefreshLoadingViewCircle.swift in Sources */,
 				098989611DB5BD3E00DA2155 /* MBProgressHUD.m in Sources */,
 				095BA1F81D98B3DF009B808D /* UsersGridTableViewCell.swift in Sources */,
+				097318E41DF6746F008F776E /* Bundle+extensions.swift in Sources */,
 				09F0205D1D97DC0900E2CE9B /* GridDetailViewController.swift in Sources */,
 				092EDBE71DACD2E4004BF705 /* NavigationController-extension.swift in Sources */,
 				09155EFA1D90E311007AC201 /* Constant.swift in Sources */,
