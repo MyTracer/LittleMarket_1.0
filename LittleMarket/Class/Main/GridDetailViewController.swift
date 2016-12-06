@@ -30,6 +30,9 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
     var personInfo = PersonInfoModel()
     
     var useridStr:String = ""
+    
+    // 增加蒙版
+    var cover = UIButton()
     // 获取数据
   
 //     懒加载
@@ -210,6 +213,7 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         // 加载头部，设置头部信息（读取UserInfo）在加载完数据之后。防止两次刷新重叠
         tableView.tableHeaderView = tableHeader
         // Do any additional setup after loading the view.
+        setCover()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -237,6 +241,21 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
 
 
 // MARK: - TableView Delegate
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 获取选中的cell
+        guard let cell = self.tableView.cellForRow(at: indexPath) else {
+            return
+        }
+        if(cell.isKind(of: UsersGridTableViewCell.self)){
+            // 确认选中为用户商品
+            // 在用户界面上添加
+            let cellNow = cell as! UsersGridTableViewCell
+            if let image = cellNow.imageGrid.image{
+                self.moveImage(image: image)
+            }
+        }
+        
+    }
 
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -272,6 +291,9 @@ class GridDetailViewController: UIViewController ,UITableViewDelegate{
         avatarHeight.isActive = true
         avatarWidth.isActive = true
     }
+    
+
+    
     
 //     MRAK: - HUDTEXT
     var hud:MBProgressHUD?
@@ -313,5 +335,35 @@ extension GridDetailViewController: UserMenuDelegate {
         }
         self.tableView.rowHeight = CGFloat(item.rawValue)
         self.tableView.reloadData()
+    }
+}
+extension GridDetailViewController{
+    //     MRAK: - 蒙版
+    /*
+     1.添加蒙版
+     2.将图像按钮放置最前面
+     3.动画放大按键
+     4.在父视图可见范围之外
+     注：UIImage默认不交互，其子视图也无法交互
+     */
+    // 自动布局，Frame设置会失效
+    func moveImage(image:UIImage?)  {
+        if image != nil {
+            cover.alpha = 1.0
+            cover.setImage(image, for: .normal)
+        }
+    }
+    func removeImage()   {
+        cover.alpha = 0.0
+    }
+    
+    func setCover()  {
+        
+        cover.frame = view.bounds
+        cover.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+        view.addSubview(cover)
+        cover.alpha = 0.0
+        
+        cover.addTarget(self, action: #selector(removeImage), for: .touchUpInside)
     }
 }

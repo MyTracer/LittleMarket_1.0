@@ -26,6 +26,9 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
     var count:Int?
     var myGrid:[MyGridModel] = []
     
+    // 增加蒙版
+    var cover = UIButton()
+    
 //  MARK: - 网络请求
     func getData()  {
         // 登陆网络请求
@@ -185,6 +188,8 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        setCover()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -265,7 +270,20 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 获取选中的cell
+        guard let cell = self.tableView.cellForRow(at: indexPath) else {
+            return
+        }
+        if(cell.isKind(of: MyGridTableViewCell.self)){
+            // 确认选中为用户商品
+            // 在用户界面上添加
+            let cellNow = cell as! MyGridTableViewCell
+            if let image = cellNow.imageProduct.image{
+                self.moveImage(image: image)
+            }
+        }
         tableView.deselectRow(at: indexPath, animated: true)
+        
     }
     
 //    MARK: - 3Dtouch代理方法
@@ -349,4 +367,33 @@ class MyGridTableViewController: UITableViewController , UIViewControllerPreview
         
     }
 
+}
+extension MyGridTableViewController{
+    //     MRAK: - 蒙版
+    /*
+     1.添加蒙版
+     2.将图像按钮放置最前面
+     3.动画放大按键
+     4.在父视图可见范围之外
+     注：UIImage默认不交互，其子视图也无法交互
+     */
+    // 自动布局，Frame设置会失效
+    func moveImage(image:UIImage?)  {
+        if image != nil {
+            cover.alpha = 1.0
+            cover.setImage(image, for: .normal)
+        }
+    }
+    func removeImage()   {
+        cover.alpha = 0.0
+    }
+    func setCover()  {
+        
+        cover.frame = view.bounds
+        cover.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
+        view.addSubview(cover)
+        cover.alpha = 0.0
+        
+        cover.addTarget(self, action: #selector(removeImage), for: .touchUpInside)
+    }
 }
