@@ -336,8 +336,11 @@ extension FindGridViewController{
         let v = WBWelcomeView.welcomeView()
         
         // 2. 添加视图
-        // FIXME: - 没有添加到主窗口
-        view.addSubview(v)
+        // MARK: - 没有添加到主窗口,已修复
+        guard let vc = UIApplication.shared.keyWindow?.rootViewController else{
+            return
+        }
+        vc.view.addSubview(v)
         self.view.bringSubview(toFront: v)
     }
     

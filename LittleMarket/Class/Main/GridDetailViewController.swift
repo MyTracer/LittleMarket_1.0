@@ -359,7 +359,7 @@ extension GridDetailViewController{
     
     func setCover()  {
         
-        cover.frame = view.bounds
+        cover.frame = UIScreen.main.bounds
         cover.backgroundColor = UIColor(white: 0.0, alpha: 0.5)
         view.addSubview(cover)
         cover.alpha = 0.0
